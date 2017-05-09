@@ -56,8 +56,6 @@ Là chủ shop, bạn vui lòng đọc kĩ và tuân thủ <b><a href="">Chính 
                     </a>
                 </div>
             </div>
-        </div>
-        <div class = "row">
             <div class = "col-md-3 col-sm-4 col-xs-6">
                 <div class = "catalog_bh">
                     <a href="#">
@@ -95,6 +93,5 @@ Là chủ shop, bạn vui lòng đọc kĩ và tuân thủ <b><a href="">Chính 
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <?php include'footer.php';?>

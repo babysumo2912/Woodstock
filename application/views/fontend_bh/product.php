@@ -31,6 +31,10 @@ include 'header.php';
                     </div>
                 </a>
             </div>
+            <?php
+            if(isset($product)){
+                foreach($product as $row){
+            ?>
             <div class = "col-md-2 col-sm-3 col-xs-6">
                 <div class = " product_bh">
                     <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover">
@@ -39,14 +43,10 @@ include 'header.php';
                         </div>
                     </div>
                     <div class = "content-product">
-                        <b>IPhone 6S</b>
+                        <b><?php echo $row->name?></b>
                         <div class = "cost_pro">
-                            <div class = "left">
-                                <p>8.000.000 <sup>đ</sup></p>
-                            </div>
-                            <div class = "left">
-                                <span>KHo hàng: 10<sup>sp</sup></span>
-                            </div>
+                            <p><?php echo number_format($row->price)?><sup>đ</sup></p>
+                            <span><?php echo $row->number?><sup>sp</sup></span>
                         </div>
                         <div class = "review">
                             <i class = "fa fa-comments-o"><sup>0</sup></i>
@@ -59,6 +59,10 @@ include 'header.php';
                     </div>
                 </div>
             </div>
+            <?php
+                }
+            }
+            ?>
         </div>
    </div>
 </section>

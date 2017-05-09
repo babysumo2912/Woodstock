@@ -39,13 +39,22 @@ class Banhang extends CI_Controller{
                 $err['err'] = "Tài khoản chưa được đăng kí";
                 $this->load->view('fontend_bh/login',$err);
             }
-            if($login == 0){
-                $session_data = array(
-                    'session_user' => $account,
-                    'time_out_login' => time(),
+             if($login == 0){
+                $check = array(
+                    'account' => $account,
                 );
-                $this->session->set_userdata($session_data);
-                redirect('banhang');
+                $get = $this->User_models->get($check);
+                if($get!=false){
+                    foreach ($get as $row){
+                        $account = $row->id_user;
+                        $session_data = array(
+                            'session_user' => $account,
+                            'time_out_login' => time(),
+                        );
+                        $this->session->set_userdata($session_data);
+                    redirect('banhang');
+                    }
+                }
             }
         }else{
             $this->load->view('fontend_bh/login');

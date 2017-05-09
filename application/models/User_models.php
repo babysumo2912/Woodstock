@@ -1,5 +1,12 @@
 <?php 
 class User_models extends CI_Model{
+    function get($data){
+        $this->db->where('account',$data['account']);
+        $get = $this->db->get('tb_user');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
     function register($data){
         $this->db->where('account',$data['account']);
         $check = $this->db->get('tb_user');

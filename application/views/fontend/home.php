@@ -74,21 +74,23 @@
         </div>
         <!--product-->
 
-        
+        <?php if(isset($product)){
+            foreach($product as $row){
+        ?>
         <div class = "col-md-2 col-sm-3 col-xs-6">
             <div class = " product">
                 <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
                 <div class = "content-product">
                     <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
+                        <a href="" title = "<?php echo $row->name?>">
+                            <h4><?php echo $row->name?></h4>
                         </a>
                     </div>
                     <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
+                        <span><?php echo number_format($row->price)?><sup>đ</sup></span>
                     </div>
                     <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
+                        <i class = "fa fa-heart-o"> &nbsp;<?php echo number_format($row->like)?></i>
                     </div>
                     <div class = "star">
                         <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
@@ -97,283 +99,11 @@
                 </div>
             </div>
         </div>
+        <?php 
+            }
+        }
+        ?>
         <!--end product-->
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-2 col-sm-3 col-xs-6">
-            <div class = " product">
-                <!--<img src="<?php echo base_url() ?>public/img/product/2.jpg" alt="" class = "img-product">-->
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "Iphone 6S">
-                            <h4>Apple Iphone 6S</h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span>15.000 <sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;10000</i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         <div class = " col-md-12 col-xs-12 col-sm-12 text-center">
             <div class = "readmore">
