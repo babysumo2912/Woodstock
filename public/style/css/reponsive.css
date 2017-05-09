@@ -1,0 +1,44 @@
+@media screen and (min-width: 1024px){
+    .qc ul li{
+        display: inline-block;
+        padding:0 20px;
+        margin: 0;
+        line-height: 50px;
+        border-right: 1px #ccc solid;
+    }
+    .qc ul li:last-child{
+        border-right: none;
+    }
+    .qc ul li a{
+        display: block;
+    }
+    .menu_product{
+        text-align: center;
+    }
+     .menu_product ul li{
+        display: inline-block;
+        padding:0 20px;
+        margin: 0;
+        line-height: 50px;
+        border-top: none;
+        border-right: 1px #ccc solid;
+    }
+    .menu_product ul li a{
+        display: block;
+    }
+    .right{
+        text-align: inherit;
+        float: right;
+    }
+}
+@media screen and (min-width: 425px){
+    .footer{
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 768px){
+    .seo img{
+        display: none;
+    }
+}
