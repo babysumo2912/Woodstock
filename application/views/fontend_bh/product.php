@@ -37,10 +37,14 @@ include 'header.php';
             ?>
             <div class = "col-md-2 col-sm-3 col-xs-6">
                 <div class = " product_bh">
-                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover">
-                        <div class = "bansp">
+                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img?>') center; background-size: cover">
+                        <?php if($row->active == 1){
+                        ?>
+                            <div class = "bansp">
                             <i class = "fa fa-ban fa-5x"></i>
                         </div>
+                        <?php
+                        }?>
                     </div>
                     <div class = "content-product">
                         <b><?php echo $row->name?></b>

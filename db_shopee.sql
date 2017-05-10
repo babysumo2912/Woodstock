@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2017 at 08:52 PM
+-- Generation Time: May 10, 2017 at 06:50 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -61,13 +61,24 @@ CREATE TABLE `tb_product` (
   `id_product` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `img` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `discribe` text COLLATE utf8_unicode_ci NOT NULL,
   `id_catalog` int(11) NOT NULL,
   `price` float NOT NULL,
   `number` int(11) NOT NULL,
   `id_status` int(11) NOT NULL,
-  `like` int(11) NOT NULL
+  `like` int(11) NOT NULL,
+  `active` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_product`
+--
+
+INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
+(4, 1, 'LapTop MSI', 'images.jpg', 'Lap Top sieu chat luong', 2, 25000000, 10, 1, 0, 0),
+(5, 1, 'IPhone 8S', 'iphone-8-price.jpg', 'Smart Phone danh cho tuong lai', 1, 30000000, 10, 1, 0, 0),
+(6, 1, 'SamSung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb.jpg', 'Smart Phone perfect', 1, 22000000, 20, 1, 0, 0);
 
 -- --------------------------------------------------------
 

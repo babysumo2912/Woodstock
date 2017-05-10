@@ -8,7 +8,12 @@ class Banhang extends CI_Controller{
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
-            $data['user'] = $login_user;
+                $user = $this->User_models->getinfo($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['user'] = $row->account;
+                    }
+                }
             $this->load->view('fontend_bh/banhang',$data);
             }
         }else{
