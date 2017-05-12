@@ -37,14 +37,22 @@ class product extends CI_Controller{
             die();
         }
         $name = $this->input->post('name');
+<<<<<<< HEAD
 //        $img = $this->input->post('userfile');
+=======
+        $img = $this->input->post('userfile');
+>>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
         $discribe = $this->input->post('discribe');
         $id_catalog = $this->input->post('id_catalog');
         $price = $this->input->post('price');
         $number = $this->input->post('number');
         $id_status = $this->input->post('id_status');
+<<<<<<< HEAD
 //        echo $img; die();
         if(isset($name) && isset($discribe) && isset($id_catalog) && isset($price) && isset($number) && isset($id_status) && isset($_FILES['userfile']['name'])){
+=======
+        if(isset($name) && isset($discribe) && isset($id_catalog) && isset($price) && isset($number) && isset($id_status)){
+>>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
             $config['upload_path'] = './public/img/product/';
             $config['allowed_types'] = 'gif|png|jpg|jpeg';
             $this->load->library('upload',$config);
@@ -61,8 +69,13 @@ class product extends CI_Controller{
                 'number' => $number,
                 'id_status'   => $id_status,
                 );
+<<<<<<< HEAD
                 $add_pro = $this->Product_models->add($add);
                 if($add_pro){
+=======
+                $add = $this->Product_models->add($add);
+                if($add = true){
+>>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
                     redirect('product');
                 }else{
                     $data['err']  = "Fail !";

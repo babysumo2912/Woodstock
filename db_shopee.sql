@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: May 11, 2017 at 11:52 AM
+=======
+-- Generation Time: May 10, 2017 at 06:50 PM
+>>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -76,12 +80,18 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
+<<<<<<< HEAD
 (7, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 10, 1, 0, 0),
 (8, 1, 'IPhone 8', 'iphone-8-price1.jpg', 'Supper Smart Phone', 1, 25000000, 23, 1, 0, 0),
 (9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nc', 1, 26000000, 1, 1, 0, 0),
 (10, 1, '1', 'giac-mong-thay-ngoi-chua-cung-nhung-con-so-vang-1.JPG', '1', 1, 1000, 1, 1, 0, 1),
 (11, 1, '1', '17909125_233601500377276_1339724259_n.jpg', '1', 1, 1234, 1, 1, 0, 0),
 (12, 1, '1', '17909360_233601513710608_605613589_n.jpg', 'asdasda</br><br />\r\nasdasdawdasdawdasd<br />\r\nasdasdasda</br><i class = \"fa fa-user\">', 1, 2000, 2, 1, 0, 0);
+=======
+(4, 1, 'LapTop MSI', 'images.jpg', 'Lap Top sieu chat luong', 2, 25000000, 10, 1, 0, 0),
+(5, 1, 'IPhone 8S', 'iphone-8-price.jpg', 'Smart Phone danh cho tuong lai', 1, 30000000, 10, 1, 0, 0),
+(6, 1, 'SamSung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb.jpg', 'Smart Phone perfect', 1, 22000000, 20, 1, 0, 0);
+>>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
 
 -- --------------------------------------------------------
 

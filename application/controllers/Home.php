@@ -29,7 +29,7 @@ class home extends CI_Controller{
                 $this->load->view('fontend/home',$data);
             }
         }else{
-        $this->load->view('fontend/home',$data);
+        $this->load->view('fontend/home');
         }
     }
 
