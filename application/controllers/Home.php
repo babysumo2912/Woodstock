@@ -1,16 +1,32 @@
 <?php 
 class home extends CI_Controller{
     function index(){
+        $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
-        $data['product'] = $this->Home_models->get('tb_product');
+        $product = $this->Home_models->get('tb_product');
+        $catalog = $this->Home_models->get('tb_catalog');
+        if($product){
+            $data['product'] = $product;
+            // $this->load->view('fontend/home',$data);
+        }
+
+        if($catalog){
+            $data['catalog'] = $catalog;
+            // $this->load->view('fontend/home',$data);
+        }
         if(isset($login_user)){
             if(time() - $time_out >=30000000000000000000000000){
                 $this->session->sess_destroy();
                 redirect('home');
             }else{
-            $data['user'] = $login_user;
-            $this->load->view('fontend/home',$data);
+                $user = $this->User_models->getinfo($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['user'] = $row->account;
+                    }
+                }
+                $this->load->view('fontend/home',$data);
             }
         }else{
         $this->load->view('fontend/home',$data);

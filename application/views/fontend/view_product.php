@@ -1,0 +1,76 @@
+<?php
+if(isset($err)){
+    echo $err;
+    die();
+}
+if(isset($product)){
+    foreach($product as $row){}
+//    echo $row->img;
+}
+include 'header.php';
+?>
+<section class = "menu_catalog max">
+<ul>
+    <li><a href="<?php echo base_url()?>">Trang Chủ</a></li>
+    <li><i class = "fa fa-angle-double-right"></i></li>
+    <li><a href=""><?php if(isset($catalog)){echo $catalog;} ?></a></li>
+    <li><i class = "fa fa-angle-double-right"></i></li>
+    <li><a href="<?php echo base_url()?>product/view/<?php echo $row->id_product?>"><?php echo $row->name?></a></li>
+</ul>
+</section>
+<section class = "ccc">
+    <div class = "max row">
+        <div class = "col-md-5">
+            <img src="<?php echo base_url()?>public/img/product/<?php echo $row->img ?>" alt="<?php echo $row->name?>" width = "100%">
+        </div>
+        <div class = "col-md-7 white">
+            <h2><?php echo $row->name?></h2>
+            <div class = "content_buy">
+                <p><b style = "color: red"><?php echo number_format($row->price)?><sup>đ</sup></b></p>
+                <p><i class = "fa fa-ravelry"></i>&nbsp;Mua hàng và tích 10 xu</p>
+            </div>
+            <div class = "content_buy">
+                <p><i class = "fa fa-truck fa-lg"></i>&nbsp;<span>Miễn phí vận chuyển cho đơn hàng có giá trị từ 180.000 <sup>đ</sup>(giảm tối đa 50.000 <sup>đ</sup>)</span></p>
+                <p><i class = "fa fa-handshake-o fa-lg"></i>&nbsp;<span>Đối tác vận chuyển</span></p>
+                <ul>
+                    <li><a href="http://giaohangnhanh.vn" target = "_blank">Giao hàng nhanh</a></li>
+                    <li><a href="">Viettel Post</a></li>
+                </ul>
+            </div>
+            <div class = "content_buy row">
+                <div class = "col-md-6">
+                    <div class = "col-xs-4">
+                        <span>Số lượng</span>
+                    </div>
+                    <div class = "col-xs-8">
+                        <input type="number" value="" class = "form-control">
+                    </div>
+                </div>
+            </div>
+            <div class = "content_buy buy row">
+                <ul>
+                    <li>
+                        <a href="" class = "btn btn-info"><i class = "fa fa-comments-o"></i>&nbsp;Chat Ngay</a>
+                    </li>
+                    <li>
+                        <a href="" class = "btn btn-success"><i class = "fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng</a>
+                    </li>
+                    <li>
+                        <a href="" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class = "ccc">
+    <div class = "max row">
+        <div class = "seo">
+            <b><a href=""><i class = "fa fa-superpowers fa-lg"></i>&nbsp;Woodstock đảm bảo</a></b>
+            <span>Nhận hàng hoặc được hoàn lại tiền</span>
+        </div>
+    </div>
+</section>
+<?php
+include 'footer.php';
+?>

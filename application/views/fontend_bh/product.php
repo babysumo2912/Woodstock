@@ -37,13 +37,19 @@ include 'header.php';
             ?>
             <div class = "col-md-2 col-sm-3 col-xs-6">
                 <div class = " product_bh">
-                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover">
-                        <div class = "bansp">
+                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img?>') center; background-size: cover">
+                        <?php if($row->active == 1){
+                        ?>
+                            <div class = "bansp">
                             <i class = "fa fa-ban fa-5x"></i>
                         </div>
+                        <?php
+                        }?>
                     </div>
                     <div class = "content-product">
-                        <b><?php echo $row->name?></b>
+                        <div class = "name-product">
+                            <b><?php echo $row->name?></b>
+                        </div>
                         <div class = "cost_pro">
                             <p><?php echo number_format($row->price)?><sup>đ</sup></p>
                             <span><?php echo $row->number?><sup>sp</sup></span>
@@ -53,7 +59,7 @@ include 'header.php';
                             <i class = "fa fa-heart"><sup>0</sup></i>
                         </div>
                         <div class = "active_pro">
-                            <a href="#" class = "btn btn-info left"><i class = "fa fa-pencil" title = "Sửa sản phẩm"></i></a>
+                            <a href="<?php echo base_url()?>product/update_product/<?php echo $row->id_product?>" class = "btn btn-info left"><i class = "fa fa-pencil" title = "Sửa sản phẩm"></i></a>
                             <a href="#" class = "btn btn-danger right"><i class = "fa fa-remove" title = "Xóa Sản Phẩm"></i></a>
                         </div>
                     </div>

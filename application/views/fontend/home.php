@@ -6,36 +6,17 @@
                 <a href="#">Tất cả Danh mục <i class = "fa fa-bars"></i></a>
             </div>
             <ul>
+            <?php 
+            if(isset($catalog)){
+                foreach ($catalog as $key) {
+            ?>
                 <li>
-                    <a href="#">Thời Trang Nam</a>
+                    <a href="#"><?php echo $key->name?></a>
                 </li>
-                <li>
-                    <a href="#">Thời Trang Nữ</a>
-                </li>
-                <li>
-                    <a href="#">Điện Thoại & Phụ Kiện</a>
-                </li>
-                <li>
-                    <a href="#">Mẹ & Bé</a>
-                </li>
-                <li>
-                    <a href="#">Thiết Bị Điện Tử</a>
-                </li>
-                <li>
-                    <a href="#">Nhà Cửa & Đời Sống</a>
-                </li>
-                <li>
-                    <a href="#">Thiết Bị Điện Gia Dụng</a>
-                </li>
-                <li>
-                    <a href="#">Sức Khỏe & Sắc Đẹp</a>
-                </li>
-                <li>
-                    <a href="#">Giày Dép Nam</a>
-                </li>
-                <li>
-                    <a href="#">Giày Dép Nữ</a>
-                </li>
+            <?php
+                }
+            }
+            ?>
             </ul>
         </div>
     </div>
@@ -73,30 +54,31 @@
             <a href="#">Xem tất cả <i class = "fa fa-angle-double-right"></i></a>
         </div>
         <!--product-->
-
         <?php if(isset($product)){
             foreach($product as $row){
         ?>
         <div class = "col-md-2 col-sm-3 col-xs-6">
             <div class = " product">
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/2.jpg') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "<?php echo $row->name?>">
-                            <h4><?php echo $row->name?></h4>
-                        </a>
+                <a href="<?php echo base_url()?>product/view/<?php echo $row->id_product?>" title = "<?php echo $row->name?>">
+                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img ?>') center; background-size: cover"></div>
+                    <div class = "content-product">
+                        <div class = "name-product">
+
+                                <h4><?php echo $row->name?></h4>
+
+                        </div>
+                        <div class = "cost-product">
+                            <span><?php echo number_format($row->price)?><sup>đ</sup></span>
+                        </div>
+                        <div class = "info-product">
+                            <i class = "fa fa-heart-o"> &nbsp;<?php echo number_format($row->like)?></i>
+                        </div>
+                        <div class = "star">
+                            <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
+                            <span>(325)</span>
+                        </div>
                     </div>
-                    <div class = "cost-product">
-                        <span><?php echo number_format($row->price)?><sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;<?php echo number_format($row->like)?></i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <?php 

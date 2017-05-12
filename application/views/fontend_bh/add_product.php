@@ -1,38 +1,37 @@
 <?php 
 include 'header.php';
+if(isset($err)){
+    echo $err;
+
+}
 ?>
 <section class = "max border row">
     <?php
         $style = array(
             'class' => 'form-group',
+            'enctype' => 'multipart/form-data'
         );
         echo form_open('product/add_product',$style)
     ?>
     <div class = "add_content col-md-6">
-        <p class = "title_add_pro">Chỉnh sửa hình ảnh sản phẩm</p>
+        <p class = "title_add_pro">Thêm hình ảnh sản phẩm</p>
         <div class = "img_pro">
-            <div class = "col-md-4 col-sm-6 col-xs-6">
-                <a href="<?php echo base_url()?>product/add_product">
-                    <div class = "add_img_pro">
-                        <div class = "bansp">
-                            <i class = "fa fa-plus fa-lg"></i><br>
-                            Thêm hình ảnh sản phẩm
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <!-- <div class = "col-md-6"> -->
+                <input type="file" name="userfile" accept="image/*" onchange="loadFile(event)" required>
+                <img id="output" style = "width: 100%;">
+            <!-- </div> -->
         </div>
     </div>
-    <div class = "add_content  col-md-6 ">
+    <div class = "add_content col-md-6 ">
         <p class = "title_add_pro">Chi Tiết Sản Phẩm</p>
         <div class = "form_add_pro">
             <div class = "form-group">
                 <label for=""><i class = "fa fa-align-left"></i>&nbsp;Tên sản phẩm</label>
-                <input type="text" name="name" value="" class = "form-control">
+                <input type="text" name="name" value="" class = "form-control" required>
             </div>
             <div class = "form-group">
                 <label for=""><i class = "fa fa-pencil"></i>&nbsp;Mô tả</label>
-                <textarea rows="10" name = "discribe" class = "form-control"></textarea>
+                <textarea rows="10" name = "discribe" class = "form-control" require></textarea>
             </div>
             <div class = "form-group">
                 <label for=""><i class = "fa fa-list"></i>&nbsp;Danh mục sản phẩm</label>
@@ -50,11 +49,11 @@ include 'header.php';
             </div>
             <div class = "form-group">
                 <label for=""><i class = "fa fa-tags"></i>&nbsp;Giá</label>
-                <input type="number" name="price" min = "1000" value="" class = "form-control">
+                <input type="number" name="price" min = "1000" value="" class = "form-control" required>
             </div>
             <div class = "form-group">
                 <label for=""><i class = "fa fa-database"></i>&nbsp;Kho hàng</label>
-                <input type="number" name="number" value="" min = "1" class = "form-control">
+                <input type="number" name="number" value="" min = "1" class = "form-control" required>
             </div>
             <div class = "form-group">
                 <label for=""><i class = "fa fa-check-square-o"></i>&nbsp;Tình trạng</label>

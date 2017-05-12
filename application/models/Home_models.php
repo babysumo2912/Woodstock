@@ -6,6 +6,13 @@ class Home_models extends CI_Model{
             return $get->result();
         }else return false;
     }
+    function getinfo($table,$key,$id){
+        $this->db->where($key,$id);
+        $getinfo = $this->db->get($table);
+        if($getinfo->num_rows() > 0){
+            return $getinfo->result();
+        }else return false;
+    }
 }
 
 ?>
