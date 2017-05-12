@@ -59,7 +59,6 @@
         ?>
         <div class = "col-md-2 col-sm-3 col-xs-6">
             <div class = " product">
-<<<<<<< HEAD
                 <a href="<?php echo base_url()?>product/view/<?php echo $row->id_product?>" title = "<?php echo $row->name?>">
                     <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img ?>') center; background-size: cover"></div>
                     <div class = "content-product">
@@ -78,24 +77,6 @@
                             <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
                             <span>(325)</span>
                         </div>
-=======
-                <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img ?>') center; background-size: cover"></div>
-                <div class = "content-product">
-                    <div class = "name-product">
-                        <a href="" title = "<?php echo $row->name?>">
-                            <h4><?php echo $row->name?></h4>
-                        </a>
-                    </div>
-                    <div class = "cost-product">
-                        <span><?php echo number_format($row->price)?><sup>đ</sup></span>
-                    </div>
-                    <div class = "info-product">
-                        <i class = "fa fa-heart-o"> &nbsp;<?php echo number_format($row->like)?></i>
-                    </div>
-                    <div class = "star">
-                        <div class="rateit" data-rateit-value="5"  data-rateit-readonly="true"></div>
-                        <span>(325)</span>
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
                     </div>
                 </a>
             </div>

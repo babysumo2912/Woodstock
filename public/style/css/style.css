@@ -381,11 +381,7 @@ body{
     text-align: center;
 }
 .add_product_bh{
-<<<<<<< HEAD
     height: 335px;
-=======
-    /*height: 310px;*/
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
     margin-top: 15px;
     background: white;
     /*margin-top: 10px;
@@ -457,7 +453,6 @@ body{
 .margintop40{
     margin-top:40px
 }
-<<<<<<< HEAD
 .menu_catalog ul{
     list-style: none;
     margin: 0;
@@ -512,5 +507,19 @@ body{
 .seo a:hover{
     text-decoration: none;
 }
-=======
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
+.user{
+    width: 100%;
+    display: table;
+}
+.avatar{
+    width: 20px;
+    height: 20px;
+    float: left;
+    border-radius: 15px;
+    padding:0;
+    margin: 0;
+}
+.user span{
+    margin-left: 0;
+    /*float: right;*/
+}

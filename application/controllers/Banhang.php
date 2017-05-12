@@ -1,6 +1,7 @@
 <?php 
 class Banhang extends CI_Controller{
     function index(){
+        $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         if(isset($login_user)){
@@ -11,7 +12,8 @@ class Banhang extends CI_Controller{
                 $user = $this->User_models->getinfo($login_user);
                 if($user){
                     foreach($user as $row){
-                        $data['user'] = $row->account;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
                     }
                 }
             $this->load->view('fontend_bh/banhang',$data);

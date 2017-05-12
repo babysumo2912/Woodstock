@@ -45,7 +45,14 @@
                     <?php 
                     if(isset($user)){
                     ?>
-                        <li><a href="#"><i class = "fa fa-user"></i>&nbsp;<?php echo $user;?></a></li>
+                        <li>
+                            <a href="#">
+                                <div class = "user">
+                                    <div class = "avatar" style = "background:url('<?php echo base_url()?>/public/img/user/avatar/<?php echo $avatar ?>') center; background-size: cover"></div>
+                                    &nbsp;<span><?php echo $user?></span>
+                                </div>
+                            </a>
+                        </li>
                         <li><a href="<?php echo base_url()?>banhang/logout"><i class = "fa fa-power-off"></i>&nbsp;Đăng xuất</a></li>
                     <?php
                     }else{

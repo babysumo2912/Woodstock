@@ -18,11 +18,7 @@ if(isset($err)){
         <div class = "img_pro">
             <!-- <div class = "col-md-6"> -->
                 <input type="file" name="userfile" accept="image/*" onchange="loadFile(event)" required>
-<<<<<<< HEAD
                 <img id="output" style = "width: 100%;">
-=======
-                <img id="output"/ style = "width: 100%;">
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
             <!-- </div> -->
         </div>
     </div>

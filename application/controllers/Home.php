@@ -23,13 +23,14 @@ class home extends CI_Controller{
                 $user = $this->User_models->getinfo($login_user);
                 if($user){
                     foreach($user as $row){
-                        $data['user'] = $row->account;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
                     }
                 }
                 $this->load->view('fontend/home',$data);
             }
         }else{
-        $this->load->view('fontend/home');
+        $this->load->view('fontend/home',$data);
         }
     }
 
@@ -101,10 +102,10 @@ class home extends CI_Controller{
             'img_height' => '30',
             'expiration' => '60',
             'colors' => array(
-            'background' => array(204, 204, 204),
-            'border' => array(110, 110, 110),
-            'text' => array(194, 194, 194),
-            'grid' => array(245, 245, 245))
+                'background' => array(119, 119, 119),
+                'border' => array(110, 110, 110),
+                'text' => array(0, 0, 0),
+                'grid' => array(77, 77, 77))
             );
             $data = create_captcha($vals);
             $session_data = array(
@@ -114,29 +115,68 @@ class home extends CI_Controller{
             if($password == $re_password){
                 if($captcha == $session_captcha){
                     $data = array(
-                    'account' => $account,
-                    'password' => md5($password),
+                        'account' => $account,
+                        'name' => $account,
+                        'password' => md5($password),
+                        'img' => 'default.jpg',
                     );
                     $register = $this->User_models->register($data); 
                     if($register == false){
+                        $word = substr(md5(rand(0,99)),15,5);
+                        $vals = array(
+                            'word' => $word,
+                            'img_path' => './public/captcha/',
+                            'img_url' => base_url('public/captcha/'),
+                            'font_path' => '../../public/style/fonts/fontawesome-webfont.ttf/',
+                            'img_width' => '100',
+                            'img_height' => '30',
+                            'expiration' => '60',
+                            'colors' => array(
+                                'background' => array(119, 119, 119),
+                                'border' => array(110, 110, 110),
+                                'text' => array(0, 0, 0),
+                                'grid' => array(77, 77, 77))
+                        );
+                        $data = create_captcha($vals);
+                        $session_data = array(
+                            'captcha' => $data['word'],
+                        );
+                        $this->session->set_userdata($session_data);
                         $data['err'] = "Tài khoản đã tồn tại, vui lòng nhập lại !";
                         $this->load->view('fontend/register', $data);
                     }else{
-                        $login = array(
-                            'account' => $account,
-                            'password' => md5($password),
+                        $word = substr(md5(rand(0,99)),15,5);
+                        $vals = array(
+                            'word' => $word,
+                            'img_path' => './public/captcha/',
+                            'img_url' => base_url('public/captcha/'),
+                            'font_path' => '../../public/style/fonts/fontawesome-webfont.ttf/',
+                            'img_width' => '100',
+                            'img_height' => '30',
+                            'expiration' => '60',
+                            'colors' => array(
+                                'background' => array(119, 119, 119),
+                                'border' => array(110, 110, 110),
+                                'text' => array(0, 0, 0),
+                                'grid' => array(77, 77, 77))
                         );
-                        $this->User_models->login($data);
+                        $data = create_captcha($vals);
                         $session_data = array(
-                            'session_user' => $account,
-                            'time_out_login' => time(),
+                            'captcha' => $data['word'],
                         );
                         $this->session->set_userdata($session_data);
-                        redirect('home');
+                        $data['succ'] = "Bạn đã đăng kí thành công! Đăng nhập ngay!";
+                        $this->load->view('fontend/register', $data);
+//                        $session_data = array(
+//                            'session_user' => $account,
+//                            'time_out_login' => time(),
+//                        );
+//                        $this->session->set_userdata($session_data);
+//                        redirect('home');
                     }
                 }else{
                     $data['err'] = "Mã xác nhận không chính xác!";
-                    $this->load->view('fontend/register',$data);    
+                    $this->load->view('fontend/register',$data);
                 }
             }else{
                 $data['err'] = "Xác nhận mật khẩu không chính xác!";

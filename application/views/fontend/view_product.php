@@ -27,6 +27,7 @@ include 'header.php';
             <h2><?php echo $row->name?></h2>
             <div class = "content_buy">
                 <p><b style = "color: red"><?php echo number_format($row->price)?><sup>đ</sup></b></p>
+                <p><i class = "fa fa-thumbs-o-up"></i>&nbsp;<?php echo $row->like?></p>
                 <p><i class = "fa fa-ravelry"></i>&nbsp;Mua hàng và tích 10 xu</p>
             </div>
             <div class = "content_buy">
@@ -68,6 +69,23 @@ include 'header.php';
         <div class = "seo">
             <b><a href=""><i class = "fa fa-superpowers fa-lg"></i>&nbsp;Woodstock đảm bảo</a></b>
             <span>Nhận hàng hoặc được hoàn lại tiền</span>
+        </div>
+    </div>
+</section>
+<section class = "ccc">
+    <div class = "max row">
+        <div class = "seo">
+            <div class = "col-md-4">
+                <div class = "avatar"></div>
+                <div class = "content_nm">
+                <?php if(isset($seller)){
+                    echo $seller;
+                }?>
+                </div>
+            </div>
+            <div class = "col-md-8">
+
+            </div>
         </div>
     </div>
 </section>

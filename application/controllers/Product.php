@@ -11,7 +11,8 @@ class product extends CI_Controller{
             $user = $this->User_models->getinfo($login_user);
                 if($user){
                     foreach($user as $row){
-                        $data['user'] = $row->account;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
                     }
                 }
             $product = $this->Product_models->get($login_user);
@@ -29,7 +30,8 @@ class product extends CI_Controller{
         $user = $this->User_models->getinfo($login_user);
         if($user){
             foreach($user as $row){
-                $data['user'] = $row->account;
+                $data['user'] = $row->name;
+                $data['avatar'] = $row->img;
             }
         }
         if(!isset($login_user)){
@@ -37,22 +39,14 @@ class product extends CI_Controller{
             die();
         }
         $name = $this->input->post('name');
-<<<<<<< HEAD
 //        $img = $this->input->post('userfile');
-=======
-        $img = $this->input->post('userfile');
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
         $discribe = $this->input->post('discribe');
         $id_catalog = $this->input->post('id_catalog');
         $price = $this->input->post('price');
         $number = $this->input->post('number');
         $id_status = $this->input->post('id_status');
-<<<<<<< HEAD
 //        echo $img; die();
         if(isset($name) && isset($discribe) && isset($id_catalog) && isset($price) && isset($number) && isset($id_status) && isset($_FILES['userfile']['name'])){
-=======
-        if(isset($name) && isset($discribe) && isset($id_catalog) && isset($price) && isset($number) && isset($id_status)){
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
             $config['upload_path'] = './public/img/product/';
             $config['allowed_types'] = 'gif|png|jpg|jpeg';
             $this->load->library('upload',$config);
@@ -69,13 +63,8 @@ class product extends CI_Controller{
                 'number' => $number,
                 'id_status'   => $id_status,
                 );
-<<<<<<< HEAD
                 $add_pro = $this->Product_models->add($add);
                 if($add_pro){
-=======
-                $add = $this->Product_models->add($add);
-                if($add = true){
->>>>>>> 790d92779a769e71446d6bd7192a8edef843a4c9
                     redirect('product');
                 }else{
                     $data['err']  = "Fail !";
@@ -93,6 +82,13 @@ class product extends CI_Controller{
     }
     function update_product($id_product){
         $session_login = $this->session->userdata('session_user');
+        $user = $this->User_models->getinfo($session_login);
+        if($user){
+            foreach($user as $row){
+                $data['user'] = $row->name;
+                $data['avatar'] = $row->img;
+            }
+        }
         if(!isset($session_login)){
             redirect('banhang');
         }
@@ -146,15 +142,30 @@ class product extends CI_Controller{
         $this->load->view('fontend_bh/update',$data);
     }
     function view($id_product){
+        $login_user = $this->session->userdata('session_user');
+        $user = $this->User_models->getinfo($login_user);
+        if($user){
+            foreach($user as $row){
+                $data['user'] = $row->name;
+                $data['avatar'] = $row->img;
+            }
+        }
         $getinfo = $this->Product_models->getinfo($id_product);
         if($getinfo){
             foreach($getinfo as $row){
                 $id_catalog = $row->id_catalog;
+                $id_user = $row->id_user;
             }
             $catalog = $this->Home_models->getinfo('tb_catalog','id_catalog',$id_catalog);
+            $seller = $this->Home_models->getinfo('tb_user','id_user',$id_user);
             if($catalog){
                 foreach($catalog as $key){
                     $data['catalog'] = $key->name;
+                }
+            }
+            if($seller){
+                foreach($seller as $title){
+                    $data['seller'] = $title->name;
                 }
             }
             $data['product'] = $getinfo;

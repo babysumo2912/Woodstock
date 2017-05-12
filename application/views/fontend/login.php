@@ -18,6 +18,16 @@
             <?php
             }
             ?>
+            <?php
+            if(isset($succ)){
+                ?>
+                <p class = "err text-center">
+                    <i class = "fa fa-check-square-o"></i>
+                    <?php echo $succ;?>
+                </p>
+                <?php
+            }
+            ?>
             <div class = "form-group">
                 <lable>Tài khoản <span>(*)</span></lable>
                 <?php if(isset($account)){

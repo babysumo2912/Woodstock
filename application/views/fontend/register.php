@@ -9,14 +9,24 @@
     <?php echo form_open('home/register', $style)?>
         <fieldset>
             <legend>ĐĂNG KÍ</legend>
-            <?php 
-            if(isset($err)){
-            ?>
-                <p class = "err text-center">
-                <i class = "fa fa-warning"></i>
-                <?php echo $err;?>
-                </p>
             <?php
+            if(isset($err)){
+                ?>
+                <p class = "err text-center">
+                    <i class = "fa fa-warning"></i>
+                    <?php echo $err;?>
+                </p>
+                <?php
+            }
+            ?>
+            <?php
+            if(isset($succ)){
+                ?>
+                <p class = "err text-center">
+                    <i class = "fa fa-check-square-o fa-lg"></i>
+                    <a href="<?php echo base_url()?>home/login"><?php echo $succ;?></a>
+                </p>
+                <?php
             }
             ?>
             <div class = "form-group">
@@ -33,7 +43,7 @@
             </div>
             <div class = "form-group">
                 <lable>Nhập mã xác nhận <span>(*)</span></lable>
-                <input type="password" class = "form-control" name="captcha" required><br>
+                <input type="text" class = "form-control" name="captcha" required><br>
                 <div class = "captcha">
                     <?php echo $image?>
                 </div>
