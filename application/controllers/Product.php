@@ -152,12 +152,14 @@ class product extends CI_Controller{
         }
         $getinfo = $this->Product_models->getinfo($id_product);
         if($getinfo){
-            foreach($getinfo as $row){
+            foreach($getinfo as $row) {
                 $id_catalog = $row->id_catalog;
                 $id_user = $row->id_user;
             }
             $catalog = $this->Home_models->getinfo('tb_catalog','id_catalog',$id_catalog);
             $seller = $this->Home_models->getinfo('tb_user','id_user',$id_user);
+            $number_product = 0;
+            $number = $this->Home_models->getinfo('tb_product','id_user',$id_user);
             if($catalog){
                 foreach($catalog as $key){
                     $data['catalog'] = $key->name;
@@ -166,8 +168,15 @@ class product extends CI_Controller{
             if($seller){
                 foreach($seller as $title){
                     $data['seller'] = $title->name;
+                    $data['img'] = $title->img;
                 }
             }
+            if($number){
+                foreach($number as $item){
+                    $number_product += $item->number;
+                }
+            }
+            $data['number_product'] = $number_product;
             $data['product'] = $getinfo;
         }else $data['err'] = "Sản phẩm này không tồn tại";
         $this->load->view('fontend/view_product',$data);

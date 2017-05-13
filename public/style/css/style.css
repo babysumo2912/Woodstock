@@ -463,11 +463,12 @@ body{
     line-height: 40px;
 }
 .ccc{
+    width: 100%;
     background: #f5f5f5;
     padding: 20px;
 }
 .ccc img{
-    border-radius: 20px
+    border-radius: 20px;
 }
 .white{
     background: white;
@@ -499,17 +500,31 @@ body{
     display: inline;
 }
 .seo{
+    height: auto;
     background: white;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 2px 2px 2px #ccc;
     padding: 20px;
 }
 .seo a:hover{
     text-decoration: none;
 }
+.seo1{
+    height: auto;
+    background: white;
+    /*border-radius: 20px;*/
+    box-shadow: 2px 2px 2px #ccc;
+    padding: 5px 0;
+}
+.seo1 a:hover{
+    text-decoration: none;
+}
 .user{
     width: 100%;
     display: table;
+}
+.btn-folow{
+    margin-left: 90px;
 }
 .avatar{
     width: 20px;
@@ -519,7 +534,38 @@ body{
     padding:0;
     margin: 0;
 }
-.user span{
-    margin-left: 0;
+.avatar1 {
+    width: 70px;
+    height: 70px;
+    float: left;
+}
+.user label{
+    margin-left: 20px;
     /*float: right;*/
+}
+.margin10{
+    margin-top: 10px;
+}
+.menu_seller{
+    padding-top: 10px;
+}
+.title_discribe{
+    border-bottom: 5px #ccc solid;
+}
+.title_discribe ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.title_discribe ul li{
+    display: inline-block;
+    line-height: 50px;
+}
+.title_discribe ul li a{
+    display: block;
+}
+.content_discribe{
+    margin-top: 20px;
+    height: 300px;
+    overflow:hidden;
 }

@@ -1,4 +1,4 @@
-<div class = "col-md-12 col-xs-12 col-sm-12">
+<section class = "col-md-12 col-xs-12 col-sm-12">
             <div class = "qc">
                 <div class = "max">
                     <div class = "col-md-4 qc1">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <div class = "col-md-12 col-sm-12 col-xs-12">
             <div class = "qc">

@@ -63,28 +63,64 @@ include 'header.php';
             </div>
         </div>
     </div>
-</section>
-<section class = "ccc">
-    <div class = "max row">
+<!--</section>-->
+    <div class = "max row margin10">
         <div class = "seo">
             <b><a href=""><i class = "fa fa-superpowers fa-lg"></i>&nbsp;Woodstock đảm bảo</a></b>
             <span>Nhận hàng hoặc được hoàn lại tiền</span>
         </div>
     </div>
-</section>
-<section class = "ccc">
-    <div class = "max row">
-        <div class = "seo">
-            <div class = "col-md-4">
-                <div class = "avatar"></div>
-                <div class = "content_nm">
-                <?php if(isset($seller)){
-                    echo $seller;
-                }?>
+<!--<section class = "ccc">-->
+    <div class = "max row margin10">
+        <div class = "seo1 col-xs-12">
+            <div class = "col-xs-4">
+                <div class = "user">
+                    <a href="#">
+                        <div class = "avatar1" style = "background:url('<?php echo base_url()?>/public/img/user/avatar/<?php echo $img ?>') center; background-size: cover"></div>
+                        <label>
+                            <?php if(isset($seller)){
+                                echo $seller;
+                            }?>
+                        </label><br>
+                    </a>
+                    <div class = "btn-folow">
+                        <a href="" class = "btn btn-default">Xem Shop</a>
+                        <a href="" class = "btn btn-default">Theo dõi</a>
+                    </div>
                 </div>
             </div>
-            <div class = "col-md-8">
-
+            <div class = "col-xs-8">
+                <div class = "col-md-4 menu_seller text-center">
+                    <i class = "fa fa-gitlab"></i>&nbsp;<span><?php echo $number_product?></span><br>Sản Phẩm
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</section>-->
+    <div class = "max row margin10">
+        <div class = "seo">
+            <div class = "title_discribe">
+                <h3>CHI TIẾT SẢN PHẨM</h3>
+            </div>
+            <div class = "content_discribe">
+                <?php echo $row->discribe?>
+            </div>
+        </div>
+    </div>
+    <div class = "max row margin10">
+        <div class = "seo">
+            <div class = "title_discribe">
+                <h3>BÌNH LUẬN (0)</h3>
+            </div>
+            <div class = "content_discribe">
+                <div class = "avatar1 col-xs-3" style = "background:url('<?php echo base_url()?>/public/img/user/avatar/<?php echo $avatar ?>') center; background-size: cover"></div>
+                <div class = "col-xs-9">
+                    <input type="text" class = "form-control">
+                    <button type="submit" class = "btn btn-success" style = "margin-top:5px">
+                        <i class = "fa fa-send-o"></i>
+                        Gửi
+                    </button>
+                </div>
             </div>
         </div>
     </div>
