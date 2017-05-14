@@ -144,6 +144,11 @@ class product extends CI_Controller{
     function view($id_product){
         $login_user = $this->session->userdata('session_user');
         $user = $this->User_models->getinfo($login_user);
+        $comment = $this->Home_models->getinfodesc('tb_comment','id_product',$id_product,'id_comment');
+        if($comment){
+            $data['comment'] = $comment;
+
+        }
         if($user){
             foreach($user as $row){
                 $data['user'] = $row->name;
@@ -180,6 +185,21 @@ class product extends CI_Controller{
             $data['product'] = $getinfo;
         }else $data['err'] = "Sản phẩm này không tồn tại";
         $this->load->view('fontend/view_product',$data);
+    }
+    function comment($id_product){
+        $id_user = $this->session->userdata('session_user');
+        $content = $this->input->post('comment');
+        if(isset($id_user) && isset($content)){
+            $data = array(
+                'id_product' => $id_product,
+                'id_user' => $id_user,
+                'content' => $content,
+            );
+            $add_comment = $this->Product_models->commnent($data);
+            if($add_comment){
+                redirect('product/view/'.$id_product);
+            }
+        }else redirect('home');
     }
 }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2017 at 08:08 PM
+-- Generation Time: May 14, 2017 at 01:13 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -50,6 +50,28 @@ CREATE TABLE `tb_catalog` (
 INSERT INTO `tb_catalog` (`id_catalog`, `name`) VALUES
 (1, 'Smart Phone'),
 (2, 'Laptop');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_comment`
+--
+
+CREATE TABLE `tb_comment` (
+  `id_comment` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `like` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_comment`
+--
+
+INSERT INTO `tb_comment` (`id_comment`, `id_product`, `id_user`, `content`, `date`, `like`) VALUES
+(12, 7, 1, 'san pham chat vcc', '2017-05-14 11:13:16', 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +143,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `account`, `name`, `password`, `img`) VALUES
-(1, 'ngocduc', 'Ngoc Duc', '4156fd5c1cb353803988421bf5c73913', 'default.jpg');
+(1, 'ngocduc', 'Ngoc Duc', '4156fd5c1cb353803988421bf5c73913', 'default.jpg'),
+(2, '1221050140', '1221050140', '4156fd5c1cb353803988421bf5c73913', '1.png');
 
 --
 -- Indexes for dumped tables
@@ -138,6 +161,12 @@ ALTER TABLE `tb_admin`
 --
 ALTER TABLE `tb_catalog`
   ADD PRIMARY KEY (`id_catalog`);
+
+--
+-- Indexes for table `tb_comment`
+--
+ALTER TABLE `tb_comment`
+  ADD PRIMARY KEY (`id_comment`);
 
 --
 -- Indexes for table `tb_product`
@@ -172,6 +201,11 @@ ALTER TABLE `tb_admin`
 ALTER TABLE `tb_catalog`
   MODIFY `id_catalog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `tb_comment`
+--
+ALTER TABLE `tb_comment`
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
@@ -185,7 +219,7 @@ ALTER TABLE `tb_status_product`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -13,6 +13,14 @@ class Home_models extends CI_Model{
             return $getinfo->result();
         }else return false;
     }
+    function getinfodesc($table,$key,$id,$desc){
+        $this->db->where($key,$id);
+        $this->db->order_by($desc,'DESC');
+        $getinfo = $this->db->get($table);
+        if($getinfo->num_rows() > 0){
+            return $getinfo->result();
+        }else return false;
+    }
 }
 
 ?>

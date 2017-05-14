@@ -35,7 +35,7 @@ include 'header.php';
                 <p><i class = "fa fa-handshake-o fa-lg"></i>&nbsp;<span>Đối tác vận chuyển</span></p>
                 <ul>
                     <li><a href="http://giaohangnhanh.vn" target = "_blank">Giao hàng nhanh</a></li>
-                    <li><a href="">Viettel Post</a></li>
+                    <li><a href="https://www.viettelpost.com.vn/" target = "_blank">Viettel Post</a></li>
                 </ul>
             </div>
             <div class = "content_buy row">
@@ -113,14 +113,57 @@ include 'header.php';
                 <h3>BÌNH LUẬN (0)</h3>
             </div>
             <div class = "content_discribe">
-                <div class = "avatar1 col-xs-3" style = "background:url('<?php echo base_url()?>/public/img/user/avatar/<?php echo $avatar ?>') center; background-size: cover"></div>
-                <div class = "col-xs-9">
-                    <input type="text" class = "form-control">
-                    <button type="submit" class = "btn btn-success" style = "margin-top:5px">
-                        <i class = "fa fa-send-o"></i>
-                        Gửi
-                    </button>
+                <div class = "row">
+                    <?php
+                    if(isset($avatar)){
+                        ?>
+                        <div class = "avatar1 col-xs-3" style = "background:url('<?php echo base_url()?>/public/img/user/avatar/<?php echo $avatar ?>') center; background-size: cover"></div>
+                        <div class = "col-xs-9">
+                            <?php
+                            $style = array(
+                                'class' => 'form-group',
+                            );
+                            echo form_open('product/comment/'.$row->id_product,$style)
+                            ?>
+                            <input type="text" class = "form-control" name="comment">
+                            <button type="submit" class = "btn btn-success" style = "margin-top:5px">
+                                <i class = "fa fa-send-o"></i>
+                                Gửi
+                            </button>
+
+                            <?php
+                            echo form_close();
+                            ?>
+                        </div>
+                        <?php
+                    }else{
+                        ?>
+                        <a href="<?php echo base_url()?>home/login">Đăng nhập ngay</a> để có thể để lại bình luận của bạn
+                        <?php
+                    }
+                    ?>
                 </div>
+                <?php
+                if(isset($comment)){
+                    foreach ($comment as $row) {
+                        $account = $this->User_models->getinfo($row->id_user);
+                        foreach ($account as $value) {
+                            ?>
+                            <br>
+                            <div class="row">
+                                <div class="avatar1 col-xs-3" style="background:url('<?php echo base_url() ?>/public/img/user/avatar/<?php echo $value->img ?>') center; background-size: cover"></div>
+                                <div class="col-xs-9">
+                                    <a href="#"><b><?php echo $value->name?></b></a>&nbsp;<span>(<?php echo $row->date?>)</span><br>
+                                    <?php echo $row->content ?>
+                                    <br>
+                                    <i class = "fa fa-thumbs-o-up"></i>&nbsp;<?php echo $row->like?>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>

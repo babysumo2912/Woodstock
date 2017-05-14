@@ -4,7 +4,7 @@ class home extends CI_Controller{
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
-        $product = $this->Home_models->get('tb_product');
+        $product = $this->Product_models->getall();
         $catalog = $this->Home_models->get('tb_catalog');
         if($product){
             $data['product'] = $product;
