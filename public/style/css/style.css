@@ -566,5 +566,9 @@ body{
 }
 .content_discribe{
     margin-top: 20px;
-
+    height: 500px;
+    overflow: hidden;
+}
+.succ{
+    color: green;
 }

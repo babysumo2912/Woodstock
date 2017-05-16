@@ -44,7 +44,7 @@ include 'header.php';
                         <span>Số lượng</span>
                     </div>
                     <div class = "col-xs-8">
-                        <input type="number" value="" class = "form-control">
+                        <input type="number" value="" max = "<?php echo $row->number?>" min = "0" class = "form-control">
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@ include 'header.php';
                         <a href="" class = "btn btn-success"><i class = "fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng</a>
                     </li>
                     <li>
-                        <a href="" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>
+                        <a href="<?php echo base_url()?>product/buy/<?php echo $row->id_product?>" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>
                     </li>
                 </ul>
             </div>
@@ -110,7 +110,17 @@ include 'header.php';
     <div class = "max row margin10">
         <div class = "seo">
             <div class = "title_discribe">
-                <h3>BÌNH LUẬN (0)</h3>
+                <h3>BÌNH LUẬN (
+                    <?php
+                    if(isset($comment)){
+                        echo count($comment);
+                    }else{
+                        ?>
+                        0
+                        <?php
+                    }
+                    ?>)
+                </h3>
             </div>
             <div class = "content_discribe">
                 <div class = "row">
@@ -138,7 +148,9 @@ include 'header.php';
                         <?php
                     }else{
                         ?>
-                        <a href="<?php echo base_url()?>home/login">Đăng nhập ngay</a> để có thể để lại bình luận của bạn
+                        <div class = "col-xs-12">
+                            <a href="<?php echo base_url()?>home/login/<?php echo $row->id_product?>">Đăng nhập ngay</a> để có thể để lại bình luận của bạn
+                        </div>
                         <?php
                     }
                     ?>

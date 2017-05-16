@@ -22,9 +22,9 @@
             <?php
             if(isset($succ)){
                 ?>
-                <p class = "err text-center">
+                <p class = "succ text-center">
                     <i class = "fa fa-check-square-o fa-lg"></i>
-                    <a href="<?php echo base_url()?>home/login"><?php echo $succ;?></a>
+                    <a href="<?php echo base_url()?>home/login/0"><?php echo $succ;?></a>
                 </p>
                 <?php
             }

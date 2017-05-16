@@ -147,7 +147,6 @@ class product extends CI_Controller{
         $comment = $this->Home_models->getinfodesc('tb_comment','id_product',$id_product,'id_comment');
         if($comment){
             $data['comment'] = $comment;
-
         }
         if($user){
             foreach($user as $row){
@@ -186,20 +185,52 @@ class product extends CI_Controller{
         }else $data['err'] = "Sản phẩm này không tồn tại";
         $this->load->view('fontend/view_product',$data);
     }
-    function comment($id_product){
+    function comment($id_product)
+    {
         $id_user = $this->session->userdata('session_user');
         $content = $this->input->post('comment');
-        if(isset($id_user) && isset($content)){
+        if (isset($id_user) && isset($content)) {
             $data = array(
                 'id_product' => $id_product,
                 'id_user' => $id_user,
                 'content' => $content,
             );
             $add_comment = $this->Product_models->commnent($data);
-            if($add_comment){
-                redirect('product/view/'.$id_product);
+            if ($add_comment) {
+//                redirect('product/view/'.$id_product);
+                echo json_encode($data);
             }
-        }else redirect('home');
+        } else redirect('home');
+    }
+    public function buy($id_product){
+//        $this->load->library("cart");
+        $login_user = $this->session->userdata('session_user');
+        $time_out = $this->session->userdata('time_out_login');
+        if(isset($login_user)) {
+            if (time() - $time_out >= 30000000000000) {
+                $this->session->sess_destroy();
+                redirect('banhang');
+            } else {
+                $content_product = $this->Home_models->getinfo('tb_product','id_product',$id_product);
+                if($content_product){
+                    $cart = array(
+                        'id' => $id_product,
+                        'name' => "abc",
+                        'price' => "123456",
+                        'qty' => 1,
+                    );
+                    if($this->cart->insert($cart)){
+                        $abc = $this->cart->contents();
+                        echo "<pre>";
+                        var_dump($abc);
+                        echo "</pre>";
+                    }else echo 2;
+                }
+                else echo "Khong ton tai sp nay";
+            }
+        }else{
+            redirect('home/login/'.$id_product);
+        }
     }
 }
 

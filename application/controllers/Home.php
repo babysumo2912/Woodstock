@@ -34,7 +34,11 @@ class home extends CI_Controller{
         }
     }
 
-    function login(){
+    function login($id_product){
+//        $data['id_product'] = $id_product;
+        if($id_product != 0){
+            $data['succ'] = "Bạn phải đăng nhập để thực hiện chức năng này!";
+        }
         $login_user = $this->session->userdata('session_user');
         if(isset($login_user)){
             redirect('home');
@@ -43,17 +47,20 @@ class home extends CI_Controller{
         $account = $this->input->post('account');
         $password = $this->input->post('password');
         if(isset($account) && isset($password)){
+            $data['id_product'] = $id_product;
             $data = array(
                 'account' => $account,
                 'password' => md5($password),
             );
             $login = $this->User_models->login($data);
             if($login == 1){
+                $data['id_product'] = $id_product;
                 $data['account'] = $account;
                 $data['err'] = "Mật khẩu không chính xác";
                 $this->load->view('fontend/login',$data);
             }else{
                 if($login == 2){
+                    $err['id_product'] = $id_product;
                     $err['err'] = "Tài khoản chưa được đăng kí";
                     $this->load->view('fontend/login',$err);
                 }else{
@@ -70,14 +77,19 @@ class home extends CI_Controller{
                                     'time_out_login' => time(),
                                 );
                                 $this->session->set_userdata($session_data);
-                            redirect('home');
+                                if($id_product == 0){
+                                    redirect('home');
+                                }else{
+                                    redirect('product/view/'.$id_product);
+                                }
                             }
                         }
                     }
                 }
             }
         }else{
-            $this->load->view('fontend/login');
+            $data['id_product'] = $id_product;
+            $this->load->view('fontend/login',$data);
         }
     }
     function register(){

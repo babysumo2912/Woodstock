@@ -51,7 +51,7 @@
                 }else{
                 ?>
                 <li><a href="<?php echo base_url()?>home/register"><i class = "fa fa-address-book-o"></i> &nbsp;Đăng kí</a></li>
-                <li><a href="<?php echo base_url()?>home/login"><i class = "fa fa-user-o"></i> &nbsp;Đăng nhập</a></li>
+                <li><a href="<?php echo base_url()?>home/login/0"><i class = "fa fa-user-o"></i> &nbsp;Đăng nhập</a></li>
                 <?php } ?>
             </ul>
             </div><!-- /.navbar-collapse -->

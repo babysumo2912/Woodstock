@@ -5,7 +5,12 @@
         'class' => 'form-group'
     )
     ?>
-    <?php echo form_open('home/login', $style)?>
+    <?php
+    if(isset($id_product)){
+
+
+        echo form_open('home/login/' . $id_product, $style)
+    ?>
         <fieldset>
             <legend>ĐĂNG NHẬP</legend>
             <?php 
@@ -21,7 +26,7 @@
             <?php
             if(isset($succ)){
                 ?>
-                <p class = "err text-center">
+                <p class = "succ text-center">
                     <i class = "fa fa-check-square-o"></i>
                     <?php echo $succ;?>
                 </p>
@@ -51,6 +56,6 @@
                 <input type="submit" class = "btn btn-default" value = "Đăng nhập">
             </div>
         </fieldset>
-    <?php echo form_close()?>
+    <?php echo form_close(); }?>
 </div>
 <?php include 'footer.php'?>
