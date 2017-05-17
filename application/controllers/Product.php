@@ -142,6 +142,10 @@ class product extends CI_Controller{
         $this->load->view('fontend_bh/update',$data);
     }
     function view($id_product){
+        $buy = $this->session->flashdata('in');
+        if(isset($buy)){
+            $data['buy'] = $buy;
+        }
         $login_user = $this->session->userdata('session_user');
         $user = $this->User_models->getinfo($login_user);
         $comment = $this->Home_models->getinfodesc('tb_comment','id_product',$id_product,'id_comment');
@@ -197,34 +201,58 @@ class product extends CI_Controller{
             );
             $add_comment = $this->Product_models->commnent($data);
             if ($add_comment) {
-//                redirect('product/view/'.$id_product);
-                echo json_encode($data);
+                redirect('product/view/'.$id_product);
+//                echo json_encode($data);
             }
         } else redirect('home');
     }
-    public function buy($id_product){
+    public function buy($id_product,$active){
 //        $this->load->library("cart");
+        $count = $this->session->userdata('count');
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $qty = $this->input->post('number');
         if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000) {
+            if (time() - $time_out >= 2000000000000) {
                 $this->session->sess_destroy();
-                redirect('banhang');
+                redirect('home');
             } else {
                 $content_product = $this->Home_models->getinfo('tb_product','id_product',$id_product);
+                if(isset($qty)){
+                    $number = $qty;
+                }else $number = 1;
                 if($content_product){
-                    $cart = array(
-                        'id' => $id_product,
-                        'name' => "abc",
-                        'price' => "123456",
-                        'qty' => 1,
-                    );
-                    if($this->cart->insert($cart)){
-                        $abc = $this->cart->contents();
-                        echo "<pre>";
-                        var_dump($abc);
-                        echo "</pre>";
-                    }else echo 2;
+                    foreach ($content_product as $row){};
+                    if($row->id_user == $login_user){
+                        $buy =  "Bạn không thể mua sản phẩm của chính mình";
+                        $this->session->set_flashdata('in',$buy);
+                        redirect('product/view/'.$id_product);
+                    }else{
+                        $cart = array(
+                            'id' => $id_product,
+                            'name' => $row->name,
+                            'id_user' => $row->id_user,
+                            'price' => $row->price,
+                            'qty' => $number,
+                            'max' =>$row->number,
+                        );
+                        if($this->cart->insert($cart)){
+                            $count++;
+                            $session_data = arraY(
+                                'count' => $count,
+                                'time_buy' => time(),
+                            );
+                            if($active == 0){
+                                var_dump($this->cart->contents());
+                                $this->session->set_userdata($session_data);
+                                redirect('cart');
+                            }else{
+                                $buy = "Sản phẩm đã được thêm vào giỏ hàng";
+                                $this->session->set_flashdata('in',$buy);
+                                redirect('product/view/'.$id_product);
+                            }
+                        }else echo 2;
+                    }
                 }
                 else echo "Khong ton tai sp nay";
             }

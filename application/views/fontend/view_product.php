@@ -1,6 +1,9 @@
 <?php
 if(isset($err)){
     echo $err;
+?>
+    <a href="<?php echo base_url()?>">Tiếp tục mua sắm</a>
+<?php
     die();
 }
 if(isset($product)){
@@ -25,13 +28,22 @@ include 'header.php';
         </div>
         <div class = "col-md-7 white">
             <h2><?php echo $row->name?></h2>
+            <p class = "succ_buy">
+                <?php
+                if(isset($buy)){
+                ?><i class="fa fa-hand-o-right"></i>
+                <?php
+                    echo $buy;
+                }
+                ?>
+            </p>
             <div class = "content_buy">
                 <p><b style = "color: red"><?php echo number_format($row->price)?><sup>đ</sup></b></p>
                 <p><i class = "fa fa-thumbs-o-up"></i>&nbsp;<?php echo $row->like?></p>
-                <p><i class = "fa fa-ravelry"></i>&nbsp;Mua hàng và tích 10 xu</p>
+                <p><i class = "fa fa-ravelry"></i>&nbsp;Mua hàng và tích <?php echo ($row->price)/1000000 ?> xu</p>
             </div>
             <div class = "content_buy">
-                <p><i class = "fa fa-truck fa-lg"></i>&nbsp;<span>Miễn phí vận chuyển cho đơn hàng có giá trị từ 180.000 <sup>đ</sup>(giảm tối đa 50.000 <sup>đ</sup>)</span></p>
+                <p><i class = "fa fa-truck fa-lg"></i>&nbsp;<span>Miễn phí vận chuyển cho đơn hàng có giá trị từ 18.000.000 <sup>đ</sup>(giảm tối đa 50.000 <sup>đ</sup>)</span></p>
                 <p><i class = "fa fa-handshake-o fa-lg"></i>&nbsp;<span>Đối tác vận chuyển</span></p>
                 <ul>
                     <li><a href="http://giaohangnhanh.vn" target = "_blank">Giao hàng nhanh</a></li>
@@ -44,8 +56,16 @@ include 'header.php';
                         <span>Số lượng</span>
                     </div>
                     <div class = "col-xs-8">
-                        <input type="number" value="" max = "<?php echo $row->number?>" min = "0" class = "form-control">
+                        <?php echo form_open('product/buy/'.$row->id_product.'/0')?>
+                        <input type="number" value="1" name = "number" max = "<?php echo $row->number?>" min = "0" class = "form-control">
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <span>(Điền số lượng và <button type="submit" class = "btn btn-danger">
+                        <i class="fa fa-hand-o-right"></i>
+                        Mua ngay
+                    </button> để mua sắm nhanh)</span>
+                    <?php echo form_close()?>
                 </div>
             </div>
             <div class = "content_buy buy row">
@@ -54,10 +74,10 @@ include 'header.php';
                         <a href="" class = "btn btn-info"><i class = "fa fa-comments-o"></i>&nbsp;Chat Ngay</a>
                     </li>
                     <li>
-                        <a href="" class = "btn btn-success"><i class = "fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng</a>
+                        <a href="<?php echo base_url()?>product/buy/<?php echo $row->id_product?>/1 " class = "btn btn-success"><i class = "fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>product/buy/<?php echo $row->id_product?>" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>
+<!--                        <a href="--><?php //echo base_url()?><!--product/buy/--><?php //echo $row->id_product?><!--/0" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>-->
                     </li>
                 </ul>
             </div>

@@ -296,7 +296,7 @@ body{
     color: white;
     background: #474747;
 }
-.seo img{
+.seo2 img{
     width: 100%;
 }
 .top40{
@@ -571,4 +571,7 @@ body{
 }
 .succ{
     color: green;
+}
+.succ_buy{
+    color: #00bcd4;
 }

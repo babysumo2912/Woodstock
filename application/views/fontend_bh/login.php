@@ -1,7 +1,7 @@
 <?php include'header.php' ?>
 <section class = "color_f5f5f5">
 <div class = "max row top40">
-    <div class = "col-md-5 seo">
+    <div class = "col-md-5 seo2">
         <p>
             <h2>Bán hàng chuyên nghiệp</h2>
             Quản lí Shop của bạn một cách dễ dàng hơn trên Woodstock với Kênh người bán

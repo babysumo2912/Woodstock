@@ -75,7 +75,7 @@
             </div>
             <div class = "col-md-3 col-sm-4 col-xs-12">
                 <div class = "hd-right">
-                    <a href="">
+                    <a href="<?php echo base_url()?>cart">
                         <i class = "fa fa-shopping-bag fa-2x"><sup>0</sup></i>
                     </a>
                     <a href="">
