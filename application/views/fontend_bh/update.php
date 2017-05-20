@@ -35,7 +35,7 @@ include 'header.php';?>
                 </div>
                 <div class = "form-group">
                     <label for=""><i class = "fa fa-pencil"></i>&nbsp;Viết mô tả mới</label>
-                    <textarea rows="10" name = "discribe" class = "form-control" required><?php echo $row->discribe?></textarea>
+                    <textarea rows="10" name = "discribe" class = "form-control" required><?php echo strip_tags($row->discribe,'br')?></textarea>
                 </div>
                 <div class = "form-group">
                     <label for=""><i class = "fa fa-list"></i>&nbsp;Danh mục sản phẩm</label>
