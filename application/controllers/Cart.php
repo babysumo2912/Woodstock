@@ -38,6 +38,7 @@ class Cart extends CI_Controller{
         foreach( $cart_info as $id => $cart)
         {
             $rowid = $cart['rowid'];
+            // $name = $cart['name'];
             $price = $cart['price'];
             $amount = $price * $cart['qty'];
             $qty = $cart['qty'];

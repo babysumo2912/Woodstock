@@ -15,12 +15,17 @@ class pay extends CI_Controller{
                     $this->session->set_flashdata('err',$err);
                     $this->cart->destroy();
                     redirect('cart');
-                }
-                $user = $this->User_models->getinfo($login_user);
-                if($user){
-                    foreach($user as $row){
-                        $data['user'] = $row->name;
-                        $data['avatar'] = $row->img;
+                }else{
+                    $cart = $this->cart->contents();
+                    $user = $this->User_models->getinfo($login_user);
+                    if($user){
+                        foreach($user as $row){
+                            $data['user'] = $row->name;
+                            $data['avatar'] = $row->img;
+                        }
+                    }
+                    if($cart){
+                        $data['cart'] = $cart;
                     }
                 }
                 $this->load->view('fontend/pay',$data);

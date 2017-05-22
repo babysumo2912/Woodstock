@@ -1,4 +1,4 @@
-<?php 
+<?php  
 class product extends CI_Controller{
     public function index(){
         $login_user = $this->session->userdata('session_user');

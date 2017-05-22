@@ -21,9 +21,10 @@ if(isset($cart)){
             <?php
             echo form_open('cart/update');
             foreach($cart as $row){
+
                 echo form_hidden('cart[' . $row['id'] . '][id]', $row['id']);
                 echo form_hidden('cart[' . $row['id'] . '][rowid]', $row['rowid']);
-                echo form_hidden('cart[' . $row['id'] . '][name]', $row['name']);
+                // echo form_hidden('cart[' . $row['id'] . '][name]', $row['name']);
                 echo form_hidden('cart[' . $row['id'] . '][price]', $row['price']);
                 echo form_hidden('cart[' . $row['id'] . '][qty]', $row['qty']);
             ?>
@@ -33,9 +34,9 @@ if(isset($cart)){
                     $account = $this->Product_models->getinfo($row['id']);
                     foreach ($account as $value) {
                         ?>
-                        <div class="row" style="">
+                        <div class="row" style="padding: 5px">
                             <div class="avatar1" style="background:url('<?php echo base_url() ?>/public/img/product/<?php echo $value->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
-                            &nbsp;<a href="#"><b><?php echo $value->name?></b></a>
+                            &nbsp;<a href="#"><?php echo $value->name?></a>
                         </div>
                         <?php
                     }
