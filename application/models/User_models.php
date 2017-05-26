@@ -38,5 +38,13 @@ class User_models extends CI_Model{
             }else return 1;
         }else return 2;
     }
+    function getaddress($id_user){
+        $this->db->where('id_user',$id_user);
+        $this->db->where('default',1);
+        $address = $this->db->get('tb_infomation_user');
+        if($address->num_rows()>0){
+            return $address->result();
+        }else return false;
+    }
 }
 ?>

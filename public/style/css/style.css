@@ -587,3 +587,11 @@ body{
     box-shadow: 5px 5px 15px #ccc;
     border-radius: 5px;
 }
+.add_address tr td{
+    width: 50%;
+}
+.add_address tr td input{
+    width: 100%;
+    border: none;
+    background: inherit;
+}

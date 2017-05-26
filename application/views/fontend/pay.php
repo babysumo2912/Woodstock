@@ -24,15 +24,40 @@ include 'header.php';
                 <div class="col-md-12">
                     <p style="float: left;">Địa chỉ nhận hàng</p>
                     <span style="float: right">
-                        <a href="">Click để thay đổi</a>
+                        <a href="<?php echo base_url()?>pay/address">
+                            <?php
+                            if(isset($address)){
+                                echo "Clich để thay đổi";
+                            }else
+                            {
+                                echo "Vui lòng nhập địa chỉ";
+                            }
+                            ?>
+                        </a>
                     </span>
                 </div>
             </div>
             <hr>
-            <p>Đức</p>
-            <p>số 38C, ngõ 487 cổ nhuế, từ liêm, hà nội</p>
-            <p>Quận Bắc Từ Liêm</p>
-            <p>TP hà nội</p>
+            <?php
+            if(isset($address)){
+                foreach ($address as $row){
+                $account = $this->User_models->getinfo($row->id_user);
+                if($account){
+                    foreach ($account as $key){};
+                }
+            ?>
+                <p style="font-size: 18px"><?php echo $key->name?></p>
+                <p><?php echo $row->phone?></p>
+                <p><?php echo $row->id_district?></p>
+                <p><?php echo $row->id_city?></p>
+            <?php
+                }
+            }else{
+            ?>
+                <p>Vui lòng nhập chính xác địa chỉ để chúng tôi có thể chuyển hàng về cho bạn</p>
+            <?php
+            }
+            ?>
         </div>
         <div class="content_pay">
             <div class="title-pay">
@@ -76,10 +101,23 @@ include 'header.php';
                 </tr>
             </table>
             <div class="text-center">
+            <?php
+            if(isset($address) && isset($cart)) {
+                ?>
                 <button type="submit" class="btn btn-success">
                     <i class="fa fa-github-alt"></i>
                     Đặt hàng
                 </button>
+                <?php
+            }else{
+            ?>
+                <button type="button" class="btn btn-default">
+                    <i class="fa fa-ban"></i>
+                    Đặt hàng
+                </button>
+            <?php
+            }
+            ?>
             </div>
         </div>
     </div>
