@@ -250,7 +250,7 @@ class product extends CI_Controller{
                                 'number' => $new_number,
                             );
                             $this->Product_models->update($id_product,$data_update_number);
-                            $session_data = arraY(
+                            $session_data = array(
                                 'count' => $count,
                                 'time_buy' => time(),
                             );

@@ -33,5 +33,12 @@ class Product_models extends CI_Model{
             return true;
         }else return false;
     }
+    function update($id_product,$data){
+        $this->db->where('id_product',$id_product);
+        $update = $this->db->update('tb_product',$data);
+        if(isset($update)){
+            return true;
+        }else return false;
+    }
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2017 at 06:02 PM
+-- Generation Time: May 31, 2017 at 06:33 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -212,7 +212,7 @@ CREATE TABLE `tb_product` (
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
 (7, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 10, 1, 0, 0),
-(8, 1, 'IPhone 8', 'iphone-8-price1.jpg', 'Supper Smart Phone', 1, 25000000, 23, 1, 0, 0),
+(8, 1, 'IPhone 8', 'iphone-8-price1.jpg', 'Supper Smart Phone', 1, 25000000, 0, 1, 0, 0),
 (9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nc', 1, 26000000, 1, 1, 0, 0),
 (10, 1, '1', 'giac-mong-thay-ngoi-chua-cung-nhung-con-so-vang-1.JPG', '1', 1, 1000, 1, 1, 0, 1),
 (11, 1, '1', '17909125_233601500377276_1339724259_n.jpg', '1', 1, 1234, 1, 1, 0, 0),
