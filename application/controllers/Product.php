@@ -206,7 +206,10 @@ class product extends CI_Controller{
             }
         } else redirect('home');
     }
-    public function buy($id_product,$active){
+    public function update_number($id_product){
+
+    }
+    public function buy($id_product){
 //        $this->load->library("cart");
         $count = $this->session->userdata('count');
         $login_user = $this->session->userdata('session_user');
@@ -237,20 +240,24 @@ class product extends CI_Controller{
                             'max' =>$row->number,
                         );
                         if($this->cart->insert($cart)){
-                            $count++;
+                            $count+=$number;
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $info){};
+                            }
+                            $new_number = $info->number - $number;
+                            $data_update_number = array(
+                                'number' => $new_number,
+                            );
+                            $this->Product_models->update($id_product,$data_update_number);
                             $session_data = arraY(
                                 'count' => $count,
                                 'time_buy' => time(),
                             );
-                            if($active == 0){
-                                var_dump($this->cart->contents());
-                                $this->session->set_userdata($session_data);
-                                redirect('cart');
-                            }else{
-                                $buy = "Sản phẩm đã được thêm vào giỏ hàng";
-                                $this->session->set_flashdata('in',$buy);
-                                redirect('product/view/'.$id_product);
-                            }
+                            $this->session->set_userdata($session_data);
+                            $buy = "Sản phẩm đã được thêm vào giỏ hàng";
+                            $this->session->set_flashdata('in',$buy);
+                            redirect('product/view/'.$id_product);
                         }else echo 2;
                     }
                 }

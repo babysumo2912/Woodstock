@@ -1,6 +1,9 @@
 <?php
 include 'header.php';
 ?>
+<?php
+echo form_open('pay/save');
+?>
 <section class="ccc">
     <div class="max800 row">
         <div class="content_pay">
@@ -27,7 +30,7 @@ include 'header.php';
                         <a href="<?php echo base_url()?>pay/address">
                             <?php
                             if(isset($address)){
-                                echo "Clich để thay đổi";
+                                echo "Click để thay đổi";
                             }else
                             {
                                 echo "Vui lòng nhập địa chỉ";
@@ -41,15 +44,21 @@ include 'header.php';
             <?php
             if(isset($address)){
                 foreach ($address as $row){
-                $account = $this->User_models->getinfo($row->id_user);
-                if($account){
-                    foreach ($account as $key){};
+                $district = $this->Home_models->getinfo('tb_district','id_district',$row->id_district);
+                $city = $this->Home_models->getinfo('tb_city','id_city',$row->id_city);
+                if($district){
+                    foreach ($district as $dtr){};
+                }
+                if($city){
+                    foreach ($city as $tp){};
                 }
             ?>
-                <p style="font-size: 18px"><?php echo $key->name?></p>
+                <p style="font-size: 18px"><?php echo $row->name?></p>
                 <p><?php echo $row->phone?></p>
-                <p><?php echo $row->id_district?></p>
-                <p><?php echo $row->id_city?></p>
+                <p><?php echo $row->address ?></p>
+                <p><?php echo $dtr->district?></p>
+                <p><?php echo $tp->city?></p>
+                <hr>
             <?php
                 }
             }else{
@@ -68,6 +77,7 @@ include 'header.php';
                 <?php
                 $money = 0;
                 if(isset($cart)){
+//                    var_dump($cart);
                     foreach ($cart as $row){
                         $money += $row['subtotal'];
                 ?>
@@ -122,6 +132,7 @@ include 'header.php';
         </div>
     </div>
 </section>
+<?php echo form_close()?>
 <?php
 include 'footer.php'
 ?>
