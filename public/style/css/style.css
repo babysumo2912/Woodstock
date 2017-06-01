@@ -241,6 +241,14 @@ body{
 .qc ul li{
     line-height: 70px;
 }
+.qc2 ul{
+    list-style: none;
+    margin:0 auto;
+    padding: 0;
+}
+.qc2 ul li{
+    line-height: 70px;
+}
 .footer{
     margin-top: 20px;
     color: #ccc;

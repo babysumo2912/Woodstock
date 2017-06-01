@@ -2,6 +2,7 @@
 class Product_models extends CI_Model{
     function getall(){
         $this->db->where('active', 0);
+        $this->db->where('number>',0);
         $get = $this->db->get('tb_product');
         if($get->num_rows() > 0){
             return $get->result();

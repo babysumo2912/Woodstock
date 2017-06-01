@@ -1,4 +1,12 @@
 <?php include "header.php" ?>
+<?php if(isset($err)){?>
+<section class="max-row">
+    <p class="text-center" style="color: red">
+        <i class="fa fa-warning"></i>
+        <?php echo $err;?>
+    </p>
+</section>
+<?php } ?>
 <section class = "max row">
     <div class = "col-md-3 col-sm-12 col-xs-12">
         <div class = "menu">

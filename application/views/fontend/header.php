@@ -37,9 +37,9 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php 
-                if(isset($user)){
+                if(isset($user) && isset($id_user)){
                 ?>
-                <li><a href="#">
+                <li><a href="<?php echo base_url()?>infomation/buyer">
                         <div class = "user">
                             <div class = "avatar" style = "background:url('<?php echo base_url()?>/public/img/user/avatar/<?php echo $avatar ?>') center; background-size: cover"></div>
                             &nbsp;<span><?php echo $user?></span>
@@ -76,7 +76,11 @@
             <div class = "col-md-3 col-sm-4 col-xs-12">
                 <div class = "hd-right">
                     <a href="<?php echo base_url()?>cart">
-                        <i class = "fa fa-shopping-bag fa-2x"><sup>0</sup></i>
+                        <i class = "fa fa-shopping-bag fa-2x"><sup><?php
+                                if(isset($count)){
+                                    echo $count;
+                                }else echo 0;
+                                ?></sup></i>
                     </a>
                     <a href="">
                         <i class = "fa fa-bell-o fa-2x"><sup>0</sup></i>

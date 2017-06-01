@@ -5,12 +5,45 @@ class pay extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         if(isset($login_user)){
             if(time() - $time_out >=30000000000000000000000000){
                 $this->session->sess_destroy();
                 redirect('home');
             }else{
-                if(time() - $time_buy >= 1000000000000000000000){
+                if(time() - $time_buy >= 100000000000000000){
+                    $this->session->unset_userdata('count');
+                    $cart = $this->cart->contents();
+                    if(isset($cart)){
+                        foreach($cart as $row){
+                            $id_product = $row['id'];
+                            $number = $row['qty'];
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $item){};
+                                $number_old = $item->number += $number;
+                                $data_number_old = array('number'=>$number_old);
+                                $this->Product_models->update($id_product,$data_number_old);
+                            }else{
+                                $add_product = array(
+                                    'id_user' => $row['id_user'],
+                                    'name' => $row['name'],
+                                    'img' => $row['img'],
+                                    'discribe' => $row['discribe'],
+                                    'id_catalog' => $row['id_catalog'],
+                                    'price' => $row['price'],
+                                    'id_status' => $row['id_status'],
+                                    'number' => $row['qty'],
+                                    'like' => 0,
+                                    'active' => 1,
+                                );
+                                $this->Product_models->add($add_product);
+                            }
+                        }
+                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err',$err);
                     $this->cart->destroy();
@@ -21,6 +54,7 @@ class pay extends CI_Controller{
                     $address = $this->User_models->get_address_default($login_user);
                     if($user){
                         foreach($user as $row){
+                            $data['id_user'] = $row->id_user;
                             $data['user'] = $row->name;
                             $data['avatar'] = $row->img;
                         }
@@ -39,6 +73,10 @@ class pay extends CI_Controller{
         }
     }
     public function address(){
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
@@ -48,7 +86,36 @@ class pay extends CI_Controller{
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
+                if (time() - $time_buy >= 200000000000000000) {
+                    $this->session->unset_userdata('count');
+                    $cart = $this->cart->contents();
+                    if(isset($cart)){
+                        foreach($cart as $row){
+                            $id_product = $row['id'];
+                            $number = $row['qty'];
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $item){};
+                                $number_old = $item->number += $number;
+                                $data_number_old = array('number'=>$number_old);
+                                $this->Product_models->update($id_product,$data_number_old);
+                            }else{
+                                $add_product = array(
+                                    'id_user' => $row['id_user'],
+                                    'name' => $row['name'],
+                                    'img' => $row['img'],
+                                    'discribe' => $row['discribe'],
+                                    'id_catalog' => $row['id_catalog'],
+                                    'price' => $row['price'],
+                                    'id_status' => $row['id_status'],
+                                    'number' => $row['qty'],
+                                    'like' => 0,
+                                    'active' => 1,
+                                );
+                                $this->Product_models->add($add_product);
+                            }
+                        }
+                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -58,6 +125,7 @@ class pay extends CI_Controller{
                     $address = $this->User_models->getaddress($login_user);
                     if($user){
                         foreach($user as $row){
+                            $data['id_user'] = $row->id_user;
                             $data['user'] = $row->name;
                             $data['avatar'] = $row->img;
                         }
@@ -78,6 +146,10 @@ class pay extends CI_Controller{
         $this->load->view('fontend/address',$data);
     }
     public function add_address(){
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         $data = array();
         $err = $this->session->flashdata('err');
         if(isset($err)){
@@ -92,6 +164,35 @@ class pay extends CI_Controller{
                 redirect('home');
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
+                    $this->session->unset_userdata('count');
+                    $cart = $this->cart->contents();
+                    if(isset($cart)){
+                        foreach($cart as $row){
+                            $id_product = $row['id'];
+                            $number = $row['qty'];
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $item){};
+                                $number_old = $item->number += $number;
+                                $data_number_old = array('number'=>$number_old);
+                                $this->Product_models->update($id_product,$data_number_old);
+                            }else{
+                                $add_product = array(
+                                    'id_user' => $row['id_user'],
+                                    'name' => $row['name'],
+                                    'img' => $row['img'],
+                                    'discribe' => $row['discribe'],
+                                    'id_catalog' => $row['id_catalog'],
+                                    'price' => $row['price'],
+                                    'id_status' => $row['id_status'],
+                                    'number' => $row['qty'],
+                                    'like' => 0,
+                                    'active' => 1,
+                                );
+                                $this->Product_models->add($add_product);
+                            }
+                        }
+                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -103,6 +204,7 @@ class pay extends CI_Controller{
                     $district_data = $this->Home_models->get('tb_district');
                     if($user){
                         foreach($user as $row){
+                            $data['id_user'] = $row->id_user;
                             $data['user'] = $row->name;
                             $data['avatar'] = $row->img;
                         }
@@ -134,6 +236,10 @@ class pay extends CI_Controller{
         $this->load->view('fontend/add_address',$data);
     }
     public function add_new_address(){
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
@@ -144,6 +250,35 @@ class pay extends CI_Controller{
                 redirect('home');
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
+                    $this->session->unset_userdata('count');
+                    $cart = $this->cart->contents();
+                    if(isset($cart)){
+                        foreach($cart as $row){
+                            $id_product = $row['id'];
+                            $number = $row['qty'];
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $item){};
+                                $number_old = $item->number += $number;
+                                $data_number_old = array('number'=>$number_old);
+                                $this->Product_models->update($id_product,$data_number_old);
+                            }else{
+                                $add_product = array(
+                                    'id_user' => $row['id_user'],
+                                    'name' => $row['name'],
+                                    'img' => $row['img'],
+                                    'discribe' => $row['discribe'],
+                                    'id_catalog' => $row['id_catalog'],
+                                    'price' => $row['price'],
+                                    'id_status' => $row['id_status'],
+                                    'number' => $row['qty'],
+                                    'like' => 0,
+                                    'active' => 1,
+                                );
+                                $this->Product_models->add($add_product);
+                            }
+                        }
+                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -162,6 +297,7 @@ class pay extends CI_Controller{
                     }
                     if($user){
                         foreach($user as $row){
+                            $data['id_user'] = $row->id_user;
                             $data['user'] = $row->name;
                             $data['avatar'] = $row->img;
                         }
@@ -216,6 +352,10 @@ class pay extends CI_Controller{
         $this->load->view('fontend/add_address',$data);
     }
     public function select_address(){
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
@@ -226,6 +366,35 @@ class pay extends CI_Controller{
                 redirect('home');
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
+                    $this->session->unset_userdata('count');
+                    $cart = $this->cart->contents();
+                    if(isset($cart)){
+                        foreach($cart as $row){
+                            $id_product = $row['id'];
+                            $number = $row['qty'];
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $item){};
+                                $number_old = $item->number += $number;
+                                $data_number_old = array('number'=>$number_old);
+                                $this->Product_models->update($id_product,$data_number_old);
+                            }else{
+                                $add_product = array(
+                                    'id_user' => $row['id_user'],
+                                    'name' => $row['name'],
+                                    'img' => $row['img'],
+                                    'discribe' => $row['discribe'],
+                                    'id_catalog' => $row['id_catalog'],
+                                    'price' => $row['price'],
+                                    'id_status' => $row['id_status'],
+                                    'number' => $row['qty'],
+                                    'like' => 0,
+                                    'active' => 1,
+                                );
+                                $this->Product_models->add($add_product);
+                            }
+                        }
+                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -244,6 +413,7 @@ class pay extends CI_Controller{
                     }
                     if($user){
                         foreach($user as $row){
+                            $data['id_user'] = $row->id_user;
                             $data['user'] = $row->name;
                             $data['avatar'] = $row->img;
                         }
@@ -278,6 +448,10 @@ class pay extends CI_Controller{
     }
     public function save()
     {
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
 //        $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
@@ -288,6 +462,35 @@ class pay extends CI_Controller{
                 redirect('home');
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
+                    $this->session->unset_userdata('count');
+                    $cart = $this->cart->contents();
+                    if(isset($cart)){
+                        foreach($cart as $row){
+                            $id_product = $row['id'];
+                            $number = $row['qty'];
+                            $data_product = $this->Product_models->getinfo($id_product);
+                            if($data_product){
+                                foreach ($data_product as $item){};
+                                $number_old = $item->number += $number;
+                                $data_number_old = array('number'=>$number_old);
+                                $this->Product_models->update($id_product,$data_number_old);
+                            }else{
+                                $add_product = array(
+                                    'id_user' => $row['id_user'],
+                                    'name' => $row['name'],
+                                    'img' => $row['img'],
+                                    'discribe' => $row['discribe'],
+                                    'id_catalog' => $row['id_catalog'],
+                                    'price' => $row['price'],
+                                    'id_status' => $row['id_status'],
+                                    'number' => $row['qty'],
+                                    'like' => 0,
+                                    'active' => 1,
+                                );
+                                $this->Product_models->add($add_product);
+                            }
+                        }
+                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -355,6 +558,8 @@ class pay extends CI_Controller{
                             }
 
                         }
+                        $this->cart->destroy();
+                        $this->session->destroy('count');
                         redirect('home');
                     }
                 }

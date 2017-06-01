@@ -3,6 +3,10 @@ class product extends CI_Controller{
     public function index(){
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         if(isset($login_user)){
             if(time() - $time_out >=30000000000000){
                 $this->session->sess_destroy();
@@ -28,6 +32,7 @@ class product extends CI_Controller{
     function add_product(){
         $login_user = $this->session->userdata('session_user');
         $user = $this->User_models->getinfo($login_user);
+
         if($user){
             foreach($user as $row){
                 $data['user'] = $row->name;
@@ -148,6 +153,10 @@ class product extends CI_Controller{
         }
         $login_user = $this->session->userdata('session_user');
         $user = $this->User_models->getinfo($login_user);
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         $comment = $this->Home_models->getinfodesc('tb_comment','id_product',$id_product,'id_comment');
         if($comment){
             $data['comment'] = $comment;
@@ -210,8 +219,11 @@ class product extends CI_Controller{
 
     }
     public function buy($id_product){
-//        $this->load->library("cart");
         $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
+//        $this->load->library("cart");
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $qty = $this->input->post('number');
@@ -238,6 +250,10 @@ class product extends CI_Controller{
                             'price' => $row->price,
                             'qty' => $number,
                             'max' =>$row->number,
+                            'img' => $row->img,
+                            'discribe' => $row->discribe,
+                            'id_catalog' => $row->id_catalog,
+                            'id_status' => $row->id_status,
                         );
                         if($this->cart->insert($cart)){
                             $count+=$number;

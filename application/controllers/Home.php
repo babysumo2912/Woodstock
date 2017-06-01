@@ -4,7 +4,15 @@ class home extends CI_Controller{
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
         $product = $this->Product_models->getall();
+        $err = $this->session->flashdata('err');
+        if(isset($err)){
+            $data['err'] = $err;
+        }
         $catalog = $this->Home_models->get('tb_catalog');
         if($product){
             $data['product'] = $product;
@@ -23,6 +31,7 @@ class home extends CI_Controller{
                 $user = $this->User_models->getinfo($login_user);
                 if($user){
                     foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
                         $data['user'] = $row->name;
                         $data['avatar'] = $row->img;
                     }
