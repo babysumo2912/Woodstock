@@ -27,7 +27,7 @@ Là chủ shop, bạn vui lòng đọc kĩ và tuân thủ <b><a href="">Chính 
                             <i class = "fa fa-building-o fa-4x"></i>
                         </div>
                         <div class = "text-center">
-                            <p>Đơn bán</p>
+                            <p>Đơn bán <sup><?php echo $number_invoice?></sup></p>
                         </div>
                     </a>
                 </div>

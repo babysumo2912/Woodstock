@@ -373,7 +373,7 @@ class pay extends CI_Controller{
                         $data_note = $note;
                     }else $data_note = "";
                     $data_cart = $this->cart->contents();
-                    if($data_cart){
+                    if(isset($data_cart)){
                         $money = 0;
                         foreach($data_cart as $cart){
                             $money+=$cart['subtotal'];
@@ -427,8 +427,8 @@ class pay extends CI_Controller{
                                 }
                             }
                             $this->cart->destroy();
-                            $this->session->destroy('count');
-                            redirect('home');
+                            $this->session->unset_userdata('count');
+                            redirect('infomation/buyer');
                         }
                     }
                 }
