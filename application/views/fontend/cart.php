@@ -16,7 +16,7 @@ if(isset($cart)){
                 <td>Đơn giá</td>
                 <td>Số lượng</td>
                 <td>Thành tiền</td>
-                <td><a href="<?php echo base_url()?>cart/delete_all" title="Xóa tất cả"><i class="fa fa-trash"></i></a></td>
+                <td><a href="<?php echo base_url()?>cart/delete_all" title="Xóa tất cả" onclick="return confirm('Bạn có chắc chắn muốn xóa hết giỏ hàng của mình!')"><i class="fa fa-trash"></i></a></td>
             </tr>
             <?php
             echo form_open('cart/update');
@@ -46,11 +46,11 @@ if(isset($cart)){
                 <td>
                     <?php
                     $account = $this->User_models->getinfo($row['id_user']);
-                    foreach ($account as $value) {
+                    foreach ($account as $value1) {
                         ?>
                         <div class="row" style="">
-                            <div class="avatar" style="background:url('<?php echo base_url() ?>/public/img/user/avatar/<?php echo $value->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
-                            &nbsp;<a href="#"><b><?php echo $value->name?></b></a>
+                            <div class="avatar" style="background:url('<?php echo base_url() ?>/public/img/user/avatar/<?php echo $value1->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
+                            &nbsp;<a href="#"><b><?php echo $value1->name?></b></a>
                         </div>
                         <?php
                     }
@@ -76,7 +76,7 @@ if(isset($cart)){
                     <?php echo number_format($row['subtotal']) ?><sup>đ</sup>
                 </td>
                 <td>
-                    <a href="<?php echo base_url()?>cart/delete/<?php echo $row['rowid']?>" title="Xóa sản phẩm"><i class="fa fa-remove"></i></a>
+                    <a href="<?php echo base_url()?>cart/delete/<?php echo $row['rowid']?>" title="Xóa sản phẩm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?php echo $value->name ;?>')"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
             <?php

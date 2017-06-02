@@ -16,34 +16,6 @@ class pay extends CI_Controller{
             }else{
                 if(time() - $time_buy >= 100000000000000000){
                     $this->session->unset_userdata('count');
-                    $cart = $this->cart->contents();
-                    if(isset($cart)){
-                        foreach($cart as $row){
-                            $id_product = $row['id'];
-                            $number = $row['qty'];
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $item){};
-                                $number_old = $item->number += $number;
-                                $data_number_old = array('number'=>$number_old);
-                                $this->Product_models->update($id_product,$data_number_old);
-                            }else{
-                                $add_product = array(
-                                    'id_user' => $row['id_user'],
-                                    'name' => $row['name'],
-                                    'img' => $row['img'],
-                                    'discribe' => $row['discribe'],
-                                    'id_catalog' => $row['id_catalog'],
-                                    'price' => $row['price'],
-                                    'id_status' => $row['id_status'],
-                                    'number' => $row['qty'],
-                                    'like' => 0,
-                                    'active' => 1,
-                                );
-                                $this->Product_models->add($add_product);
-                            }
-                        }
-                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err',$err);
                     $this->cart->destroy();
@@ -88,34 +60,6 @@ class pay extends CI_Controller{
             } else {
                 if (time() - $time_buy >= 200000000000000000) {
                     $this->session->unset_userdata('count');
-                    $cart = $this->cart->contents();
-                    if(isset($cart)){
-                        foreach($cart as $row){
-                            $id_product = $row['id'];
-                            $number = $row['qty'];
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $item){};
-                                $number_old = $item->number += $number;
-                                $data_number_old = array('number'=>$number_old);
-                                $this->Product_models->update($id_product,$data_number_old);
-                            }else{
-                                $add_product = array(
-                                    'id_user' => $row['id_user'],
-                                    'name' => $row['name'],
-                                    'img' => $row['img'],
-                                    'discribe' => $row['discribe'],
-                                    'id_catalog' => $row['id_catalog'],
-                                    'price' => $row['price'],
-                                    'id_status' => $row['id_status'],
-                                    'number' => $row['qty'],
-                                    'like' => 0,
-                                    'active' => 1,
-                                );
-                                $this->Product_models->add($add_product);
-                            }
-                        }
-                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -165,34 +109,6 @@ class pay extends CI_Controller{
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
                     $this->session->unset_userdata('count');
-                    $cart = $this->cart->contents();
-                    if(isset($cart)){
-                        foreach($cart as $row){
-                            $id_product = $row['id'];
-                            $number = $row['qty'];
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $item){};
-                                $number_old = $item->number += $number;
-                                $data_number_old = array('number'=>$number_old);
-                                $this->Product_models->update($id_product,$data_number_old);
-                            }else{
-                                $add_product = array(
-                                    'id_user' => $row['id_user'],
-                                    'name' => $row['name'],
-                                    'img' => $row['img'],
-                                    'discribe' => $row['discribe'],
-                                    'id_catalog' => $row['id_catalog'],
-                                    'price' => $row['price'],
-                                    'id_status' => $row['id_status'],
-                                    'number' => $row['qty'],
-                                    'like' => 0,
-                                    'active' => 1,
-                                );
-                                $this->Product_models->add($add_product);
-                            }
-                        }
-                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -251,34 +167,6 @@ class pay extends CI_Controller{
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
                     $this->session->unset_userdata('count');
-                    $cart = $this->cart->contents();
-                    if(isset($cart)){
-                        foreach($cart as $row){
-                            $id_product = $row['id'];
-                            $number = $row['qty'];
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $item){};
-                                $number_old = $item->number += $number;
-                                $data_number_old = array('number'=>$number_old);
-                                $this->Product_models->update($id_product,$data_number_old);
-                            }else{
-                                $add_product = array(
-                                    'id_user' => $row['id_user'],
-                                    'name' => $row['name'],
-                                    'img' => $row['img'],
-                                    'discribe' => $row['discribe'],
-                                    'id_catalog' => $row['id_catalog'],
-                                    'price' => $row['price'],
-                                    'id_status' => $row['id_status'],
-                                    'number' => $row['qty'],
-                                    'like' => 0,
-                                    'active' => 1,
-                                );
-                                $this->Product_models->add($add_product);
-                            }
-                        }
-                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -367,34 +255,34 @@ class pay extends CI_Controller{
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
                     $this->session->unset_userdata('count');
-                    $cart = $this->cart->contents();
-                    if(isset($cart)){
-                        foreach($cart as $row){
-                            $id_product = $row['id'];
-                            $number = $row['qty'];
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $item){};
-                                $number_old = $item->number += $number;
-                                $data_number_old = array('number'=>$number_old);
-                                $this->Product_models->update($id_product,$data_number_old);
-                            }else{
-                                $add_product = array(
-                                    'id_user' => $row['id_user'],
-                                    'name' => $row['name'],
-                                    'img' => $row['img'],
-                                    'discribe' => $row['discribe'],
-                                    'id_catalog' => $row['id_catalog'],
-                                    'price' => $row['price'],
-                                    'id_status' => $row['id_status'],
-                                    'number' => $row['qty'],
-                                    'like' => 0,
-                                    'active' => 1,
-                                );
-                                $this->Product_models->add($add_product);
-                            }
-                        }
-                    }
+//                    $cart = $this->cart->contents();
+//                    if(isset($cart)){
+//                        foreach($cart as $row){
+//                            $id_product = $row['id'];
+//                            $number = $row['qty'];
+//                            $data_product = $this->Product_models->getinfo($id_product);
+//                            if($data_product){
+//                                foreach ($data_product as $item){};
+//                                $number_old = $item->number += $number;
+//                                $data_number_old = array('number'=>$number_old);
+//                                $this->Product_models->update($id_product,$data_number_old);
+//                            }else{
+//                                $add_product = array(
+//                                    'id_user' => $row['id_user'],
+//                                    'name' => $row['name'],
+//                                    'img' => $row['img'],
+//                                    'discribe' => $row['discribe'],
+//                                    'id_catalog' => $row['id_catalog'],
+//                                    'price' => $row['price'],
+//                                    'id_status' => $row['id_status'],
+//                                    'number' => $row['qty'],
+//                                    'like' => 0,
+//                                    'active' => 1,
+//                                );
+//                                $this->Product_models->add($add_product);
+//                            }
+//                        }
+//                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -463,34 +351,6 @@ class pay extends CI_Controller{
             } else {
                 if (time() - $time_buy >= 1000000000000000000000) {
                     $this->session->unset_userdata('count');
-                    $cart = $this->cart->contents();
-                    if(isset($cart)){
-                        foreach($cart as $row){
-                            $id_product = $row['id'];
-                            $number = $row['qty'];
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $item){};
-                                $number_old = $item->number += $number;
-                                $data_number_old = array('number'=>$number_old);
-                                $this->Product_models->update($id_product,$data_number_old);
-                            }else{
-                                $add_product = array(
-                                    'id_user' => $row['id_user'],
-                                    'name' => $row['name'],
-                                    'img' => $row['img'],
-                                    'discribe' => $row['discribe'],
-                                    'id_catalog' => $row['id_catalog'],
-                                    'price' => $row['price'],
-                                    'id_status' => $row['id_status'],
-                                    'number' => $row['qty'],
-                                    'like' => 0,
-                                    'active' => 1,
-                                );
-                                $this->Product_models->add($add_product);
-                            }
-                        }
-                    }
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
@@ -537,30 +397,39 @@ class pay extends CI_Controller{
                         $id_invoice = $data_invoice->id_invoice;
                         $data_cart = $this->cart->contents();
                         if($data_cart){
-                            foreach ($data_cart as $cart){
-                                $id_user  = $cart['id_user'];
-                                $id_product  =$cart['id'];
+                            foreach ($data_cart as $cart) {
+                                $id_user = $cart['id_user'];
+                                $id_product = $cart['id'];
                                 $name_product = $cart['name'];
                                 $qty = $cart['qty'];
                                 $price = $cart['price'];
                                 $subtotal = $cart['subtotal'];
                                 $data_invoice_detail = array(
                                     'id_user' => $id_user,
-                                    'id_invoice'=>$id_invoice,
-                                    'id_product'=>$id_product,
-                                    'name'=>$name_product,
-                                    'qty'=>$qty,
+                                    'id_invoice' => $id_invoice,
+                                    'id_product' => $id_product,
+                                    'name' => $name_product,
+                                    'qty' => $qty,
                                     'price' => $price,
                                     'subtotal' => $subtotal,
                                     'active' => '0',
                                 );
-                                $add_invoice_detail = $this->User_models->add_invoice_detail($data_invoice_detail);
+                                $this->User_models->add_invoice_detail($data_invoice_detail);
+                                $id_product = $cart['id'];
+                                $number = $cart['qty'];
+                                $data_product = $this->Product_models->getinfo($id_product);
+                                if ($data_product) {
+                                    foreach ($data_product as $item) {
+                                    };
+                                    $number_old = $item->number - $number;
+                                    $data_number_old = array('number' => $number_old);
+                                    $this->Product_models->update($id_product, $data_number_old);
+                                }
                             }
-
+                            $this->cart->destroy();
+                            $this->session->destroy('count');
+                            redirect('home');
                         }
-                        $this->cart->destroy();
-                        $this->session->destroy('count');
-                        redirect('home');
                     }
                 }
             }

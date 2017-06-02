@@ -28,12 +28,21 @@ include 'header.php';
         </div>
         <div class = "col-md-7 white">
             <h2><?php echo $row->name?></h2>
-            <p class = "succ_buy">
+
                 <?php
                 if(isset($buy)){
-                ?><i class="fa fa-hand-o-right"></i>
+                ?><p class = "succ_buy"><i class="fa fa-hand-o-right"></i>
                 <?php
                     echo $buy;
+                }
+                ?>
+                </p>
+
+                <?php
+                if(isset($err1)){
+                    ?><p style="color: red"><i class="fa fa-warning"></i>
+                    <?php
+                    echo $err1;
                 }
                 ?>
             </p>

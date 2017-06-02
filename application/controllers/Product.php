@@ -151,6 +151,10 @@ class product extends CI_Controller{
         if(isset($buy)){
             $data['buy'] = $buy;
         }
+        $err = $this->session->flashdata('err1');
+        if(isset($err)){
+            $data['err1'] = $err;
+        }
         $login_user = $this->session->userdata('session_user');
         $user = $this->User_models->getinfo($login_user);
         $count = $this->session->userdata('count');
@@ -239,10 +243,22 @@ class product extends CI_Controller{
                 if($content_product){
                     foreach ($content_product as $row){};
                     if($row->id_user == $login_user){
-                        $buy =  "Bạn không thể mua sản phẩm của chính mình";
-                        $this->session->set_flashdata('in',$buy);
+                        $err =  "Bạn không thể mua sản phẩm của chính mình";
+                        $this->session->set_flashdata('err1',$err);
                         redirect('product/view/'.$id_product);
                     }else{
+                        $cart_old = $this->cart->contents();
+                        if(isset($cart_old)){
+                            foreach ($cart_old as $item){
+                                if($item['id'] == $id_product ){
+                                    if($item['qty']+$number - $row->number>0){
+                                        $err = "Sản phẩm trong kho đã hết! Bạn có thể liên hệ đến chủ shop để đặt mua thêm!";
+                                        $this->session->set_flashdata('err1',$err);
+                                        redirect('product/view/'.$id_product);
+                                    }
+                                }
+                            }
+                        }
                         $cart = array(
                             'id' => $id_product,
                             'name' => $row->name,
@@ -257,15 +273,6 @@ class product extends CI_Controller{
                         );
                         if($this->cart->insert($cart)){
                             $count+=$number;
-                            $data_product = $this->Product_models->getinfo($id_product);
-                            if($data_product){
-                                foreach ($data_product as $info){};
-                            }
-                            $new_number = $info->number - $number;
-                            $data_update_number = array(
-                                'number' => $new_number,
-                            );
-                            $this->Product_models->update($id_product,$data_update_number);
                             $session_data = array(
                                 'count' => $count,
                                 'time_buy' => time(),
@@ -274,7 +281,11 @@ class product extends CI_Controller{
                             $buy = "Sản phẩm đã được thêm vào giỏ hàng";
                             $this->session->set_flashdata('in',$buy);
                             redirect('product/view/'.$id_product);
-                        }else echo 2;
+                        }else{
+                            $err2 = "Vui lòng nhập số lượng khác 0!";
+                            $this->session->set_flashdata('err1',$err2);
+                            redirect('product/view/'.$id_product);
+                        }
                     }
                 }
                 else echo "Khong ton tai sp nay";
