@@ -608,3 +608,7 @@ body{
     border: none;
     width: 100%;
 }
+.buyer_cart{
+    height: 750px;
+    overflow-x: hidden;
+}

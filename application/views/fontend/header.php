@@ -37,7 +37,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php 
-                if(isset($user) && isset($id_user)){
+                if(isset($user)){
                 ?>
                 <li><a href="<?php echo base_url()?>infomation/buyer">
                         <div class = "user">

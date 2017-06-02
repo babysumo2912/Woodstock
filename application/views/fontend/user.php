@@ -7,12 +7,12 @@ if(isset($account)){
 ?>
 <section class="ccc">
     <div class="max row">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3">
             <div>
-                <div style = "height: 200px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>') center; background-size: cover"></div>
+                <div style = "height: 300px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>') center; background-size: cover"></div>
             </div>
         </div>
-        <div class="col-md-8 col-sm-8 content_pay">
+        <div class="col-md-9 content_pay">
             <div class = "qc2">
                 <ul>
                     <li>
@@ -39,7 +39,10 @@ if(isset($account)){
                 </ul>
             </div>
             <hr>
-            <div>
+            <div class = "buyer_cart">
+                <?php
+                if(isset($cart)){
+                ?>
                 <h3>Đơn hàng chờ xác nhận</h3>
                 <table class="table table-hover">
                     <tr>
@@ -115,6 +118,14 @@ if(isset($account)){
                     }
                     ?>
                 </table>
+                <?php }else{
+                    ?>
+                    <div class="text-center" style="margin: 100px 0;">
+                        <img src="<?php echo base_url()?>public/img/style/nocart.png" alt="woodstock"><br><br>
+                        <p>Chưa có đơn hàng !</p>
+                    </div>
+                    <?php
+                }?>
             </div>
         </div>
     </div>
