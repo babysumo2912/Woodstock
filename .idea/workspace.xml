@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cafc1f6-abeb-4e76-b910-9b9956665e64" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Banhang.php" afterPath="$PROJECT_DIR$/application/controllers/Banhang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Pay.php" afterPath="$PROJECT_DIR$/application/controllers/Pay.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/sale/Invoice.php" afterPath="$PROJECT_DIR$/application/controllers/sale/Invoice.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Invoice_models.php" afterPath="$PROJECT_DIR$/application/models/Invoice_models.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/User_models.php" afterPath="$PROJECT_DIR$/application/models/User_models.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/fontend/user.php" afterPath="$PROJECT_DIR$/application/views/fontend/user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/fontend_bh/banhang.php" afterPath="$PROJECT_DIR$/application/views/fontend_bh/banhang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/fontend_bh/header.php" afterPath="$PROJECT_DIR$/application/views/fontend_bh/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/fontend_bh/invoice.php" afterPath="$PROJECT_DIR$/application/views/fontend_bh/invoice.php" />
     </list>
     <ignored path="ci.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +29,7 @@
       <file leaf-file-name="cart.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/fontend/cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="966">
               <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
               <folding />
             </state>
@@ -47,7 +39,7 @@
       <file leaf-file-name="Invoice.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/sale/Invoice.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
+            <state relative-caret-position="1748">
               <caret line="76" column="42" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
               <folding />
             </state>
@@ -57,14 +49,9 @@
       <file leaf-file-name="invoice.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/fontend_bh/invoice.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="100" column="13" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#form#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#section#1;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="496">
+              <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,7 +59,7 @@
       <file leaf-file-name="Invoice_models.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Invoice_models.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
+            <state relative-caret-position="1081">
               <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
               <folding />
             </state>
@@ -191,6 +178,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -421,8 +410,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -529,11 +516,12 @@
       <workItem from="1496543482522" duration="589000" />
       <workItem from="1496544313278" duration="419000" />
       <workItem from="1496722538263" duration="15928000" />
+      <workItem from="1496753695184" duration="1540000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118691000" />
+    <option name="totallyTimeSpent" value="120231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1378" height="754" extended-state="0" />
@@ -770,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
           <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="12" column="9" selection-start-line="4" selection-start-column="3" selection-end-line="12" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -794,7 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,7 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -842,7 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
           <caret line="152" column="26" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -856,7 +839,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/fontend/cart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="966">
           <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
           <folding />
         </state>
@@ -872,7 +855,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Invoice_models.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
+        <state relative-caret-position="1081">
           <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
           <folding />
         </state>
@@ -880,7 +863,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/sale/Invoice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
+        <state relative-caret-position="1748">
           <caret line="76" column="42" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
           <folding />
         </state>
@@ -888,14 +871,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/fontend_bh/invoice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="100" column="13" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#section#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="496">
+          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>

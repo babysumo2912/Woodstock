@@ -4,9 +4,9 @@ include'header.php';
 <div class = "menu_product">
     <ul>
         <!--<li><a href="">Shop của tôi</a></li>-->
-        <li><a href="">Tất cả</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice">Tất cả</a></li>
         <li>
-            <a href="">
+            <a href="<?php echo base_url()?>sale/invoice/active/0">
                 Chờ xác nhận
                 <?php
                 if(isset($number_invoice)){
@@ -17,11 +17,11 @@ include'header.php';
                 <sup class="badge"><?php echo $number?></sup>
             </a>
         </li>
-        <li><a href="">Chờ lấy hàng</a></li>
-        <li><a href="">Đang giao</a></li>
-        <li><a href="">Hoàn thành</a></li>
-        <li><a href="">Đã hủy</a></li>
-        <li><a href="">Hoàn hàng</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/1">Chờ lấy hàng</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/2">Đang giao</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/3">Hoàn thành</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/4">Đã hủy</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/5">Hoàn hàng</a></li>
     </ul>
 </div>
 <section class="max row">
@@ -36,16 +36,47 @@ include'header.php';
 </section>
 <section class="max row">
     <div class="text-center">
-        <h3>Đơn hàng của bạn</h3>
+        <h3>
+        <?php
+        if(isset($active)){
+            switch($active){
+                case"0":
+                    echo "Đơn hàng chờ xác nhận!";
+                    break;
+                case"1":
+                    echo "Đơn hàng chờ lấy hàng";
+                    break;
+                case"2":
+                    echo "Đơn hàng đang giao";
+                    break;
+                case"3":
+                    echo "Đơn hàng đã hoàn thành";
+                    break;
+                case"4":
+                    echo "Đơn hàng bị hủy";
+                    break;
+                case"5":
+                    echo "Đơn hàng hoàn về";
+                    break;
+                default:
+                    echo "Tất cả đơn hàng";
+            }
+        }else{
+        ?>
+        Tất cả đơn hàng
+        <?php } ?>
+        </h3>
     </div>
     <?php
     if(isset($detail_invoice)){
         if(isset($active)){
             $num_acive = $active;
         }else $active = "all";
+        $check = false;
         foreach($detail_invoice as $cthd){
             $invoice = $this->Invoice_models->get_invoice_sale($cthd->id_invoice,$active);
             if($invoice){
+                $check = true;
 //                var_dump($invoice);die();
                 foreach ($invoice as $hd){}
     ?>
@@ -141,6 +172,16 @@ include'header.php';
     <?php
             }
         }
+    ?>
+    <?php
+    if($check == false){
+    ?>
+    <div class="text-center" style="margin: 100px 0;">
+        <img src="<?php echo base_url()?>public/img/style/nocart.png" alt="woodstock"><br><br>
+        <p>Chưa có đơn hàng !</p>
+    </div>
+    <?php
+    }
     ?>
     <?php
     }else{
