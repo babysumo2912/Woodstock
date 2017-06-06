@@ -20,8 +20,37 @@ class Invoice_models extends CI_Model{
         $this->db->group_by('id_invoice');
         $this->db->where('id_user',$id_user);
         $query = $this->db->get('tb_invoice_detail');
-        return $query->result();
-
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function get_invoice_all($id_user){
+        $this->db->group_by('id_invoice');
+        $this->db->where('id_user',$id_user);
+        $query = $this->db->get('tb_invoice_detail');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function get_invoice($id_invoice,$id_user){
+        $this->db->where('id_invoice',$id_invoice);
+        $this->db->where('id_user',$id_user);
+        $query = $this->db->get('tb_invoice_detail');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function get_invoice_sale($id_invoice,$active){
+        $this->db->where('id_invoice',$id_invoice);
+        if($active == "all"){
+            $this->db->where('active>=',0);
+        }else{
+            $this->db->where('active',$active);
+        }
+        $query = $this->db->get('tb_invoice');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
     }
 }
 

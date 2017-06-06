@@ -16,11 +16,18 @@ class Banhang extends CI_Controller{
                         $data['avatar'] = $row->img;
                     }
                 }
-                $number_invoice = $this->Invoice_models->get_sale_invoice($login_user);
+                $number_invoice = $this->Invoice_models->get_sale_invoice($login_user,'0');
                 if($number_invoice){
-                    $data_number_invoice = count($number_invoice);
-                }else $data_number_invoice = 0;
-                $data['number_invoice'] = $data_number_invoice;
+                    $data_number = 0;
+                    $data['invoice'] = $number_invoice;
+                    foreach ($number_invoice as $nbi){
+                        $data_number_invoice = $this->Invoice_models->get_invoice_sale($nbi->id_invoice,'0');
+                        if($data_number_invoice){
+                            $data_number ++;
+                        }
+                    }
+                }else $data_number = 0;
+                $data['number_invoice'] = $data_number;
             $this->load->view('fontend_bh/banhang',$data);
             }
         }else{

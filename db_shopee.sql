@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2017 at 11:42 PM
+-- Generation Time: Jun 06, 2017 at 11:49 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -165,18 +165,18 @@ CREATE TABLE `tb_invoice` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `money` int(11) NOT NULL,
   `active` int(11) NOT NULL,
-  `tranformer` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `tranformer` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `shipping_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tb_invoice`
 --
 
-INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `active`, `tranformer`) VALUES
-(5, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-02 20:36:58', 49000000, 1, ''),
-(6, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-02 20:13:55', 21234, 0, ''),
-(7, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-02 20:40:15', 23000000, 0, ''),
-(8, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-02 20:42:17', 1234, 0, '');
+INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `active`, `tranformer`, `shipping_code`) VALUES
+(9, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 07:55:58', 52000000, 2, '', 'c4ca4238a0'),
+(10, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 05:22:05', 23000000, 0, '', 'd3d9446802'),
+(11, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-06 06:59:48', 49001234, 0, '', '6512bd43d9');
 
 -- --------------------------------------------------------
 
@@ -201,12 +201,11 @@ CREATE TABLE `tb_invoice_detail` (
 --
 
 INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_user`, `name`, `price`, `qty`, `subtotal`, `active`) VALUES
-(5, 5, 9, 1, 'Sam Sung galaxy S8', 26000000, 1, 26000000, 0),
-(6, 5, 19, 1, 'LapTop MSI', 23000000, 1, 23000000, 0),
-(7, 6, 11, 3, '1', 1234, 1, 1234, 0),
-(8, 6, 12, 3, '1', 2000, 10, 20000, 0),
-(9, 7, 19, 1, 'LapTop MSI', 23000000, 1, 23000000, 0),
-(10, 8, 11, 1, '1', 1234, 1, 1234, 0);
+(11, 9, 9, 1, 'Sam Sung galaxy S8', 26000000, 2, 52000000, 0),
+(12, 10, 19, 1, 'LapTop MSI', 23000000, 1, 23000000, 0),
+(13, 11, 9, 1, 'Sam Sung galaxy S8', 26000000, 1, 26000000, 0),
+(14, 11, 11, 4, '1', 1234, 1, 1234, 0),
+(15, 11, 19, 1, 'LapTop MSI', 23000000, 1, 23000000, 0);
 
 -- --------------------------------------------------------
 
@@ -234,13 +233,13 @@ CREATE TABLE `tb_product` (
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
 (8, 1, 'IPhone 8', 'iphone-8-price1.jpg', 'Supper Smart Phone', 1, 25000000, 0, 1, 0, 0),
-(9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nc', 1, 26000000, 34, 1, 0, 0),
+(9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nc', 1, 26000000, 31, 1, 0, 0),
 (10, 1, '1', 'giac-mong-thay-ngoi-chua-cung-nhung-con-so-vang-1.JPG', '1', 1, 1000, 20, 1, 0, 1),
-(11, 1, '1', '17909125_233601500377276_1339724259_n.jpg', '1', 1, 1234, 18, 1, 0, 0),
+(11, 1, '1', '17909125_233601500377276_1339724259_n.jpg', '1', 1, 1234, 17, 1, 0, 0),
 (12, 1, '1', '17909360_233601513710608_605613589_n.jpg', 'asdasda</br><br />\r\nasdasdawdasdawdasd<br />\r\nasdasdasda</br><i class = \"fa fa-user\">', 1, 2000, 10, 1, 0, 0),
 (13, 2, 'MSI gamming', 'DeskGaming01.png', 'Cau hinh khoe<br />\r\nchoi game ngon<br />\r\ndo hoa khung', 2, 22000000, 30, 1, 0, 0),
 (14, 1, 'giay adidas', '6.jpg', 'Giay dep<br />\r\nchat luong cao', 2, 1000, 19, 1, 0, 0),
-(19, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 28, 1, 0, 0);
+(19, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 26, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -283,7 +282,7 @@ INSERT INTO `tb_user` (`id_user`, `account`, `name`, `password`, `img`) VALUES
 (1, 'ngocduc', 'Ngoc Duc', '4156fd5c1cb353803988421bf5c73913', 'default.jpg'),
 (2, '1221050140', '1221050140', '4156fd5c1cb353803988421bf5c73913', '1.png'),
 (3, 'huyhip123', 'huyhip123', 'ed62e3fefd216ddffc4f8874508b82ef', 'default.jpg'),
-(4, 'abcdef', 'abcdef', '900150983cd24fb0d6963f7d28e17f72', 'default.jpg'),
+(4, 'abcdef', 'abcdef', '4156fd5c1cb353803988421bf5c73913', 'default.jpg'),
 (5, '1221050146', '1221050146', '9d9ca0162c8cc09f018f37c3d37bc8b3', 'default.jpg');
 
 --
@@ -394,12 +393,12 @@ ALTER TABLE `tb_infomation_user`
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tb_invoice_detail`
 --
 ALTER TABLE `tb_invoice_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `tb_product`
 --

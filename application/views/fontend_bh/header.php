@@ -35,12 +35,6 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?php echo base_url()?>banhang"><i class = "fa fa-group"></i> Kênh người bán<span class="sr-only">(current)</span></a></li>
                     </ul>
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search ...">
-                        </div>
-                        <button type="submit" class="btn btn-default">Tìm kiếm</button>
-                    </form>
                     <ul class="nav navbar-nav navbar-right">
                     <?php 
                     if(isset($user)){

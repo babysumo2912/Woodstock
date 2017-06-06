@@ -81,6 +81,13 @@ class User_models extends CI_Model{
             return true;
         }else return false;
     }
+    function getmax_id_invoice(){
+        $this->db->select_max('id_invoice');
+        $id_invoice = $this->db->get('tb_invoice');
+        if($id_invoice->num_rows() > 0){
+            return  $id_invoice->result();
+        }else return false;
+    }
     function add_invoice($data){
         $query = $this->db->insert('tb_invoice',$data);
         if(isset($query)){

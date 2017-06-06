@@ -65,8 +65,13 @@ if(isset($account)){
                 foreach($invoice as $hd){
                 ?>
                     <div style="border: 1px #ccc solid;padding: 5px">
-                        <i class="fa fa-calendar"></i>&nbsp;<?php echo substr($hd->date,0,10)?><br>
-                        <i class="fa fa-clock-o"></i>&nbsp;<?php echo substr($hd->date,11,8)?>
+                        <p>
+                            <i class="fa fa-calendar"></i>&nbsp;<?php echo substr($hd->date,0,10)?><br>
+                            <i class="fa fa-clock-o"></i>&nbsp;<?php echo substr($hd->date,11,8)?>
+                        </p>
+                        <p>
+                            <b>Mã vận đơn: </b><?php echo $hd->shipping_code;?>
+                        </p>
                         <table class="table table-hover">
                             <tr>
                                 <td>STT</td>
@@ -131,7 +136,7 @@ if(isset($account)){
                         <?php if(!isset($active) || $active == 0){
                         ?>
                             <div class="text-center">
-                                <a href="" class="btn btn-danger"><i class="fa fa-trash-o"></i>&nbsp;Hủy hóa đơn</a>
+                                <a href="" class="btn btn-danger"><i class="fa fa-trash-o"></i>&nbsp;Hủy đơn hàng</a>
                             </div>
                         <?php
                         }?>

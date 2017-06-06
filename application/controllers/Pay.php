@@ -379,6 +379,13 @@ class pay extends CI_Controller{
                             $money+=$cart['subtotal'];
                         }
                     }
+                    $id_max = $this->User_models->getmax_id_invoice();
+                    if($id_max == false){
+                        $id_max = 0;
+                    }else{
+                        foreach ($id_max as $idm){};
+                        $id_max = $idm->id_invoice;
+                    }
                     $add_invoice = array(
                         'id_user'=>$login_user,
                         'name'=>$dc->name,
@@ -390,6 +397,7 @@ class pay extends CI_Controller{
                         'money'=>$money,
                         'note' => $note,
                         'active'=>0,
+                        'shipping_code' => $word = substr(md5($id_max + 1),0,10)
                     );
                     $add_invoice = $this->User_models->add_invoice($add_invoice);
                     if($add_invoice!=false){
