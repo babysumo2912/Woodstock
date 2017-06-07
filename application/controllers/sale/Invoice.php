@@ -22,8 +22,8 @@ class invoice extends CI_Controller{
                         $data['avatar'] = $row->img;
                     }
                 }
-                $number_invoice = $this->Invoice_models->get_sale_invoice($login_user);
-                $invoice = $this->Invoice_models->get_invoice_all($login_user);
+                $number_invoice = $this->Invoice_models->get_sale_invoice($login_user,'0');
+                $invoice = $this->Invoice_models->get_invoice_all($login_user,'all');
                 if($invoice){
                     $data['detail_invoice'] = $invoice;
                 }
@@ -59,8 +59,8 @@ class invoice extends CI_Controller{
                         $data['avatar'] = $row->img;
                     }
                 }
-                $number_invoice = $this->Invoice_models->get_sale_invoice($login_user);
-                $invoice = $this->Invoice_models->get_invoice_all($login_user);
+                $number_invoice = $this->Invoice_models->get_sale_invoice($login_user,'0');
+                $invoice = $this->Invoice_models->get_invoice_all($login_user,$active);
                 if($invoice){
                     $data['detail_invoice'] = $invoice;
                 }

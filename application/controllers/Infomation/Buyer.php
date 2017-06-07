@@ -26,7 +26,7 @@ class buyer extends CI_Controller{
                         $data['avatar'] = $row->img;
                     }
                 }
-                $invoice = $this->Invoice_models->get_buyer($login_user,'0');
+                $invoice = $this->Invoice_models->get_buyer($login_user);
                 if($invoice){
                     $data['invoice'] = $invoice;
                 }

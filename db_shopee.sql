@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2017 at 11:49 AM
+-- Generation Time: Jun 07, 2017 at 07:03 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -164,19 +164,19 @@ CREATE TABLE `tb_invoice` (
   `note` text COLLATE utf8_unicode_ci,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `money` int(11) NOT NULL,
-  `active` int(11) NOT NULL,
   `tranformer` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `shipping_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `shipping_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tb_invoice`
 --
 
-INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `active`, `tranformer`, `shipping_code`) VALUES
-(9, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 07:55:58', 52000000, 2, '', 'c4ca4238a0'),
-(10, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 05:22:05', 23000000, 0, '', 'd3d9446802'),
-(11, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-06 06:59:48', 49001234, 0, '', '6512bd43d9');
+INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `tranformer`, `shipping_code`, `active`) VALUES
+(9, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 07:55:58', 52000000, '', 'c4ca4238a0', 0),
+(10, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 05:22:05', 23000000, '', 'd3d9446802', 0),
+(11, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-06 06:59:48', 49001234, '', '6512bd43d9', 0);
 
 -- --------------------------------------------------------
 

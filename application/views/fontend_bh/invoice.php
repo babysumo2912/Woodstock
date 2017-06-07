@@ -69,12 +69,13 @@ include'header.php';
     </div>
     <?php
     if(isset($detail_invoice)){
-        if(isset($active)){
-            $num_acive = $active;
-        }else $active = "all";
+        if(!isset($active)){
+            $active = "all";
+        }
         $check = false;
         foreach($detail_invoice as $cthd){
-            $invoice = $this->Invoice_models->get_invoice_sale($cthd->id_invoice,$active);
+            $cthd_active = $cthd->active;
+            $invoice = $this->Invoice_models->get_invoice_sale($cthd->id_invoice);
             if($invoice){
                 $check = true;
 //                var_dump($invoice);die();
@@ -86,7 +87,7 @@ include'header.php';
         <p>Tình trạng đơn hàng:
             <b>
                 <?php
-                switch ($hd->active){
+                switch ($cthd_active){
                     case "0":
                         echo "Chờ xác nhận";
                         break;
@@ -119,7 +120,7 @@ include'header.php';
         </tr>
         <?php
                 $id_user = $this->session->userdata('session_user');
-                $detail_invoice = $this->Invoice_models->get_invoice($hd->id_invoice,$id_user);
+                $detail_invoice = $this->Invoice_models->get_invoice($hd->id_invoice,$id_user,$active);
                 if($detail_invoice){
                     $i = 1;
                     $money = 0;
@@ -160,13 +161,24 @@ include'header.php';
             <td colspan="5">
                 <p class="text-right">Tổng thanh toán:</p>
             </td>
-            <td>
+            <td style="color:red;">
                     <b>
                         <?php echo number_format($money)?>
                     </b>
             </td>
         </tr>
     </table>
+        <?php
+        if($cthd->active == 0){
+            ?>
+            <div class="text-center">
+                <a href="" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Xác nhận</a>
+                <a href="" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Hủy đơn hàng</a>
+
+            </div>
+    <?php
+        }
+    ?>
     </div>
     <br>
     <?php
