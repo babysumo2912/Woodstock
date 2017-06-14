@@ -15,15 +15,15 @@ include 'header.php';?>
             'class' => 'form-group',
             'enctype' => 'multipart/form-data'
         );
-        echo form_open('product/add_product',$style)
+        echo form_open('product/update_number/'.$row->id_product,$style)
         ?>
         <div class = "add_content col-md-6">
             <p class = "title_add_pro">Thay đổi hình ảnh sản phẩm</p>
             <div class = "img_pro">
                 <!-- <div class = "col-md-6"> -->
                 <input type="file" name="userfile" accept="image/*" onchange="loadFile(event)"><br>
-                <img id="output"/ style = "width: 100%;" src = "<?php echo base_url()?>public/img/product/<?php echo $row->img?>">
-                <!-- </div> -->
+                <img id="output"/ style = "width: 100%;" src = "<?php echo base_url()?>public/img/product/<?php echo $row->img?>"> 
+                <!-- </div> --> 
             </div>
         </div>
         <div class = "add_content col-md-6 ">

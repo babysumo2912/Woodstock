@@ -1,8 +1,30 @@
 <?php 
 class Product_models extends CI_Model{
     function getall(){
+        $this->db->where('active', 1);
+        $this->db->where('number>',0);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
+    function getall_active(){
         $this->db->where('active', 0);
         $this->db->where('number>',0);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
+    function delete_product($id_product){
+        $this->db->where('id_product',$id_product);
+        $query = $this->db->delete('tb_product');
+        return true;
+    }
+    function get_home($id_user){
+        $this->db->where('active', 1);
+        $this->db->where('number>',0);
+        $this->db->where('id_user',$id_user);
         $get = $this->db->get('tb_product');
         if($get->num_rows() > 0){
             return $get->result();
@@ -15,7 +37,17 @@ class Product_models extends CI_Model{
             return $get->result();
         }else return false;
     }
-    function getinfo($id_product){
+    function getinfo1($id_product,$id_user){
+        $this->db->where('id_user',$id_user);
+        $this->db->where('id_product',$id_product);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
+     function getinfo($id_product){
+        $this->db->where('active', 1);
+        $this->db->where('number>',0);
         $this->db->where('id_product',$id_product);
         $get = $this->db->get('tb_product');
         if($get->num_rows() > 0){

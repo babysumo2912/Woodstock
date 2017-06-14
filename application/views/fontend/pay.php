@@ -121,7 +121,7 @@ echo form_open('pay/save');
                 <?php
             }else{
             ?>
-                <button type="button" class="btn btn-default">
+                <button type="button" class="btn btn-default" disabled>
                     <i class="fa fa-ban"></i>
                     Đặt hàng
                 </button>

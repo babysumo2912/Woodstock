@@ -64,6 +64,9 @@ $(document).ready(function(){
     };
     // end
     // tao preview img-product
+    $("#checkAll").click(function () {
+    $(".check").prop('checked', $(this).prop('checked'));
+});
         
 })
 // $(function() {

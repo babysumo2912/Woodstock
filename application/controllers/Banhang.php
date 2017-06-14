@@ -1,5 +1,5 @@
 <?php 
-class Banhang extends CI_Controller{
+class Banhang extends CI_Controller{ 
     function index(){
         $data = array();
         $login_user = $this->session->userdata('session_user');

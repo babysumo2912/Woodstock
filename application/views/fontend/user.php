@@ -90,17 +90,10 @@ if(isset($account)){
                         <tr>
                             <td><?php echo $i;?></td>
                             <td>
-                                <?php
-                                $account = $this->Product_models->getinfo($hd_ct->id_product);
-                                foreach ($account as $value) {
-                                ?>
                                 <div class="row" style="padding: 5px">
-                                    <div class="avatar1" style="background:url('<?php echo base_url() ?>/public/img/product/<?php echo $value->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
-                                    &nbsp;<a href="#"><?php echo $value->name?></a>
+                                    <div class="avatar1" style="background:url('<?php echo base_url() ?>/public/img/product/<?php echo $hd_ct->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
+                                    &nbsp;<a href="#"><?php echo $hd_ct->name?></a>
                                 </div>
-                                <?php
-                                }
-                                ?>
                             </td>
                             <td>
                                 <?php

@@ -475,6 +475,15 @@ body{
     background: #f5f5f5;
     padding: 20px;
 }
+.cccwh{
+    width: 100%;
+    background: white;
+    padding: 20px;
+}
+.cccwhite{
+    width: 100%;
+    background: white;
+}
 .ccc img{
     border-radius: 20px;
 }
@@ -611,4 +620,57 @@ body{
 .buyer_cart{
     height: 750px;
     overflow-x: hidden;
+}
+.ashop a{
+    border: 1px solid black;
+    border-radius: 0;
+}
+.ashop a:hover{
+    background: black;
+    color: white;
+}
+.body-login{
+    background-color: #373330;
+}
+.waper-login{
+    background-color: white;
+     padding: 10px;
+     max-width: 500px;
+     margin: 5% auto 0 auto;
+     box-shadow: 5px 5px 15px 5px black;
+     border-radius: 15px;
+}
+.form-login{
+    border: 1px #cccccc solid;
+    max-width:600px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.coppyright{
+    max-width:  500px;
+    margin: 0 auto;
+    text-align: center;
+}
+.coppyright:hover{
+    color:white;
+}
+.login-f{
+    padding: 0 60px;
+}
+.login-f p{
+    color: #3f444a;
+}
+.login-f .title-login{
+    font-size: 24px;
+    font-weight: bold;
+}
+.form-login{
+    border: 1px #cccccc solid;
+    max-width:600px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.form-login .title-login{
+    font-size: 24px;
+    font-weight: bold;
 }

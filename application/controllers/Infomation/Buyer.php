@@ -26,14 +26,14 @@ class buyer extends CI_Controller{
                         $data['avatar'] = $row->img;
                     }
                 }
-                $invoice = $this->Invoice_models->get_buyer($login_user);
+                $invoice = $this->Invoice_models->get_buyer($login_user,'0');
                 if($invoice){
                     $data['invoice'] = $invoice;
                 }
                 $this->load->view('fontend/user',$data);
             }
         }else{
-            $this->load->view('fontend/user',$data);
+            redirect('home');
         }
     }
     public function active($active){

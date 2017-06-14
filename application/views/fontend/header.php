@@ -66,10 +66,12 @@
                 </a>
             </div>
             <div class = "col-md-6 col-sm-4 col-xs-12">
-                <form action="" class = "form-group search">
-                    <div class = "form-group">
-                        <input type="text" placeholder = "Tìm sản phẩm, thương hiệu và tên shop">
-                        <input type="submit" value = "Go">
+                <form action="" class = "form-group" style="margin-top:30px">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm, thương hiệu và tên shop" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Tìm kiếm</button>
+                        </span>
                     </div>
                 </form>
             </div>

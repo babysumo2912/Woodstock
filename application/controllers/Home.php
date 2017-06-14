@@ -73,23 +73,29 @@ class home extends CI_Controller{
                     $err['err'] = "Tài khoản chưa được đăng kí";
                     $this->load->view('fontend/login',$err);
                 }else{
-                    if($login == 0){
-                        $check = array(
-                            'account' => $account,
-                        );
-                        $get = $this->User_models->get($check);
-                        if($get!=false){
-                            foreach ($get as $row){
-                                $account = $row->id_user;
-                                $session_data = array(
-                                    'session_user' => $account,
-                                    'time_out_login' => time(),
-                                );
-                                $this->session->set_userdata($session_data);
-                                if($id_product == 0){
-                                    redirect('home');
-                                }else{
-                                    redirect('product/view/'.$id_product);
+                    if($login == 3){
+                        $err['id_product'] = $id_product;
+                        $err['err'] = "Tài khoản đã bị cấm bởi những hành vi không đúng với điều lệ sử dụng hệ thống";
+                        $this->load->view('fontend/login',$err);
+                    }else{
+                        if($login == 0){
+                            $check = array(
+                                'account' => $account,
+                            );
+                            $get = $this->User_models->get($check);
+                            if($get!=false){
+                                foreach ($get as $row){
+                                    $account = $row->id_user;
+                                    $session_data = array(
+                                        'session_user' => $account,
+                                        'time_out_login' => time(),
+                                    );
+                                    $this->session->set_userdata($session_data);
+                                    if($id_product == 0){
+                                        redirect('home');
+                                    }else{
+                                        redirect('product/view/'.$id_product);
+                                    }
                                 }
                             }
                         }

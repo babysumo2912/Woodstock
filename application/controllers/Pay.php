@@ -409,6 +409,7 @@ class pay extends CI_Controller{
                                 $id_user = $cart['id_user'];
                                 $id_product = $cart['id'];
                                 $name_product = $cart['name'];
+                                $img = $cart['img'];
                                 $qty = $cart['qty'];
                                 $price = $cart['price'];
                                 $subtotal = $cart['subtotal'];
@@ -417,6 +418,7 @@ class pay extends CI_Controller{
                                     'id_invoice' => $id_invoice,
                                     'id_product' => $id_product,
                                     'name' => $name_product,
+                                    'img' => $img,
                                     'qty' => $qty,
                                     'price' => $price,
                                     'subtotal' => $subtotal,

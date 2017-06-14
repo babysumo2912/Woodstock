@@ -8,7 +8,7 @@ include 'header.php';
         $style = array(
             'class'=>'form-group'
         );
-        echo form_open('pay/select_address');
+        echo form_open('myshop/select_address');
         ?>
         <div class="content_pay">
             <div class="title-pay">
@@ -54,7 +54,7 @@ include 'header.php';
                 if(isset($max_num)){
                     if($max_num<5){
                 ?>
-                    <a href="<?php echo base_url()?>pay/add_address" class="display:block">
+                    <a href="<?php echo base_url()?>myshop/add_address" class="display:block">
                         Thêm địa chỉ mới&nbsp;
                         <i class="fa fa-pencil"></i>
                     </a>
@@ -66,7 +66,7 @@ include 'header.php';
                     }
                 }else{
                 ?>
-                    <a href="<?php echo base_url()?>pay/add_address" class="display:block">
+                    <a href="<?php echo base_url()?>myshop/add_address" class="display:block">
                         Thêm địa chỉ mới&nbsp;
                         <i class="fa fa-pencil"></i>
                     </a>

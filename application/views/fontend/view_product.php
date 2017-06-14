@@ -1,4 +1,6 @@
 <?php
+
+include 'header.php';
 if(isset($err)){
     echo $err;
 ?>
@@ -10,7 +12,6 @@ if(isset($product)){
     foreach($product as $row){}
 //    echo $row->img;
 }
-include 'header.php';
 ?>
 <section class = "menu_catalog max">
 <ul>
@@ -76,10 +77,23 @@ include 'header.php';
                         <a href="" class = "btn btn-info"><i class = "fa fa-comments-o"></i>&nbsp;Chat Ngay</a>
                     </li>
                     <li>
+                        <?php 
+                        $login = $this->session->userdata('session_user');
+                        if($login == $row->id_user){
+                        ?>
+                        <button type="submit" class="btn btn-success" disabled>
+                            <i class="fa fa-shopping-cart"></i>
+                            &nbsp; Thêm vào giỏ hàng
+                        </button>
+                        <?php
+                        }else{
+                         ?>
+                        
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-shopping-cart"></i>
                             &nbsp; Thêm vào giỏ hàng
                         </button>
+                        <?php } ?>
                     </li>
                     <li>
 <!--                        <a href="--><?php //echo base_url()?><!--product/buy/--><?php //echo $row->id_product?><!--/0" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>-->
@@ -109,7 +123,7 @@ include 'header.php';
                         </label><br>
                     </a>
                     <div class = "btn-folow">
-                        <a href="" class = "btn btn-default">Xem Shop</a>
+                        <a href="<?php echo base_url() ?>shop/view/<?php echo $row->id_user ?>" class = "btn btn-default">Xem Shop</a>
                         <a href="" class = "btn btn-default">Theo dõi</a>
                     </div>
                 </div>

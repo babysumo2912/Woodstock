@@ -1,10 +1,16 @@
-<?php 
+<?php
 class User_models extends CI_Model{
     function get($data){
         $this->db->where('account',$data['account']);
         $get = $this->db->get('tb_user');
         if($get->num_rows() > 0){
             return $get->result();
+        }else return false;
+    }
+    function getall(){
+        $query = $this->db->get('tb_user');
+        if($query->num_rows() > 0){
+            return $query->result();
         }else return false;
     }
     function getinfo($data){
@@ -31,11 +37,16 @@ class User_models extends CI_Model{
         $check = $this->db->get('tb_user');
         if($check->num_rows() > 0){
             $this->db->where('account',$data['account']);
-            $this->db->where('password',$data['password']);
-            $login = $this->db->get('tb_user');
-            if($login->num_rows() > 0){
-                return 0;
-            }else return 1;
+            $this->db->where('active','0');
+            $ban = $this->db->get('tb_user');
+            if($ban->num_rows() > 0){
+                $this->db->where('account',$data['account']);
+                $this->db->where('password',$data['password']);
+                $login = $this->db->get('tb_user');
+                if($login->num_rows() > 0){
+                    return 0;
+                }else return 1;
+            }else return 3;
         }else return 2;
     }
     function getaddress($id_user){
@@ -107,6 +118,11 @@ class User_models extends CI_Model{
             return false;
         }
 
+    }
+    function update($id_user,$data){
+        $this->db->where('id_user',$id_user);
+        $query = $this->db->update('tb_user',$data);
+        return true;
     }
 }
 ?>

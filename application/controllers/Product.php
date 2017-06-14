@@ -4,6 +4,10 @@ class product extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $count = $this->session->userdata('count');
+        $succ = $this->session->flashdata('succ');
+        if($succ){
+            $data['succ'] = $succ;
+        }
         if(isset($count)){
             $data['count'] = $count;
         }else $data['count'] = 0;
@@ -97,54 +101,38 @@ class product extends CI_Controller{
         if(!isset($session_login)){
             redirect('banhang');
         }
-        $data['data_product'] = $this->Product_models->getinfo($id_product);
-        if($data['data_product']){
-            $name = $this->input->post('name');
-            $discribe = $this->input->post('discribe');
-            $id_catalog = $this->input->post('id_catalog');
-            $price = $this->input->post('price');
-            $id_status = $this->input->post('id_status');
-            $number = $this->input->post('number');
-            if(!isset($_FILES['userfile']['name'])){
-                $update = array(
-                    'name' => $name,
-                    'discribe' => $discribe,
-                    'id_catalog' => $id_catalog,
-                    'price' => $price,
-                    'id_status' => $id_status,
-                );
-            }else{
-                $config['upload_path'] = './public/img/product/';
-                $config['allowed_types'] = 'gif|png|jpg|jpeg';
-                $this->load->library('upload',$config);
-                if($this->upload->do_upload()) {
-                    $data['upload'] = $this->upload->data();
-                    $file_name = $data['upload']['file_name'];
-                    $add = array(
-                        'id_user' => $session_login,
-                        'name' => $name,
-                        'img' => $file_name,
-                        'discribe' => nl2br($discribe),
-                        'id_catalog' => $id_catalog,
-                        'price' => $price,
-                        'number' => $number,
-                        'id_status' => $id_status,
-                    );
-                    $add_pro = $this->Product_models->update($add);
-                    if ($add_pro) {
-                        redirect('product');
-                    } else {
-                        $data['err'] = "Fail !";
-                        $this->load->view('fontend_bh/add_product', $data);
-                    }
-                }
-            }
-        }else{
+        $data['data_product'] = $this->Product_models->getinfo1($id_product,$session_login);
+        if($data['data_product'] == false){
             $data['err'] = "Sản phẩm của bạn không được tìm thấy trong CSDL";
         };
         $data['catalog'] = $this->Home_models->get('tb_catalog');
         $data['status_product'] = $this->Home_models->get('tb_status_product');
         $this->load->view('fontend_bh/update',$data);
+    }
+    function delete($id_product){
+        $session_login = $this->session->userdata('session_user');
+        $user = $this->User_models->getinfo($session_login);
+        if($user){
+            foreach($user as $row){
+                $data['user'] = $row->name;
+                $data['avatar'] = $row->img;
+            }
+        }
+        if(!isset($session_login)){
+            redirect('banhang');
+        }
+        $data_delete = $this->Product_models->getinfo1($id_product,$session_login);
+        if($data_delete== false){
+            $data['err'] = "Sản phẩm của bạn không được tìm thấy trong CSDL";
+        };
+        if($data_delete){
+            foreach ($data_delete as $key) {};
+            $name_product = $key->name;
+            $this->Product_models->delete_product($id_product);
+            $succ = "Bạn vừa xóa thành công sản phẩm".$name_product;
+            $this->session->set_flashdata('succ',$succ);
+        }
+        redirect('product');
     }
     function view($id_product){
         $buy = $this->session->flashdata('in');
@@ -220,6 +208,65 @@ class product extends CI_Controller{
         } else redirect('home');
     }
     public function update_number($id_product){
+        $session_login = $this->session->userdata('session_user');
+        $user = $this->User_models->getinfo($session_login);
+        if($user){
+            foreach($user as $row){
+                $data['user'] = $row->name;
+                $data['avatar'] = $row->img;
+            }
+        }
+        if(!isset($session_login)){
+            redirect('banhang');
+        }
+        $data['data_product'] = $this->Product_models->getinfo1($id_product,$session_login);
+        if($data['data_product']){
+            $name = $this->input->post('name');
+            $discribe = $this->input->post('discribe');
+            $id_catalog = $this->input->post('id_catalog');
+            $price = $this->input->post('price');
+            $id_status = $this->input->post('id_status');
+            $number = $this->input->post('number');
+            if(isset($name) && isset($discribe) && isset($id_catalog) && isset($price) && isset($number) && isset($id_status) && isset($_FILES['userfile']['name'])){
+                $config['upload_path'] = './public/img/product/';
+                $config['allowed_types'] = 'gif|png|jpg|jpeg';
+                $this->load->library('upload',$config);
+                if($this->upload->do_upload()) {
+                    $data['upload'] = $this->upload->data();
+                    $file_name = $data['upload']['file_name'];
+                    $add = array(
+                    'id_user' => $session_login,
+                    'name' => $name,
+                    'img' => $file_name,
+                    'discribe' => nl2br($discribe),
+                    'id_catalog' => $id_catalog,
+                    'price' =>  $price,
+                    'number' => $number,
+                    'id_status'   => $id_status,
+                    );
+                    $add_pro = $this->Product_models->update($id_product,$add);
+                    
+                
+                }else{
+                     $add = array(
+                    'id_user' => $session_login,
+                    'name' => $name,
+                    'discribe' => nl2br($discribe),
+                    'id_catalog' => $id_catalog,
+                    'price' =>  $price,
+                    'number' => $number,
+                    'id_status'   => $id_status,
+                    );
+                    $add_pro = $this->Product_models->update($id_product,$add);
+                }
+            }
+            redirect('product');
+        }else{
+            $data['err'] = "Sản phẩm của bạn không được tìm thấy trong CSDL";
+        };
+        $data['catalog'] = $this->Home_models->get('tb_catalog');
+        $data['status_product'] = $this->Home_models->get('tb_status_product');
+        $this->load->view('fontend_bh/update',$data);
 
     }
     public function buy($id_product){

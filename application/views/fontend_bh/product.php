@@ -17,9 +17,28 @@ include 'header.php';
                 <span>0 Sản phẩm</span>
             </div>
             <div class = "right">
-                <a href="<?php echo base_url()?>product/add_by_excel" class = "btn btn-success"><i class = "fa fa-file-excel-o"></i>&nbsp;Thêm mới bằng file excel</a>
+                <form class="navbar-form navbar-left">
+                    <div class="input-group" style="border: 1px #ccc solid; border-radius: 5px;padding:5px;">
+                        <input type="text" placeholder="Tìm kiếm tên sản phẩm ..." required style="border: none; background: inherit">
+                        <button type=submit style="background: inherit;border:none;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+        <?php 
+        if(isset($succ)){
+            ?>
+            <div class="row">
+                <div class="text-center">
+                    <?php echo $succ; ?>
+                </div>
+            </div>
+            <?php
+        }
+
+         ?>
         <div class = "center">
             <div class = "col-md-2 col-sm-3 col-xs-6">
                 <a href="<?php echo base_url()?>product/add_product">
@@ -60,7 +79,7 @@ include 'header.php';
                         </div>
                         <div class = "active_pro">
                             <a href="<?php echo base_url()?>product/update_product/<?php echo $row->id_product?>" class = "btn btn-info left"><i class = "fa fa-pencil" title = "Sửa sản phẩm"></i></a>
-                            <a href="#" class = "btn btn-danger right"><i class = "fa fa-remove" title = "Xóa Sản Phẩm"></i></a>
+                            <a href="<?php echo base_url() ?>product/delete/<?php echo $row->id_product ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?php echo $row->name ?> ra khỏi shop của bạn không ?')" class = "btn btn-danger right"><i class = "fa fa-remove" title = "Xóa Sản Phẩm"></i></a>
                         </div>
                     </div>
                 </div>
@@ -72,7 +91,12 @@ include 'header.php';
         </div>
    </div>
 </section>
-
+<!-- <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>  
+</div> -->
 <?php 
 include 'footer.php';
 ?>
