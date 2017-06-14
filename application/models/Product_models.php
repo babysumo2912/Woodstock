@@ -73,5 +73,24 @@ class Product_models extends CI_Model{
             return true;
         }else return false;
     }
+    function buy_max($id_user){
+        $this->db->Order_by('like','DESC');
+        $this->db->where('like>',0);
+        $this->db->where('id_user',$id_user);
+        $this->db->limit('4');
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+    function product_ban($id_user)
+    {
+        $this->db->where('active',2);
+        $this->db->where('id_user',$id_user);
+        $query = $this->db->get('tb_product');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
 }
 ?>

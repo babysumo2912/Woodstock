@@ -36,15 +36,15 @@ if(isset($address))
         );
         echo form_open('myshop/add_infomation',$style);
 		 ?>
-            <div class="col-md-4">
+            <div class="col-md-5">
 	           <div class = "img_pro">
                 <!-- <div class = "col-md-6"> -->
                 <input type="file" name="userfile" accept="image/*" onchange="loadFile(event)"><br>
-                <img id="output"/ style = "width: 100%;" src = "<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>">
+                <img id="output"/ style = "width: 100%;" src = "<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>" >
                 <!-- </div> -->
-            </div>
+                </div>
         	</div>
-        	<div class="col-md-8">
+        	<div class="col-md-7">
         		<div class="form_add_pro">
         			<div class="form-group">
         			<caption><b style="font-size: 18px">Chi Tiết Shop</b></caption>
@@ -63,8 +63,13 @@ if(isset($address))
         					</tr>
                             <tr>
                                 <td>Địa chỉ: </td>
-                                <td >
+                                <td ><?php 
+                                if(!isset($address)){
+                                    echo "Cập nhập thông tin địa chỉ Shop để tạo uy tín";
+                                }else{
+                                 ?>
                                     <?php echo $add->address ?> - <?php echo $dst->district ?> - <?php echo $cty->city ?>
+                                    <?php } ?>
                                 </td>
                                 <td>
                                     <a href="<?php echo base_url()?>myshop/address" title="Sửa thông tin địa chỉ"><i class="fa fa-pencil"></i></a>

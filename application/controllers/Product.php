@@ -341,6 +341,7 @@ class product extends CI_Controller{
             redirect('home/login/'.$id_product);
         }
     }
+    
 }
 
 ?>

@@ -45,7 +45,7 @@ include 'header.php';
                     }
                 }else{
                     ?>
-                    <p>Vui lòng nhập chính xác địa chỉ để chúng tôi có thể chuyển hàng về cho bạn</p>
+                    <p>Vui lòng nhập chính xác địa chỉ để chúng tôi có thể chuyển hàng đi cho bạn</p>
                     <hr>
                     <?php
                 }

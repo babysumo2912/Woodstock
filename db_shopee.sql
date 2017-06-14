@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2017 at 07:03 PM
+-- Generation Time: Jun 14, 2017 at 02:12 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -115,8 +115,8 @@ CREATE TABLE `tb_district` (
 --
 
 INSERT INTO `tb_district` (`id_district`, `district`, `id_city`) VALUES
-(1, 'Huyện Từ Liêm', 1),
-(2, 'Quận Cầu Giấy', 1);
+(1, 'Huyen Tu Liem', 1),
+(2, 'Quan Cau Giay', 1);
 
 -- --------------------------------------------------------
 
@@ -140,12 +140,7 @@ CREATE TABLE `tb_infomation_user` (
 --
 
 INSERT INTO `tb_infomation_user` (`id_infomation`, `id_user`, `name`, `phone`, `address`, `id_district`, `id_city`, `default`) VALUES
-(2, 2, 'Duc', '0123456', '38C CỔ nhuế', 1, 1, 0),
-(3, 1, 'Lan Anh', '012345685', 'so nha 16C duong xuan thuy', 2, 1, 0),
-(4, 1, 'ABc', '0165646465', 'asdasdasd', 1, 1, 0),
-(5, 1, 'Tran Ngoc Duc', '01654565270', 'số nhà 38 C, ngõ 487\r\n', 1, 1, 1),
-(6, 5, 'ngocduc', '0123456789', '38c, co nhue', 2, 1, 1),
-(7, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 2, 1, 1);
+(9, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -174,9 +169,10 @@ CREATE TABLE `tb_invoice` (
 --
 
 INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `tranformer`, `shipping_code`, `active`) VALUES
-(9, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 07:55:58', 52000000, '', 'c4ca4238a0', 0),
-(10, 2, 'Duc', '0123456', '38C CỔ nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-06 05:22:05', 23000000, '', 'd3d9446802', 0),
-(11, 2, 'Lai Lan Anh', '0979678293', 'so nha 228, Xuan Thuy, Cau Giay, Ha Noi\r\n', 'Quận Cầu Giấy', 'Hà Nội', NULL, '2017-06-06 06:59:48', 49001234, '', '6512bd43d9', 0);
+(13, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 10:24:22', 156000000, '', 'c4ca4238a0', 0),
+(14, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 10:25:51', 115000000, '', 'aab3238922', 0),
+(15, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 11:10:26', 130000000, '', '9bf31c7ff0', 0),
+(16, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 11:10:37', 184000000, '', 'c74d97b01e', 0);
 
 -- --------------------------------------------------------
 
@@ -190,6 +186,7 @@ CREATE TABLE `tb_invoice_detail` (
   `id_product` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `img` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
@@ -200,12 +197,9 @@ CREATE TABLE `tb_invoice_detail` (
 -- Dumping data for table `tb_invoice_detail`
 --
 
-INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_user`, `name`, `price`, `qty`, `subtotal`, `active`) VALUES
-(11, 9, 9, 1, 'Sam Sung galaxy S8', 26000000, 2, 52000000, 0),
-(12, 10, 19, 1, 'LapTop MSI', 23000000, 1, 23000000, 0),
-(13, 11, 9, 1, 'Sam Sung galaxy S8', 26000000, 1, 26000000, 0),
-(14, 11, 11, 4, '1', 1234, 1, 1234, 0),
-(15, 11, 19, 1, 'LapTop MSI', 23000000, 1, 23000000, 0);
+INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_user`, `name`, `img`, `price`, `qty`, `subtotal`, `active`) VALUES
+(19, 15, 9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 26000000, 5, 130000000, 3),
+(20, 16, 19, 1, 'LapTop MSI', 'images1.jpg', 23000000, 8, 184000000, 0);
 
 -- --------------------------------------------------------
 
@@ -232,14 +226,9 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
-(8, 1, 'IPhone 8', 'iphone-8-price1.jpg', 'Supper Smart Phone', 1, 25000000, 0, 1, 0, 0),
-(9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nc', 1, 26000000, 31, 1, 0, 0),
-(10, 1, '1', 'giac-mong-thay-ngoi-chua-cung-nhung-con-so-vang-1.JPG', '1', 1, 1000, 20, 1, 0, 1),
-(11, 1, '1', '17909125_233601500377276_1339724259_n.jpg', '1', 1, 1234, 17, 1, 0, 0),
-(12, 1, '1', '17909360_233601513710608_605613589_n.jpg', 'asdasda</br><br />\r\nasdasdawdasdawdasd<br />\r\nasdasdasda</br><i class = \"fa fa-user\">', 1, 2000, 10, 1, 0, 0),
-(13, 2, 'MSI gamming', 'DeskGaming01.png', 'Cau hinh khoe<br />\r\nchoi game ngon<br />\r\ndo hoa khung', 2, 22000000, 30, 1, 0, 0),
-(14, 1, 'giay adidas', '6.jpg', 'Giay dep<br />\r\nchat luong cao', 2, 1000, 19, 1, 0, 0),
-(19, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 26, 1, 0, 0);
+(9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nc', 1, 26000000, 20, 1, 5, 2),
+(13, 2, 'MSI gamming', 'DeskGaming011.png', 'Cau hinh khoe<br />\r\nchoi game ngon<br />\r\ndo hoa khung', 1, 2200000, 26, 1, 0, 1),
+(19, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 13, 1, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -271,19 +260,22 @@ CREATE TABLE `tb_user` (
   `account` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `img` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `discribe` text COLLATE utf8_unicode_ci NOT NULL,
+  `img` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `follow` int(11) NOT NULL,
+  `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_user`, `account`, `name`, `password`, `img`) VALUES
-(1, 'ngocduc', 'Ngoc Duc', '4156fd5c1cb353803988421bf5c73913', 'default.jpg'),
-(2, '1221050140', '1221050140', '4156fd5c1cb353803988421bf5c73913', '1.png'),
-(3, 'huyhip123', 'huyhip123', 'ed62e3fefd216ddffc4f8874508b82ef', 'default.jpg'),
-(4, 'abcdef', 'abcdef', '4156fd5c1cb353803988421bf5c73913', 'default.jpg'),
-(5, '1221050146', '1221050146', '9d9ca0162c8cc09f018f37c3d37bc8b3', 'default.jpg');
+INSERT INTO `tb_user` (`id_user`, `account`, `name`, `password`, `discribe`, `img`, `follow`, `active`) VALUES
+(1, 'ngocduc', 'Ngọc Đức', '4156fd5c1cb353803988421bf5c73913', 'Shop chất lượng cao, bán hàng uy tín<br />\r\nGiá cả cạnh tranh<br />\r\nChuyên cung cấp mặt hàng xịn, hàng hiệu, ...', 'image1xxl--12-13.jpg', 0, 0),
+(2, '1221050140', 'Ku ku Le Le', '4156fd5c1cb353803988421bf5c73913', '', '1.png', 0, 0),
+(3, 'huyhip123', 'huyhip123', 'ed62e3fefd216ddffc4f8874508b82ef', '', 'default.jpg', 0, 0),
+(4, 'abcdef', 'abcdef', '4156fd5c1cb353803988421bf5c73913', '', 'default.jpg', 0, 0),
+(5, '1221050146', '1221050146', '9d9ca0162c8cc09f018f37c3d37bc8b3', '', 'default.jpg', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -388,22 +380,22 @@ ALTER TABLE `tb_district`
 -- AUTO_INCREMENT for table `tb_infomation_user`
 --
 ALTER TABLE `tb_infomation_user`
-  MODIFY `id_infomation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_infomation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tb_invoice_detail`
 --
 ALTER TABLE `tb_invoice_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_status_product`
 --

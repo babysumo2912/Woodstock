@@ -58,7 +58,7 @@ Là chủ shop, bạn vui lòng đọc kĩ và tuân thủ <b><a href="">Chính 
             </div>
             <div class = "col-md-3 col-sm-4 col-xs-6">
                 <div class = "catalog_bh">
-                    <a href="#">
+                    <a href="<?php echo base_url() ?>sale/revenue">
                         <div class = "icon_catalog">
                             <i class = "fa fa-money fa-4x"></i>
                         </div>

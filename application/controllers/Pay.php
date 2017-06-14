@@ -432,7 +432,8 @@ class pay extends CI_Controller{
                                     foreach ($data_product as $item) {
                                     };
                                     $number_old = $item->number - $number;
-                                    $data_number_old = array('number' => $number_old);
+                                    $like = $item->like + $number;
+                                    $data_number_old = array('number' => $number_old, 'like'=>$like);
                                     $this->Product_models->update($id_product, $data_number_old);
                                 }
                             }

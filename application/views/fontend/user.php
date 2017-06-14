@@ -102,7 +102,7 @@ if(isset($account)){
                                     ?>
                                     <div class="row" style="">
                                         <div class="avatar" style="background:url('<?php echo base_url() ?>/public/img/user/avatar/<?php echo $value1->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
-                                        &nbsp;<a href="#"><b><?php echo $value1->name?></b></a>
+                                        &nbsp;<a href="<?php echo base_url() ?>shop/view/<?php echo $hd_ct->id_user ?>"><b><?php echo $value1->name?></b></a>
                                     </div>
                                     <?php
                                 }

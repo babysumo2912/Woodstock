@@ -96,6 +96,14 @@ class Invoice_models extends CI_Model{
             return $query->result();
         }else return false;
     }
+    function get_money($id_user){
+        $this->db->where('id_user',$id_user);
+        $this->db->where('active',3);
+        $query = $this->db->get('tb_invoice_detail');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
     
 }
 
