@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2017 at 02:12 PM
+-- Generation Time: Jun 15, 2017 at 12:31 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -67,8 +67,8 @@ CREATE TABLE `tb_city` (
 --
 
 INSERT INTO `tb_city` (`id_city`, `city`) VALUES
-(1, 'Hà Nội'),
-(2, 'TP Hồ Chí Minh');
+(1, 'Ha Noi'),
+(2, 'Tp Ho Chi Minh');
 
 -- --------------------------------------------------------
 
@@ -140,7 +140,7 @@ CREATE TABLE `tb_infomation_user` (
 --
 
 INSERT INTO `tb_infomation_user` (`id_infomation`, `id_user`, `name`, `phone`, `address`, `id_district`, `id_city`, `default`) VALUES
-(9, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 1, 1, 1);
+(9, 1, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,7 @@ CREATE TABLE `tb_invoice` (
 INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `tranformer`, `shipping_code`, `active`) VALUES
 (13, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 10:24:22', 156000000, '', 'c4ca4238a0', 0),
 (14, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 10:25:51', 115000000, '', 'aab3238922', 0),
-(15, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 11:10:26', 130000000, '', '9bf31c7ff0', 0),
+(15, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 18:31:44', 130000000, '', '9bf31c7ff0', 3),
 (16, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 11:10:37', 184000000, '', 'c74d97b01e', 0);
 
 -- --------------------------------------------------------
@@ -271,7 +271,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `account`, `name`, `password`, `discribe`, `img`, `follow`, `active`) VALUES
-(1, 'ngocduc', 'Ngọc Đức', '4156fd5c1cb353803988421bf5c73913', 'Shop chất lượng cao, bán hàng uy tín<br />\r\nGiá cả cạnh tranh<br />\r\nChuyên cung cấp mặt hàng xịn, hàng hiệu, ...', 'image1xxl--12-13.jpg', 0, 0),
+(1, 'ngocduc', 'Ngoc Duc', '4156fd5c1cb353803988421bf5c73913', 'Shop chất lượng cao, bán hàng uy tín<br />\r\nGiá cả cạnh tranh<br />\r\nChuyên cung cấp mặt hàng xịn, hàng hiệu, ...', 'image1xxl--12-13.jpg', 0, 0),
 (2, '1221050140', 'Ku ku Le Le', '4156fd5c1cb353803988421bf5c73913', '', '1.png', 0, 0),
 (3, 'huyhip123', 'huyhip123', 'ed62e3fefd216ddffc4f8874508b82ef', '', 'default.jpg', 0, 0),
 (4, 'abcdef', 'abcdef', '4156fd5c1cb353803988421bf5c73913', '', 'default.jpg', 0, 0),
@@ -395,7 +395,7 @@ ALTER TABLE `tb_invoice_detail`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tb_status_product`
 --

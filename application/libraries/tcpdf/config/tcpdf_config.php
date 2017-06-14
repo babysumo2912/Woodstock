@@ -109,7 +109,7 @@ define ('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'Do an tot nghiep chuyen nganh Tin Kinh Te');
+define ('PDF_HEADER_TITLE', 'Xay dung website thuong mai dien tu Shopee');
 
 /**
  * Header description string.
@@ -129,17 +129,17 @@ define ('PDF_MARGIN_HEADER', 10);
 /**
  * Footer margin.
  */
-define ('PDF_MARGIN_FOOTER', 5);
+define ('PDF_MARGIN_FOOTER', 15);
 
 /**
  * Top margin.
  */
-define ('PDF_MARGIN_TOP', '15');
+define ('PDF_MARGIN_TOP', '25');
 
 /**
  * Bottom margin.
  */
-define ('PDF_MARGIN_BOTTOM', 0);
+define ('PDF_MARGIN_BOTTOM', '20');
 
 /**
  * Left margin.

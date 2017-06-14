@@ -104,6 +104,15 @@ class Invoice_models extends CI_Model{
             return $query->result();
         }else return false;
     }
+    function list_date($day_begin,$day_end,$id_invoice){
+        $this->db->where('date>=',$day_begin);
+        $this->db->where('date<=',$day_end);
+        $this->db->where('id_invoice',$id_invoice);
+        $query = $this->db->get('tb_invoice');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
     
 }
 
