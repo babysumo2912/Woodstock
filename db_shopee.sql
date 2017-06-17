@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2017 at 12:31 AM
+-- Generation Time: Jun 15, 2017 at 04:09 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -49,7 +49,15 @@ CREATE TABLE `tb_catalog` (
 
 INSERT INTO `tb_catalog` (`id_catalog`, `name`) VALUES
 (1, 'Smart Phone'),
-(2, 'Laptop');
+(2, 'Laptop'),
+(3, 'Máy tính bảng'),
+(4, 'Đồng hồ thông minh'),
+(5, 'Tai nghe'),
+(6, 'Bàn phím'),
+(7, 'Chuột'),
+(8, 'Phụ Kiện'),
+(9, 'Shop game thủ'),
+(11, 'Khác');
 
 -- --------------------------------------------------------
 
@@ -140,7 +148,8 @@ CREATE TABLE `tb_infomation_user` (
 --
 
 INSERT INTO `tb_infomation_user` (`id_infomation`, `id_user`, `name`, `phone`, `address`, `id_district`, `id_city`, `default`) VALUES
-(9, 1, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 1, 1, 1);
+(9, 1, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 1, 1, 1),
+(10, 2, 'Tran Ngoc Duc', '01654565270', 'So 228 duong Xuan Thuy', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -169,9 +178,6 @@ CREATE TABLE `tb_invoice` (
 --
 
 INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `tranformer`, `shipping_code`, `active`) VALUES
-(13, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 10:24:22', 156000000, '', 'c4ca4238a0', 0),
-(14, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 10:25:51', 115000000, '', 'aab3238922', 0),
-(15, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 18:31:44', 130000000, '', '9bf31c7ff0', 3),
 (16, 2, 'Tran Ngoc Duc', '01654565270', 'so 38C, ngo 487 Co Nhue', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-14 11:10:37', 184000000, '', 'c74d97b01e', 0);
 
 -- --------------------------------------------------------
@@ -198,7 +204,6 @@ CREATE TABLE `tb_invoice_detail` (
 --
 
 INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_user`, `name`, `img`, `price`, `qty`, `subtotal`, `active`) VALUES
-(19, 15, 9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 26000000, 5, 130000000, 3),
 (20, 16, 19, 1, 'LapTop MSI', 'images1.jpg', 23000000, 8, 184000000, 0);
 
 -- --------------------------------------------------------
@@ -226,9 +231,14 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
-(9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nc', 1, 26000000, 20, 1, 5, 2),
+(9, 1, 'Sam Sung galaxy S8', 'S8Plus_S8_Silver_LockUp_rgb1.jpg', 'a<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nca<br />\r\nb<br />\r\nc', 1, 26000000, 20, 1, 5, 1),
 (13, 2, 'MSI gamming', 'DeskGaming011.png', 'Cau hinh khoe<br />\r\nchoi game ngon<br />\r\ndo hoa khung', 1, 2200000, 26, 1, 0, 1),
-(19, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 13, 1, 8, 1);
+(19, 1, 'LapTop MSI', 'images1.jpg', 'Lap top so 1 the gioi<br />\r\nRam: 1TB<br />\r\nO cung: SSD 500', 2, 23000000, 13, 1, 8, 1),
+(20, 1, 'Motorola Moto 360', '360moto-01-350x380.jpg', 'Moto 360 mới kết hợp kính cạnh cạnh với vỏ bọc không bị đánh bóng đặc biệt, mang lại cho bạn diện tích xem lớn nhất. Cho dù bạn chọn hoa hồng hồng, đen, hoặc bạc, trường hợp được làm bằng chính xác từ thép không gỉ cấp bằng máy bay.', 4, 2000000, 10, 1, 0, 0),
+(21, 1, 'Tai nghe Beats Snarkitecture ', 'beats-narkitecture-01-350x380.jpg', 'Được thiết kế lại hoàn toàn, tai nghe đeo tai của Beats Studio thậm chí còn sáng hơn, mạnh hơn và tiện dụng hơn, và chính xác hơn thiết kế nổi tiếng thế giới. Họ cung cấp âm thanh mạnh mẽ, tái thiết kế một mình với Adaptive Noise Cancelling, một pin sạc được 20 giờ và các điều khiển Remote Talk.', 5, 900000, 30, 1, 0, 0),
+(22, 1, 'Denon Music Maniac Artisan', 'denon-head-01-350x380.jpg', 'Được thiết kế từ nền tảng để mang đến một trải nghiệm nghe tuyệt vời, nghe, phù hợp và di chuyển giống như bạn.', 5, 800000, 40, 1, 0, 0),
+(23, 1, 'Apple iMac 27-inch', 'imac_n-350x380.jpg', 'The idea behind iMac has never wavered: to craft the ultimate desktop experience. The best display, paired with high-performance processors, graphics, and storage — all within an incredibly thin, seamless enclosure.', 3, 40000000, 30, 1, 0, 1),
+(24, 1, 'Apple iPad Mini', 'ipad_air_silver-350x380.jpg', 'There’s more to mini than meets the eye. The new iPad mini 4 puts uncompromising performance and potential in your hand. It’s thinner and lighter than ever before, yet powerful enough to help you take your ideas even further.', 3, 6000000, 10, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -360,7 +370,7 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_catalog`
 --
 ALTER TABLE `tb_catalog`
-  MODIFY `id_catalog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_catalog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tb_city`
 --
@@ -380,7 +390,7 @@ ALTER TABLE `tb_district`
 -- AUTO_INCREMENT for table `tb_infomation_user`
 --
 ALTER TABLE `tb_infomation_user`
-  MODIFY `id_infomation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_infomation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_invoice`
 --
@@ -395,7 +405,7 @@ ALTER TABLE `tb_invoice_detail`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tb_status_product`
 --

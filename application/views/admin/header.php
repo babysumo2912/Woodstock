@@ -18,7 +18,7 @@
 <script src = "<?php echo base_url()?>public/style/js/jquery.cycle2.min.js"></script>
 <script src = "<?php echo base_url()?>public/style/js/javascript.js"></script>
 <script src = "<?php echo base_url()?>public/style/js/jquery.rateit.js"></script>
-</head>
+</head> 
 <body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -42,24 +42,24 @@
           <ul class="dropdown-menu">
             <li><a href="#">Danh mục sản phẩm</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Danh sách Sản phẩm</a></li>
+            <li><a href="<?php echo base_url() ?>admin/product">Danh sách Sản phẩm</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-users"></i> Quản lí người dùng</a></li>
+        <li><a href="<?php echo base_url() ?>admin/user"><i class="fa fa-users"></i> Quản lí người dùng</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-building"></i>&nbsp;Quản lí giao dịch <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Hóa đơn chờ xác nhận</a></li>
+            <li><a href="<?php echo base_url() ?>admin/invoice/view/0">Hóa đơn chờ xác nhận</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Hóa đơn chờ lấy</a></li>
+            <li><a href="admin/invoice/view/1">Hóa đơn chờ lấy</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Hóa đơn đang giao</a></li>
+            <li><a href="admin/invoice/view/2">Hóa đơn đang giao</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Hóa đơn hoàn thành</a></li>
+            <li><a href="admin/invoice/view/3">Hóa đơn hoàn thành</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Hóa đơn hủy</a></li>
+            <li><a href="admin/invoice/view/4">Hóa đơn hủy</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Hóa đơn hoàn về</a></li>
+            <li><a href="admin/invoice/view/5">Hóa đơn hoàn về</a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fa fa-money"></i> Quản lí doanh thu</a></li>
