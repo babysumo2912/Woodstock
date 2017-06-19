@@ -1,6 +1,8 @@
 <?php  
 class product extends CI_Controller{
     public function index(){
+        $number = 0;
+        $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $count = $this->session->userdata('count');
@@ -26,7 +28,12 @@ class product extends CI_Controller{
             $product = $this->Product_models->get($login_user);
             if($product != false){
                 $data['product'] = $product;
+                foreach ($product as $key) {
+                    $number+=$key->number;
+                }
+
             }
+            $data['number'] = $number;
             $this->load->view('fontend_bh/product',$data);
             }
         }else{

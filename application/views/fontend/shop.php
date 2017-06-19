@@ -14,10 +14,10 @@ if(isset($err)){
 	<div class="cccwhite">
 		<div class="row">
 			<div class="col-md-3">
-				<div style = "position: relative;height: 150px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img ?>') center; background-size: cover;opacity: 0.2">
+				<div style = "position: relative;height: 150px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img ?>') center; background-size: cover;opacity: 0.4">
 				</div>
-				<div style="position: absolute; margin-top: -150px; padding: 0 30px">
-					<p class="text-center" style = "padding-top: 20px; font-size: 18px">
+				<div style="position: absolute; margin-top: -150px; padding: 0 30px;color: black">
+					<p class="text-center" style = "padding-top: 20px; font-size: 18px;">
 						Welcome,<br><b><?php echo $acc->name ?></b>
 					</p>
 					<div class="text-center ashop">

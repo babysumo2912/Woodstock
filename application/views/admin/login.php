@@ -31,7 +31,7 @@
         <?php 
             if(isset($err)){
               ?>
-              <div class="error">
+              <div class="error" style="color: red">
                 <i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i> &nbsp;<?php echo $err ?>
               </div>
               <?php
@@ -43,7 +43,7 @@
           "style" => "padding-top: 20px;",
           "class" => "form-group",
         );
-        echo form_open("admin/login", $style);
+        echo form_open("admin/home/login", $style);
         ?>
             <div class="form-group">
               <div class="input-group">

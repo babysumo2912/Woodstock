@@ -51,15 +51,15 @@
           <ul class="dropdown-menu">
             <li><a href="<?php echo base_url() ?>admin/invoice/view/0">Hóa đơn chờ xác nhận</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="admin/invoice/view/1">Hóa đơn chờ lấy</a></li>
+            <li><a href="<?php echo base_url() ?>admin/invoice/view/1">Hóa đơn chờ lấy</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="admin/invoice/view/2">Hóa đơn đang giao</a></li>
+            <li><a href="<?php echo base_url() ?>admin/invoice/view/2">Hóa đơn đang giao</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="admin/invoice/view/3">Hóa đơn hoàn thành</a></li>
+            <li><a href="<?php echo base_url() ?>admin/invoice/view/3">Hóa đơn hoàn thành</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="admin/invoice/view/4">Hóa đơn hủy</a></li>
+            <li><a href="<?php echo base_url() ?>admin/invoice/view/4">Hóa đơn hủy</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="admin/invoice/view/5">Hóa đơn hoàn về</a></li>
+            <li><a href="<?php echo base_url() ?>admin/invoice/view/5">Hóa đơn hoàn về</a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fa fa-money"></i> Quản lí doanh thu</a></li>

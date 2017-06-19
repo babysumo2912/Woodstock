@@ -5,25 +5,38 @@ include'header.php';
 <section class="max">
 	<h2>Danh sách sản phẩm chờ xác nhận</h2>
 	<hr>
-	<?php 
-	echo form_open();
-
-	 ?>
-	<div class="text-left">
-	 	
 	<div class="row">
-	 	<div class="col-md-8 col-sm-6 col-xs-12">
-		 	<buttom type="submit" class="btn btn-primary">
-		 		<i class="fa fa-save"></i> Duyệt
-		 	</buttom>
-		</div>
-		<div class="col-md-4 col-sm-6 col-xs-12">
+		<div class="col-md-4">
 			<div class="input-group">
 		      <input type="text" class="form-control" placeholder="Tìm tên sản phẩm...">
 		      <span class="input-group-btn">
 		        <button class="btn btn-default" type="button">Tìm kiếm!</button>
 		      </span>
 		    </div>
+		</div>
+	</div>
+	<?php 
+	echo form_open('admin/product/check');
+
+	 ?>
+	<div class="text-left">
+	 	
+	<div class="row">
+		<?php 
+		if(isset($succ)):
+?>
+		<br>
+		<div class="col-md-6 alert alert-success">
+			<?php echo $succ ?>
+		</div>
+<?php
+		endif;
+
+		 ?>
+	 	<div class="text-right">
+		 	<button type="submit" class="btn btn-primary">
+		 		<i class="fa fa-check"></i> Duyệt
+		 	</button>
 		</div>
 	</div>
 	</div><br>
@@ -44,8 +57,9 @@ include'header.php';
 			<td></td>
 		</tr>
 		<?php 
-		if($product){
-			foreach ($product as $key) {
+		if(isset($product)):
+			foreach ($product as $key):
+				// echo form_hidden('sanpham['.$key->id_product.'][id_product]',$key->id_product);
 				$catalog = $this->Home_models->getinfo('tb_catalog','id_catalog',$key->id_catalog);
 				if($catalog){
 					foreach ($catalog as $value) {}
@@ -53,7 +67,16 @@ include'header.php';
 			 ?>
 		<tr>	
 			<td class="text-center">
-				<input type="checkbox" class="check" value="<?php echo $key->id_product ?>">
+				<?php
+                    $data = array(
+                    'type' => 'checkbox',
+                    'class' => 'check',
+                    'name' => 'sanpham['.$key->id_product.'][id_product]',
+                    'value' => $key->id_product,
+                    );
+                    echo form_input($data);
+                    ?>
+				<!-- <input type="checkbox" class="check" value="<?php echo $key->id_product ?>"> -->
 			</td>
 			<td>
 				<div class="avatar1" style="background:url('<?php echo base_url() ?>/public/img/product/<?php echo $key->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
@@ -72,8 +95,8 @@ include'header.php';
 			</td>
 		</tr>
 		<?php 
-			}
-		}
+			endforeach;
+		endif;
 
 		 ?>
 	</table>

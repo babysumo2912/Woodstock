@@ -1,6 +1,6 @@
 <?php 
 include 'header.php';
-?>
+?> 
 <section>
    <div class = "menu_product">
         <ul>
@@ -14,7 +14,7 @@ include 'header.php';
    <div class = "max">
         <div class = "hd_bh">
             <div class = "left">
-                <span>0 Sản phẩm</span>
+                <span><?php echo $number ?> Sản phẩm</span>
             </div>
             <div class = "right">
                 <form class="navbar-form navbar-left">
