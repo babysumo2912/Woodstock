@@ -37,6 +37,22 @@ class Product_models extends CI_Model{
             return $get->result();
         }else return false;
     }
+    function get_active($login_user,$active){
+        $this->db->where('id_user',$login_user);
+        $this->db->where('active',$active);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
+    function hethang($login_user){
+        $this->db->where('id_user',$login_user);
+        $this->db->where('number<=',0);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get-result();
+        }else return false;
+    }
     function getinfo1($id_product,$id_user){
         $this->db->where('id_user',$id_user);
         $this->db->where('id_product',$id_product);

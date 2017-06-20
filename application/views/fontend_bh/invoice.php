@@ -4,10 +4,30 @@ include'header.php';
 <div class = "menu_product">
     <ul>
         <!--<li><a href="">Shop của tôi</a></li>-->
-        <li><a href="<?php echo base_url()?>sale/invoice">Tất cả</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice">
+        <?php 
+        if($active == 'all'){
+        ?>
+        <b><u>Tất cả</u></b>
+        <?php
+        }else{
+
+         ?>
+        Tất cả
+        <?php } ?>
+        </a></li>
         <li>
             <a href="<?php echo base_url()?>sale/invoice/active/0">
-                Chờ xác nhận
+        <?php 
+        if($active == '0'){
+        ?>
+        <b><u>Chờ xác nhận</u></b>
+        <?php
+        }else{
+
+         ?>
+        Chờ xác nhận
+        <?php } ?>
                 <?php
                 if(isset($number_invoice)){
                     $number = $number_invoice;
@@ -17,11 +37,66 @@ include'header.php';
                 <sup class="badge"><?php echo $number?></sup>
             </a>
         </li>
-        <li><a href="<?php echo base_url()?>sale/invoice/active/1">Chờ lấy hàng</a></li>
-        <li><a href="<?php echo base_url()?>sale/invoice/active/2">Đang giao</a></li>
-        <li><a href="<?php echo base_url()?>sale/invoice/active/3">Hoàn thành</a></li>
-        <li><a href="<?php echo base_url()?>sale/invoice/active/4">Đã hủy</a></li>
-        <li><a href="<?php echo base_url()?>sale/invoice/active/5">Hoàn hàng</a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/1">
+        <?php 
+        if($active == '1'){
+        ?>
+        <b><u>Chờ lấy hàng</u></b>
+        <?php
+        }else{
+
+         ?>
+        Chờ lấy hàng
+        <?php } ?>
+        </a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/2">
+        <?php 
+        if($active == '2'){
+        ?>
+        <b><u>Đang giao</u></b>
+        <?php
+        }else{
+
+         ?>
+        Đang giao
+        <?php } ?>
+        </a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/3">
+        <?php 
+        if($active == '3'){
+        ?>
+        <b><u>Hoàn thành</u></b>
+        <?php
+        }else{
+
+         ?>
+        Hoàn thành
+        <?php } ?>
+        </a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/4">
+        <?php 
+        if($active == '4'){
+        ?>
+        <b><u>Hoàn thành</u></b>
+        <?php
+        }else{
+
+         ?>
+        Hoàn thành
+        <?php } ?>
+        </a></li>
+        <li><a href="<?php echo base_url()?>sale/invoice/active/5">
+        <?php 
+        if($active == '5'){
+        ?>
+        <b><u>Hàng hoàn</u></b>
+        <?php
+        }else{
+
+         ?>
+        Hàng hoàn
+        <?php } ?>
+        </a></li>
     </ul>
 </div>
 <section class="max row">

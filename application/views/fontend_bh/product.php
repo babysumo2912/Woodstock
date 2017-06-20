@@ -5,10 +5,10 @@ include 'header.php';
    <div class = "menu_product">
         <ul>
             <!--<li><a href="">Shop của tôi</a></li>-->
-            <li><a href="">Tất cả</a></li>
-            <li><a href="">Còn hàng</a></li>
-            <li><a href="">Hết hàng <sup>0</sup></a></li>
-            <li><a href="">Đã bị khóa <sup>0</sup></a></li>
+            <li><a href="<?php echo base_url()?>/product"><?php if($active == 'all'){ ?><b><u>Tất cả</u></b> <?php }else{ ?>Tất cả<?php } ?></a></li>
+            <li><a href="<?php echo base_url()?>/product/active/0"><?php if($active == '0'){ ?><b><u>Chờ xác nhận</u></b> <?php }else{ ?>Chờ xác nhận<?php } ?></a></li>
+            <li><a href="<?php echo base_url()?>/product/number"><?php if($active == 'number'){ ?><b><u>Hết hàng</u></b> <?php }else{ ?>Hết hàng<?php } ?> <sup><?php echo $number_hh ?></sup></a></li>
+            <li><a href="<?php echo base_url()?>/product/active/2"><?php if($active == '2'){ ?><b><u>Đã bị khóa</u></b> <?php }else{ ?>Đã bị khóa<?php } ?> <sup><?php echo $number_ban ?></sup></a></li>
         </ul>
    </div>
    <div class = "max">
@@ -64,6 +64,15 @@ include 'header.php';
                         </div>
                         <?php
                         }?>
+
+                        <?php 
+                        if($row->active == 0):
+                         ?>
+                            <div style="background: url('<?php echo base_url() ?>/public/img/style/bg1.png');padding: 10px;color:white">
+                                <p><b>Chờ xác nhận</b></p>
+                            </div>
+
+                        <?php endif; ?>
                     </div>
                     <div class = "content-product">
                         <div class = "name-product">

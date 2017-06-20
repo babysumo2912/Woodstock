@@ -423,6 +423,7 @@ class pay extends CI_Controller{
                                     'price' => $price,
                                     'subtotal' => $subtotal,
                                     'active' => '0',
+                                    'time' => time();
                                 );
                                 $this->User_models->add_invoice_detail($data_invoice_detail);
                                 $id_product = $cart['id'];
@@ -444,6 +445,18 @@ class pay extends CI_Controller{
                     }
                 }
             }
+        }
+    }
+    function city(){
+        $id_city = $this->input->post('id_city');
+        $city = $this->Home_models->getinfo('tb_district','id_city',$id_city);
+        if($city){
+            $select_box = '';
+            $select_box.= '<option value="0">Chọn Quận / Huyện</option>';
+            foreach ($city as $key) {
+                $select_box .= '<option value="'.$key->id_district.'">'.$key->district.'</option>';
+            }
+            echo json_encode($select_box);
         }
     }
 }

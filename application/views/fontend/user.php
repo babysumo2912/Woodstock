@@ -17,13 +17,13 @@ if(isset($account)){
                 <ul>
                     <li>
                         <a href="<?php echo base_url()?>infomation/buyer/active/0">
-                            <i class = "fa fa-lock"></i>&nbsp;&nbsp;
+                            <i class = "fa fa-question"></i>&nbsp;&nbsp;
                             Chờ xác nhận
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>infomation/buyer/active/1">
-                        <i class = "fa fa-bullhorn"></i> &nbsp;&nbsp;Chờ lấy hàng
+                        <i class = "fa fa-check"></i> &nbsp;&nbsp;Chờ lấy hàng
                         </a>
                     </li>
                     <li>
@@ -33,11 +33,11 @@ if(isset($account)){
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>infomation/buyer/active/3">
-                        <i class = "fa fa-lock"></i>&nbsp;&nbsp;Đã giao</a>
+                        <i class = "fa fa-thumbs-o-up"></i>&nbsp;&nbsp;Đã giao</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>infomation/buyer/active/4">
-                        <i class = "fa fa-lock"></i>&nbsp;&nbsp;Đã hủy</a>
+                        <i class = "fa fa-warning"></i>&nbsp;&nbsp;Đã hủy</a>
                     </li>
                 </ul>
             </div>
@@ -79,6 +79,8 @@ if(isset($account)){
                                 <td>Shop</td>
                                 <td>Số lượng</td>
                                 <td>Đơn giá</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                     <?php
                         $invoice_detail = $this->Invoice_models->get_invoice_detail($hd->id_invoice);
@@ -114,6 +116,52 @@ if(isset($account)){
                             <td>
                                 <?php echo number_format($hd_ct->price)?>
                             </td>
+                            <td>
+                                <?php 
+                                switch ($hd_ct->active) {
+                                    case '0':
+                                        ?>
+                                        <i class="fa fa-question"></i>
+                                        <?php
+                                        break;
+                                    case '1':
+                                        ?>
+                                        <i class="fa fa-check"></i>
+                                        <?php
+                                        break;
+                                    case '2':
+                                        ?>
+                                        <i class="fa fa-truck"></i>
+                                        <?php
+                                        break;
+                                    case '3':
+                                        ?>
+                                        <i class="fa fa-thumbs-o-up"></i>
+                                        <?php
+                                        break;
+                                    case '4':
+                                        ?>
+                                        <i class="fa fa-warning"></i>
+                                        <?php
+                                        break;
+                                    
+                                    default:
+                                        # code...
+                                        break;
+                                }
+
+                                 ?>
+                            </td>
+                            <td>
+                                <?php 
+                                if($hd_ct->active == 0){
+                                ?>
+                                <a href=""><i class="fa fa-remove"></i></a>
+                                <?php
+                                }
+
+                                 ?>
+                            </td>
                         </tr>
                     <?php
                                 $i++;
@@ -124,15 +172,10 @@ if(isset($account)){
                             <tr>
                                 <td colspan="4" class="text-right">Tổng thanh toán</td>
                                 <td><p style="color:red"><?php echo number_format($money)?></p></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </table>
-                        <?php if(!isset($active) || $active == 0){
-                        ?>
-                            <div class="text-center">
-                                <a href="" class="btn btn-danger"><i class="fa fa-trash-o"></i>&nbsp;Hủy đơn hàng</a>
-                            </div>
-                        <?php
-                        }?>
                     </div>
                     <hr"><br><br>
                 <?php

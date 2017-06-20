@@ -37,6 +37,7 @@ class invoice extends CI_Controller{
                     }
                 }else $data_number = 0;
                 $data['number_invoice'] = $data_number;
+                $data['active'] = 'all';
                 $this->load->view('fontend_bh/invoice',$data);
             }
         }else{

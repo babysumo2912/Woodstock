@@ -87,6 +87,7 @@ if(!isset($invoice)){
 			<td>
 				Liên lạc với người bán
 			</td>
+			<td></td>
 		</tr>
 		<?php
 			$invoice_detail = $this->Invoice_models->get_invoice_detail($hd->id_invoice);
@@ -132,6 +133,42 @@ if(!isset($invoice)){
 					<?php echo $add->address?> - <?php echo $dtr->district ?> - <?php echo $tp->city ?>
 				<?php }else echo ""; ?>
 			</td>
+			<td>
+				<?php 
+                switch ($cthd->active) {
+                    case '0':
+                        ?>
+                        <i class="fa fa-question"></i>
+                        <?php
+                        break;
+                    case '1':
+                        ?>
+                        <i class="fa fa-check"></i>
+                        <?php
+                        break;
+                    case '2':
+                        ?>
+                        <i class="fa fa-truck"></i>
+                        <?php
+                        break;
+                    case '3':
+                        ?>
+                        <i class="fa fa-thumbs-o-up"></i>
+                        <?php
+                        break;
+                    case '4':
+                        ?>
+                        <i class="fa fa-warning"></i>
+                        <?php
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+
+                 ?>
+			</td>
 		</tr>
 		<?php 
 					}
@@ -140,30 +177,32 @@ if(!isset($invoice)){
 		 ?>
 	</table>
 		<div class="text-center">
-			<buttom type="submit" class="btn btn-primary">
-		 		<i class="fa fa-truck"></i>
-		 		<?php 
-				if(isset($active)){
-					switch ($active) {
-						case '0':
-							echo "Lấy hàng";
-							break;
-						case '1':
-							echo "Giao hàng";
-							break;
-						case '2':
-							echo "Hoàn thành";
-							break;
-						case '3':
-							echo "Thanh toán";
-							break;
-						default:
-							echo "Đơn hàng";
-					}
+	 		<?php 
+			if(isset($active)){
+				switch ($active) {
+					case '0':
+						?>
+					<a href="" class="btn btn-primary" disabled><i class="fa fa-truck"></i> Lấy hàng</a>
+						<?php
+						break;
+					case '1':
+					?>
+					<a href="" class="btn btn-primary"><i class="fa fa-truck"></i> Lấy hàng</a>
+					<?php
+						break;
+					case '2':
+						echo "Hoàn thành";
+						break;
+					case '3':
+						echo "Thanh toán";
+						break;
+					default:
+						echo "Đơn hàng";
 				}
+			}
 
-				?>
-	 		</buttom>	
+			?>
+ 		
 		</div>
 	</div>
 	<?php

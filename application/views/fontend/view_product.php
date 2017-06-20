@@ -32,21 +32,31 @@ if(isset($product)){
 
                 <?php
                 if(isset($buy)){
-                ?><p class = "succ_buy"><i class="fa fa-hand-o-right"></i>
+                ?><div class="alert alert-success">
+                    <p class = "succ_buy"><i class="fa fa-check"></i>
                 <?php
                     echo $buy;
+                ?>
+                    </p>
+                </div>
+                <?php
                 }
                 ?>
-                </p>
 
                 <?php
                 if(isset($err1)){
-                    ?><p style="color: red"><i class="fa fa-warning"></i>
+                    ?>
+                    <div class="alert alert-danger">
+                        <p style="color: red"><i class="fa fa-warning"></i>
+                    
                     <?php
                     echo $err1;
+                    ?>
+                    </p>
+                    </div>
+                <?php
                 }
                 ?>
-            </p>
             <div class = "content_buy">
                 <p><b style = "color: red"><?php echo number_format($row->price)?><sup>đ</sup></b></p>
                 <p><i class = "fa fa-thumbs-o-up"></i>&nbsp;<?php echo $row->like?></p>

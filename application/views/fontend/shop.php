@@ -14,15 +14,15 @@ if(isset($err)){
 	<div class="cccwhite">
 		<div class="row">
 			<div class="col-md-3">
-				<div style = "position: relative;height: 150px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img ?>') center; background-size: cover;opacity: 0.4">
-				</div>
-				<div style="position: absolute; margin-top: -150px; padding: 0 30px;color: black">
-					<p class="text-center" style = "padding-top: 20px; font-size: 18px;">
-						Welcome,<br><b><?php echo $acc->name ?></b>
-					</p>
-					<div class="text-center ashop">
-						<a href="" class="btn">Theo dõi</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="" class="btn">Nhắn tin</a>
+				<div style = "height: 150px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img ?>') center; background-size: cover;">
+					<div style="padding: 17px;color: black; background: url('<?php echo base_url() ?>public/img/style/bg1.png');color:white;width:100%">
+						<p class="text-center" style = "padding-top: 20px; font-size: 18px;">
+							Welcome,<br><b><?php echo $acc->name ?></b>
+						</p>
+						<div class="text-center ashop" >
+							<a href="" class="btn">Theo dõi</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="" class="btn">Nhắn tin</a>
+						</div>
 					</div>
 				</div>
 			</div>

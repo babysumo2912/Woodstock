@@ -18,6 +18,14 @@ class product extends CI_Controller{
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
+            $number_bicam = $this->Product_models->get_active($login_user,'2');
+            if($number_bicam){
+                $data['number_ban'] = count($number_bicam);
+            }else $data['number_ban'] = 0;
+            $number_hh = $this->Product_models->hethang($login_user);
+            if($number_hh){
+                $data['number_hh'] = count($number_hh);
+            }else $data['number_hh'] = 0;
             $user = $this->User_models->getinfo($login_user);
                 if($user){
                     foreach($user as $row){
@@ -28,11 +36,104 @@ class product extends CI_Controller{
             $product = $this->Product_models->get($login_user);
             if($product != false){
                 $data['product'] = $product;
-                foreach ($product as $key) {
-                    $number+=$key->number;
-                }
+                $number = count($product);
 
             }
+            $data['active'] = 'all';
+            $data['number'] = $number;
+            $this->load->view('fontend_bh/product',$data);
+            }
+        }else{
+        redirect('banhang');
+        }
+    }
+    function active($active){
+        $number = 0;
+        $data = array();
+        $login_user = $this->session->userdata('session_user');
+        $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        $succ = $this->session->flashdata('succ');
+        if($succ){
+            $data['succ'] = $succ;
+        }
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
+        if(isset($login_user)){
+            if(time() - $time_out >=30000000000000){
+                $this->session->sess_destroy();
+                redirect('banhang');
+            }else{
+            $number_bicam = $this->Product_models->get_active($login_user,'2');
+            if($number_bicam){
+                $data['number_ban'] = count($number_bicam);
+            }else $data['number_ban'] = 0;
+            $number_hh = $this->Product_models->hethang($login_user);
+            if($number_hh){
+                $data['number_hh'] = count($number_hh);
+            }else $data['number_hh'] = 0;
+            $user = $this->User_models->getinfo($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
+                    }
+                }
+            $product = $this->Product_models->get_active($login_user,$active);
+            if($product != false){
+                $data['product'] = $product;
+                $number = count($product);
+
+            }
+            $data['number'] = $number;
+            $data['active'] = $active;
+            $this->load->view('fontend_bh/product',$data);
+            }
+        }else{
+        redirect('banhang');
+        }
+    }
+    function number(){
+        $number = 0;
+        $data = array();
+        $login_user = $this->session->userdata('session_user');
+        $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        $succ = $this->session->flashdata('succ');
+        if($succ){
+            $data['succ'] = $succ;
+        }
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
+        if(isset($login_user)){
+            if(time() - $time_out >=30000000000000){
+                $this->session->sess_destroy();
+                redirect('banhang');
+            }else{
+            $number_bicam = $this->Product_models->get_active($login_user,'2');
+            if($number_bicam){
+                $data['number_ban'] = count($number_bicam);
+            }else $data['number_ban'] = 0;
+            $number_hh = $this->Product_models->hethang($login_user);
+            if($number_hh){
+                $data['number_hh'] = count($number_hh);
+            }else $data['number_hh'] = 0;
+            $user = $this->User_models->getinfo($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
+                    }
+                }
+            $product = $this->Product_models->hethang($login_user);
+            if($product != false){
+                $data['product'] = $product;
+                $number = count($product);
+
+            }
+            $data['active'] = 'number';
             $data['number'] = $number;
             $this->load->view('fontend_bh/product',$data);
             }

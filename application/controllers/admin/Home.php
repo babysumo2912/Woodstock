@@ -8,7 +8,7 @@ class home extends CI_Controller{
 		$this->load->view('admin/home');
 	}
 	function login(){
-		$login_user = $this->session->userdata('session_user');
+		$login_user = $this->session->userdata('admin');
         if(isset($login_user)){
             redirect('admin/home');
             die();
