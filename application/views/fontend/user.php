@@ -11,6 +11,22 @@ if(isset($account)){
             <div>
                 <div style = "height: 300px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>') center; background-size: cover"></div>
             </div>
+            <div class="account">
+                <ul>
+                    <li>
+                        <a href="<?php echo base_url() ?>infomation/buyer"><?php echo $acc->name ?></a>
+                    </li>
+                    <li>
+                        <a href="">Thông báo <sup class="badge">0</sup></a>
+                    </li>
+                    <li>
+                        <a href="">Tin nhắn <sup class="badge">0</sup></a>
+                    </li>
+                    <li>
+                        <a href="">Cài đặt <sup>0</sup></a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="col-md-9 content_pay">
             <div class = "qc2">
@@ -156,7 +172,7 @@ if(isset($account)){
                                 <?php 
                                 if($hd_ct->active == 0){
                                 ?>
-                                <a href=""><i class="fa fa-remove"></i></a>
+                                <a href="<?php echo base_url()?>infomation/buyer/remove_invoice/<?php echo $hd_ct->id_detail ?>"onclick="return confirm('Một thông báo sẽ gửi đến chủ shop. Bạn có chắc chắn muốn hủy đơn hàng không? ')"><i class="fa fa-remove"></i></a>
                                 <?php
                                 }
 

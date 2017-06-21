@@ -86,6 +86,15 @@ body{
     width: 100%;
     line-height: 35px;
     display: block;
+    -webkit-transform: margin-left;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-duration: 700ms;
+}
+.menu ul li a:hover{
+    text-decoration: none;
+     margin-left: 20px;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-duration: 700ms;
 }
 .slide{
     margin-top: 20px;
@@ -673,4 +682,32 @@ body{
 .form-login .title-login{
     font-size: 24px;
     font-weight: bold;
+}
+.noti ul li{
+    padding: 10px;
+}
+.noti ul li p:hover{
+    color: black;
+}
+.account ul{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.account ul li{
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+.account ul li a{
+    display: block;
+    -webkit-transform: margin-left;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-duration: 700ms;
+}
+.account ul li a:hover{
+    text-decoration: none;
+     margin-left: 20px;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-duration: 700ms;
 }

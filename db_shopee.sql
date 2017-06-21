@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2017 at 02:46 PM
+-- Generation Time: Jun 22, 2017 at 01:05 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -178,8 +178,8 @@ CREATE TABLE `tb_invoice` (
 --
 
 INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `tranformer`, `shipping_code`, `active`) VALUES
-(1, 7, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38, ngõ 487 Cổ Nhuế', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-21 12:46:06', 9000000, '', 'c4ca4238a0', 1),
-(2, 9, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38C, ngõ 487, Cổ Nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-21 12:46:18', 11800000, '', 'c81e728d9d', 4);
+(1, 7, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38, ngõ 487 Cổ Nhuế', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-21 21:16:27', 9000000, '', 'c4ca4238a0', 4),
+(2, 9, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38C, ngõ 487, Cổ Nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-21 21:16:27', 11800000, '', 'c81e728d9d', 4);
 
 -- --------------------------------------------------------
 
@@ -206,7 +206,7 @@ CREATE TABLE `tb_invoice_detail` (
 --
 
 INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_user`, `name`, `img`, `price`, `qty`, `subtotal`, `active`, `time`) VALUES
-(1, 1, 25, 6, 'Iphone 6', 'Iphone6.jpg', 9000000, 1, 9000000, 1, 0),
+(1, 1, 25, 6, 'Iphone 6', 'Iphone6.jpg', 9000000, 1, 9000000, 4, 0),
 (2, 2, 29, 8, 'BlueAnt Wireless Waterproof Headphones', 'Tai_nghe11.jpg', 2800000, 1, 2800000, 4, 1498045839),
 (3, 2, 25, 6, 'Iphone 6', 'Iphone6.jpg', 9000000, 1, 9000000, 4, 1498045839);
 
@@ -219,18 +219,20 @@ INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_us
 CREATE TABLE `tb_notification` (
   `id_tb` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `oop` int(11) NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `active` int(11) NOT NULL,
-  `time` int(11) NOT NULL
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tb_notification`
 --
 
-INSERT INTO `tb_notification` (`id_tb`, `id_user`, `content`, `active`, `time`) VALUES
-(4, 8, 'Đơn hàng <b>c81e728d9d</b> đã bị  hủy do quá thời gian xác nhận', 0, 0),
-(5, 6, 'Đơn hàng <b>c81e728d9d</b> đã bị  hủy do quá thời gian xác nhận', 0, 0);
+INSERT INTO `tb_notification` (`id_tb`, `id_user`, `oop`, `content`, `active`, `time`) VALUES
+(23, 6, 2, 'Đơn hàng <b>c4ca4238a0</b> đã bị  hủy do quá thời gian xác nhận', 1, '2017-06-21 21:29:00'),
+(24, 8, 1, 'Đơn hàng <b>c81e728d9d</b> đã bị  hủy do quá thời gian xác nhận', 0, '2017-06-21 21:16:27'),
+(25, 6, 2, 'Đơn hàng <b>c81e728d9d</b> đã bị  hủy do quá thời gian xác nhận', 0, '2017-06-21 21:29:47');
 
 -- --------------------------------------------------------
 
@@ -257,10 +259,10 @@ CREATE TABLE `tb_product` (
 --
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
-(25, 6, 'Iphone 6', 'Iphone6.jpg', 'IPhone 6 không chỉ lớn hơn - nó tốt hơn trong mọi cách. <br />\r\nLớn hơn nhưng mỏng hơn. <br />\r\nMạnh hơn, nhưng hiệu quả năng lượng. <br />\r\nĐó là một thế hệ iPhone mới.', 1, 9000000, 8, 0, 2, 1),
+(25, 6, 'Iphone 6', 'Iphone6.jpg', '', 11, 9000000, 5, 1, 0, 1),
 (27, 6, 'Beats Snarkitecture Headphones', 'Tai_nghe1.jpg', 'Được thiết kế lại hoàn toàn, tai nghe đeo tai của Beats Studio thậm chí còn sáng hơn, mạnh hơn và thoải mái hơn, và chính xác hơn thiết kế nổi tiếng thế giới.<br />\r\nHọ cung cấp mạnh mẽ, tái thiết kế âm thanh một mình với Adaptive Noise Cancelling, một pin sạc được 20 giờ, và điều khiển Remote Talk.', 5, 990000, 30, 1, 0, 1),
 (28, 6, 'Motorola Moto 360', '360moto.jpg', 'Moto 360 mới kết hợp kính tiên tiến với vỏ ngoài mỏng, đánh bóng, tạo cho bạn khu vực xem lớn nhất.<br />\r\nCho dù bạn chọn hồng vàng, đen hoặc bạc, trường hợp được tạo ra từ thép không gỉ bằng máy bay.', 4, 6000000, 20, 1, 0, 2),
-(29, 8, 'BlueAnt Wireless Waterproof Headphones', 'Tai_nghe11.jpg', 'BlueAnt Pump HD tai nghe không dây đa chức năng cung cấp âm thanh tuyệt vời khi bạn nghe iPhone hoặc iPod trong những hoạt động mạnh mẽ và trong điều kiện khắc nghiệt. Cung cấp phạm vi không dây tuyệt vời, PUMP cung cấp âm thanh trong trẻi và mang theo đánh giá IP67 (chỉ ra mức độ chống bụi và nước cao).', 5, 2800000, 19, 1, 1, 1),
+(29, 8, 'BlueAnt Wireless Waterproof Headphones', 'Tai_nghe11.jpg', 'BlueAnt Pump HD tai nghe không dây đa chức năng cung cấp âm thanh tuyệt vời khi bạn nghe iPhone hoặc iPod trong những hoạt động mạnh mẽ và trong điều kiện khắc nghiệt. Cung cấp phạm vi không dây tuyệt vời, PUMP cung cấp âm thanh trong trẻi và mang theo đánh giá IP67 (chỉ ra mức độ chống bụi và nước cao).', 5, 2800000, 22, 1, 1, 1),
 (30, 8, 'Tai nghe Bluetooth Plantronics A170 Marque', 'platronics-01-570x619.jpg', 'Hai micro làm việc cùng nhau để bắt giọng nói của bạn và hạn chế tiếng ồn nền cho chất lượng âm thanh tuyệt vời, cho dù bạn đang gọi điện hay nghe nhạc.', 5, 1200000, 30, 1, 0, 1),
 (31, 9, 'Sony SmartWatch 3', 'sony-watch-01-350x380.jpg', 'Điền SmartWatch 3 của bạn bằng âm nhạc, sau đó đi ra để chạy. Cuộc sống của pin hai ngày cho phép bạn theo dõi các hoạt động và các hoạt động mà không phải lo lắng về việc sạc. Và khi bạn đồng bộ hóa với một ứng dụng thể dục, như Lifelong.', 4, 3960000, 20, 1, 0, 1),
 (32, 9, 'Samsung Gear S2', 'gears2-01-350x380.jpg', 'Gear S2 là tất cả về trực quan. Bắt đầu với thiết kế của nó. Đó là một máy chấm công mượt mà đi kèm trong một lựa chọn lựa chọn các vật liệu khác nhau. Và với nhiều phong cách của các ban nhạc và gương mặt xem, đó là một cái nhìn mới bất cứ lúc nào bạn muốn.', 4, 5980000, 40, 1, 0, 1);
@@ -283,7 +285,7 @@ CREATE TABLE `tb_set_timeout` (
 --
 
 INSERT INTO `tb_set_timeout` (`id`, `time_login`, `time_buy`, `time_check`) VALUES
-(1, 86400, 1800, 100);
+(1, 86400, 1800, 172800);
 
 -- --------------------------------------------------------
 
@@ -461,12 +463,12 @@ ALTER TABLE `tb_invoice_detail`
 -- AUTO_INCREMENT for table `tb_notification`
 --
 ALTER TABLE `tb_notification`
-  MODIFY `id_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `tb_set_timeout`
 --

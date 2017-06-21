@@ -77,12 +77,12 @@ include'header.php';
         <?php 
         if($active == '4'){
         ?>
-        <b><u>Hoàn thành</u></b>
+        <b><u>Đã Hủy</u></b>
         <?php
         }else{
 
          ?>
-        Hoàn thành
+        Đã Hủy
         <?php } ?>
         </a></li>
         <li><a href="<?php echo base_url()?>sale/invoice/active/5">

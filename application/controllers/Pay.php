@@ -9,12 +9,16 @@ class pay extends CI_Controller{
         if(isset($count)){
             $data['count'] = $count;
         }else $data['count'] = 0;
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             }else{
-                if(time() - $time_buy >= 100000000000000000){
+                if(time() - $time_buy >= $set_time_buy){
                     $this->session->unset_userdata('count');
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err',$err);
@@ -37,6 +41,10 @@ class pay extends CI_Controller{
                     if($address){
                         $data['address'] = $address;
                     }
+                    $number_noti = $this->Home_models->get_noti($login_user,'2');
+                    if($number_noti){
+                        $data['number_noti'] = count($number_noti);
+                    }else $data['number_noti'] = 0;
                 }
                 $this->load->view('fontend/pay',$data);
             }
@@ -53,18 +61,26 @@ class pay extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 200000000000000000) {
+                if (time() - $time_buy >= $set_time_login) {
                     $this->session->unset_userdata('count');
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
                     redirect('cart');
                 } else {
+                    $number_noti = $this->Home_models->get_noti($login_user,'2');
+                    if($number_noti){
+                        $data['number_noti'] = count($number_noti);
+                    }else $data['number_noti'] = 0;
                     $user = $this->User_models->getinfo($login_user);
                     $address = $this->User_models->getaddress($login_user);
                     if($user){
@@ -102,18 +118,26 @@ class pay extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
+                if (time() - $time_buy >= $set_time_login) {
                     $this->session->unset_userdata('count');
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
                     redirect('cart');
                 } else {
+                    $number_noti = $this->Home_models->get_noti($login_user,'2');
+                    if($number_noti){
+                        $data['number_noti'] = count($number_noti);
+                    }else $data['number_noti'] = 0;
                     $user = $this->User_models->getinfo($login_user);
                     $address = $this->User_models->getaddress($login_user);
                     $city_data = $this->Home_models->get('tb_city');
@@ -160,18 +184,26 @@ class pay extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
+                if (time() - $time_buy >= $set_time_login) {
                     $this->session->unset_userdata('count');
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);
                     $this->cart->destroy();
                     redirect('cart');
                 } else {
+                    $number_noti = $this->Home_models->get_noti($login_user,'2');
+                    if($number_noti){
+                        $data['number_noti'] = count($number_noti);
+                    }else $data['number_noti'] = 0;
                     $user = $this->User_models->getinfo($login_user);
                     $address = $this->User_models->getaddress($login_user);
                     $city_data = $this->Home_models->get('tb_city');
@@ -248,12 +280,16 @@ class pay extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
+                if (time() - $time_buy >= $set_time_buy) {
                     $this->session->unset_userdata('count');
 //                    $cart = $this->cart->contents();
 //                    if(isset($cart)){
@@ -288,6 +324,10 @@ class pay extends CI_Controller{
                     $this->cart->destroy();
                     redirect('cart');
                 } else {
+                    $number_noti = $this->Home_models->get_noti($login_user,'2');
+                    if($number_noti){
+                        $data['number_noti'] = count($number_noti);
+                    }else $data['number_noti'] = 0;
                     $user = $this->User_models->getinfo($login_user);
                     $address = $this->User_models->getaddress($login_user);
                     $city_data = $this->Home_models->get('tb_city');
@@ -344,12 +384,16 @@ class pay extends CI_Controller{
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if (isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
+                if (time() - $time_buy >= $set_time_buy) {
                     $this->session->unset_userdata('count');
                     $err = "Phiên giao dịch của bạn đã hết hạn";
                     $this->session->set_flashdata('err', $err);

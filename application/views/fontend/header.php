@@ -85,7 +85,14 @@
                                 ?></sup></i>
                     </a>
                     <a href="">
-                        <i class = "fa fa-bell-o fa-2x"><sup>0</sup></i>
+                        <i class = "fa fa-bell-o fa-2x"><sup>
+                            <?php 
+                            if(isset($number_noti)){
+                                echo $number_noti;
+                            }else echo 0;
+
+                             ?>
+                        </sup></i>
                     </a>
                 </div>
             </div>

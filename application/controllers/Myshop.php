@@ -8,8 +8,12 @@ class Myshop extends CI_Controller
 		$data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -37,8 +41,12 @@ class Myshop extends CI_Controller
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -83,36 +91,34 @@ class Myshop extends CI_Controller
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 200000000000000000) {
-                    $this->session->unset_userdata('count');
-                    $err = "Phiên giao dịch của bạn đã hết hạn";
-                    $this->session->set_flashdata('err', $err);
-                    $this->cart->destroy();
-                    redirect('cart');
-                } else {
-                    $user = $this->User_models->getinfo($login_user);
-                    $address = $this->User_models->getaddress($login_user);
-                    if($user){
-                        foreach($user as $row){
-                            $data['id_user'] = $row->id_user;
-                            $data['user'] = $row->name;
-                            $data['avatar'] = $row->img;
-                        }
+                
+                $user = $this->User_models->getinfo($login_user);
+                $address = $this->User_models->getaddress($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
                     }
-                    if($address){
-                        $data['address'] = $address;
-                    }
-                    $max_num = $this->User_models->get_max_num_address($login_user);
-                    if($max_num){
-                       $data['max_num'] = $max_num;
-                    }
-                    $data['active'] = 1;
                 }
+                if($address){
+                    $data['address'] = $address;
+                }
+                $max_num = $this->User_models->get_max_num_address($login_user);
+                if($max_num){
+                   $data['max_num'] = $max_num;
+                }
+                $data['active'] = 1;
+                
             }
         } else{
             redirect('home');
@@ -128,58 +134,56 @@ class Myshop extends CI_Controller
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
-                    $this->session->unset_userdata('count');
-                    $err = "Phiên giao dịch của bạn đã hết hạn";
-                    $this->session->set_flashdata('err', $err);
-                    $this->cart->destroy();
-                    redirect('cart');
-                } else {
-                    $user = $this->User_models->getinfo($login_user);
-                    $address = $this->User_models->getaddress($login_user);
-                    $city_data = $this->Home_models->get('tb_city');
-                    $district_data = $this->Home_models->get('tb_district');
-                    $max_num = $this->User_models->get_max_num_address($login_user);
-                    if($max_num){
-                        if($max_num >= 5){
-                            $data['err'] = "Bạn chỉ có thể tạo 5 địa chỉ nhận hàng, cảm ơn!";
-                            redirect('myshop/address');
-                        }
-                    }
-                    if($user){
-                        foreach($user as $row){
-                            $data['id_user'] = $row->id_user;
-                            $data['user'] = $row->name;
-                            $data['avatar'] = $row->img;
-                        }
-                    }
-                    if($address){
-                        $data['address'] = $address;
-                    }
-                    if($city_data){
-                        $data['city'] = $city_data;
-                    }
-                    if($district_data){
-                        $data['district'] = $district_data;
-                    }
-                    $update = array('default'=>'0');
-                    $default = $this->User_models->default_address($login_user,$update);
-                    if($default){
-                        $id_infomation =  $this->input->post('address');
-                        $checked = array(
-                            'default' => '1',
-                        );
-                        $check = $this->User_models->checked_address($login_user,$id_infomation,$checked);
-                        if($check){
-                            redirect('myshop');
-                        }
+                
+                $user = $this->User_models->getinfo($login_user);
+                $address = $this->User_models->getaddress($login_user);
+                $city_data = $this->Home_models->get('tb_city');
+                $district_data = $this->Home_models->get('tb_district');
+                $max_num = $this->User_models->get_max_num_address($login_user);
+                if($max_num){
+                    if($max_num >= 5){
+                        $data['err'] = "Bạn chỉ có thể tạo 5 địa chỉ nhận hàng, cảm ơn!";
+                        redirect('myshop/address');
                     }
                 }
+                if($user){
+                    foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
+                    }
+                }
+                if($address){
+                    $data['address'] = $address;
+                }
+                if($city_data){
+                    $data['city'] = $city_data;
+                }
+                if($district_data){
+                    $data['district'] = $district_data;
+                }
+                $update = array('default'=>'0');
+                $default = $this->User_models->default_address($login_user,$update);
+                if($default){
+                    $id_infomation =  $this->input->post('address');
+                    $checked = array(
+                        'default' => '1',
+                    );
+                    $check = $this->User_models->checked_address($login_user,$id_infomation,$checked);
+                    if($check){
+                        redirect('myshop');
+                    }
+                }
+                
             }
         }else{
             redirect('home/login');
@@ -199,49 +203,47 @@ class Myshop extends CI_Controller
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
-                    $this->session->unset_userdata('count');
-                    $err = "Phiên giao dịch của bạn đã hết hạn";
-                    $this->session->set_flashdata('err', $err);
-                    $this->cart->destroy();
-                    redirect('cart');
-                } else {
-                    $user = $this->User_models->getinfo($login_user);
-                    $address = $this->User_models->getaddress($login_user);
-                    $city_data = $this->Home_models->get('tb_city');
-                    $district_data = $this->Home_models->get('tb_district');
-                    if($user){
-                        foreach($user as $row){
-                            $data['id_user'] = $row->id_user;
-                            $data['user'] = $row->name;
-                            $data['avatar'] = $row->img;
-                        }
-                    }
-                    if($address){
-                        $data['address'] = $address;
-                    }
-                    if($city_data){
-                        $data['city'] = $city_data;
-                    }
-                    if($district_data){
-                        $data['district'] = $district_data;
-                    }
-                    if($address){
-                        $data['address'] = $address;
-                    }
-                    $max_num = $this->User_models->get_max_num_address($login_user);
-                    if($max_num){
-                        if($max_num >= 5){
-                            $data['err'] = "Bạn chỉ có thể tạo 5 địa chỉ nhận hàng, cảm ơn!";
-                            redirect('myshop/address');
-                        }
+                
+                $user = $this->User_models->getinfo($login_user);
+                $address = $this->User_models->getaddress($login_user);
+                $city_data = $this->Home_models->get('tb_city');
+                $district_data = $this->Home_models->get('tb_district');
+                if($user){
+                    foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
                     }
                 }
+                if($address){
+                    $data['address'] = $address;
+                }
+                if($city_data){
+                    $data['city'] = $city_data;
+                }
+                if($district_data){
+                    $data['district'] = $district_data;
+                }
+                if($address){
+                    $data['address'] = $address;
+                }
+                $max_num = $this->User_models->get_max_num_address($login_user);
+                if($max_num){
+                    if($max_num >= 5){
+                        $data['err'] = "Bạn chỉ có thể tạo 5 địa chỉ nhận hàng, cảm ơn!";
+                        redirect('myshop/address');
+                    }
+                }
+                
             }
         }else{
             redirect('home');
@@ -257,79 +259,76 @@ class Myshop extends CI_Controller
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
         $time_buy = $this->session->userdata('time_buy');
-        if(isset($login_user)) {
-            if (time() - $time_out >= 30000000000000000000000000) {
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             } else {
-                if (time() - $time_buy >= 1000000000000000000000) {
-                    $this->session->unset_userdata('count');
-                    $err = "Phiên giao dịch của bạn đã hết hạn";
-                    $this->session->set_flashdata('err', $err);
-                    $this->cart->destroy();
-                    redirect('cart');
-                } else {
-                    $user = $this->User_models->getinfo($login_user);
-                    $address = $this->User_models->getaddress($login_user);
-                    $city_data = $this->Home_models->get('tb_city');
-                    $district_data = $this->Home_models->get('tb_district');
-                    $max_num = $this->User_models->get_max_num_address($login_user);
-                    if($max_num){
-                        if($max_num >= 5){
-                            $data['err'] = "Bạn chỉ có thể tạo 5 địa chỉ nhận hàng, cảm ơn!";
+                $user = $this->User_models->getinfo($login_user);
+                $address = $this->User_models->getaddress($login_user);
+                $city_data = $this->Home_models->get('tb_city');
+                $district_data = $this->Home_models->get('tb_district');
+                $max_num = $this->User_models->get_max_num_address($login_user);
+                if($max_num){
+                    if($max_num >= 5){
+                        $data['err'] = "Bạn chỉ có thể tạo 5 địa chỉ nhận hàng, cảm ơn!";
+                        redirect('myshop/address');
+                    }
+                }
+                if($user){
+                    foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
+                    }
+                }
+                if($address){
+                    $data['address'] = $address;
+                }
+                if($city_data){
+                    $data['city'] = $city_data;
+                }
+                if($district_data){
+                    $data['district'] = $district_data;
+                }
+                $name = $this->input->post('name');
+                $phone = $this->input->post('phone');
+                $city = $this->input->post('city');
+                $district = $this->input->post('district');
+                $address = $this->input->post('address');
+                if(isset($name)
+                    && isset($phone)
+                    &&isset($address)
+                    && $city!="0"
+                    && $district!="0"
+                ){
+                    $update = array('default'=>'0');
+                    $default = $this->User_models->default_address($login_user,$update);
+                    if($default){
+                        $add_address = array(
+                            'id_user'=>$login_user,
+                            'name'=>$name,
+                            'phone'=>$phone,
+                            'address'=>$address,
+                            'id_district'=>$district,
+                            'id_city'=>$city,
+                            'default'=>'1',
+                        );
+                        $add_address = $this->User_models->add_address($add_address);
+                        if($add_address){
                             redirect('myshop/address');
                         }
                     }
-                    if($user){
-                        foreach($user as $row){
-                            $data['id_user'] = $row->id_user;
-                            $data['user'] = $row->name;
-                            $data['avatar'] = $row->img;
-                        }
-                    }
-                    if($address){
-                        $data['address'] = $address;
-                    }
-                    if($city_data){
-                        $data['city'] = $city_data;
-                    }
-                    if($district_data){
-                        $data['district'] = $district_data;
-                    }
-                    $name = $this->input->post('name');
-                    $phone = $this->input->post('phone');
-                    $city = $this->input->post('city');
-                    $district = $this->input->post('district');
-                    $address = $this->input->post('address');
-                    if(isset($name)
-                        && isset($phone)
-                        &&isset($address)
-                        && $city!="0"
-                        && $district!="0"
-                    ){
-                        $update = array('default'=>'0');
-                        $default = $this->User_models->default_address($login_user,$update);
-                        if($default){
-                            $add_address = array(
-                                'id_user'=>$login_user,
-                                'name'=>$name,
-                                'phone'=>$phone,
-                                'address'=>$address,
-                                'id_district'=>$district,
-                                'id_city'=>$city,
-                                'default'=>'1',
-                            );
-                            $add_address = $this->User_models->add_address($add_address);
-                            if($add_address){
-                                redirect('myshop/address');
-                            }
-                        }
-                    }else{
-                        $err = "Vui lòng kiểm tra thông tin Tỉnh / Thành và Quận / Huyện";
-                        $this->session->set_flashdata('err',$err);
-                        redirect('myshop/add_address');
-                    }
+                }else{
+                    $err = "Vui lòng kiểm tra thông tin Tỉnh / Thành và Quận / Huyện";
+                    $this->session->set_flashdata('err',$err);
+                    redirect('myshop/add_address');
                 }
+                
             }
         }else{
             redirect('home/login');

@@ -29,8 +29,12 @@ class revenue extends CI_Controller
         if(isset($get_all)){
         	$data['all_invoice'] = $get_all;
         }
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -67,8 +71,12 @@ class revenue extends CI_Controller
 		$data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -112,8 +120,12 @@ class revenue extends CI_Controller
 		$data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{

@@ -142,6 +142,10 @@ class Invoice_models extends CI_Model{
             return $query->result();
         }else return false;
     }
+    function buyer_getinfo($id_detail){
+        $this->db->where('id_detail',$id_detail);
+        // $this->db->
+    }
     
 }
 

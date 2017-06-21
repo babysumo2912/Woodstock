@@ -21,8 +21,31 @@ class home extends CI_Controller{
 	        			$add_notification = array(
 	        				'id_user' => $cthd->id_user,
 	        				'content' => $content,
+	        				'oop' => '1',
 	        				);
 	        			$this->Home_models->add_notification($add_notification);
+	        			$product = $this->Home_models->getinfo('tb_product','id_product',$cthd->id_product);
+	        			if($product){
+	        				foreach ($product as $key) {};
+	        				$soluong = $key->number + $cthd->qty;
+	        				$data_update_product = array(
+	        					'number' => $soluong,
+	        					);
+	        				$update_num = $this->Product_models->update($cthd->id_product,$data_update_product);
+	        			}else{
+	        				$data_add_product = array(
+	        					'id_product' => $cthd->id_product,
+	        					'id_user' => $cthd->id_user,
+	        					'name' => $cthd->name,
+	        					'img' => $cthd->img,
+	        					'id_catalog' => '11',
+	        					'price' => $cthd->price,
+	        					'number'=>$cthd->qty,
+	        					'id_status' => '1',
+	        					'active' => '1',
+	        				);
+	        				$add = $this->Product_models->add($data_add_product);
+	        			}
 	        		}
 	        	}
 

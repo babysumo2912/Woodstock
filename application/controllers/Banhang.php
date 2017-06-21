@@ -4,8 +4,12 @@ class Banhang extends CI_Controller{
         $data = array();
         $login_user = $this->session->userdata('session_user');
         $time_out = $this->session->userdata('time_out_login');
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -28,6 +32,10 @@ class Banhang extends CI_Controller{
                     }
                 }else $data_number = 0;
                 $data['number_invoice'] = $data_number;
+                $number_noti = $this->Home_models->get_noti($login_user,'1');
+                if($number_noti){
+                    $data['number_noti'] = count($number_noti);
+                }else $data['number_noti'] = 0;
             $this->load->view('fontend_bh/banhang',$data);
             }
         }else{

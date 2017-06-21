@@ -46,12 +46,12 @@ Là chủ shop, bạn vui lòng đọc kĩ và tuân thủ <b><a href="">Chính 
             </div>
             <div class = "col-md-3 col-sm-4 col-xs-6">
                 <div class = "catalog_bh">
-                    <a href="">
+                    <a href="<?php echo base_url() ?>sale/notification">
                         <div class = "icon_catalog">
                             <i class = "fa fa-bell-o fa-4x"></i>
                         </div>
                         <div class = "text-center">
-                            <p>Thông báo</p>
+                            <p>Thông báo <sup><?php echo $number_noti ?></sup></p>
                         </div>
                     </a>
                 </div>

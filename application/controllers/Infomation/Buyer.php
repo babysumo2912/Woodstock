@@ -12,8 +12,12 @@ class buyer extends CI_Controller{
         if(isset($err)){
             $data['err'] = $err;
         }
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             }else{
@@ -48,8 +52,12 @@ class buyer extends CI_Controller{
         if(isset($err)){
             $data['err'] = $err;
         }
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('home');
             }else{
@@ -70,7 +78,34 @@ class buyer extends CI_Controller{
                 $this->load->view('fontend/user',$data);
             }
         }else{
-            $this->load->view('fontend/user',$data);
+            redirect('home');
+        }
+    }
+    public function remove_invoice($detail_invoice){
+        $data = array();
+        $login_user = $this->session->userdata('session_user');
+        $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
+        $err = $this->session->flashdata('err');
+        if(isset($err)){
+            $data['err'] = $err;
+        }
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
+                $this->session->sess_destroy();
+                redirect('home');
+            }else{
+                // $this->Home_models->
+            }
+        }else{
+            redirect('home');
         }
     }
 }

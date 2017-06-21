@@ -266,6 +266,10 @@ class product extends CI_Controller{
                 $data['user'] = $row->name;
                 $data['avatar'] = $row->img;
             }
+            $number_noti = $this->Home_models->get_noti($login_user,'2');
+            if($number_noti){
+                $data['number_noti'] = count($number_noti);
+            }else $data['number_noti'] = 0;
         }
         $getinfo = $this->Product_models->getinfo($id_product);
         if($getinfo){

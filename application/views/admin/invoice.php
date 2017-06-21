@@ -112,7 +112,7 @@ if(!isset($invoice)){
 			<td><?php echo $i ?></td>
 			<td>
 				<div class="avatar1" style="background:url('<?php echo base_url() ?>/public/img/product/<?php echo $cthd->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
-                &nbsp;<a href="#"><?php echo $cthd->name?></a>
+                &nbsp;<a href="<?php echo base_url()?>shop/view/<?php echo $cthd->id_user ?>" target="_blank"><?php echo $cthd->name?></a>
 			</td>
 			<td>
 				<?php echo number_format($cthd->price) ?>
@@ -197,7 +197,7 @@ if(!isset($invoice)){
 						echo "Thanh toán";
 						break;
 					default:
-						echo "Đơn hàng";
+						echo "Đơn đã bị hủy";
 				}
 			}
 
