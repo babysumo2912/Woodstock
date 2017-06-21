@@ -86,8 +86,9 @@ class Invoice_models extends CI_Model{
                 $this->db->where('id_invoice',$id_invoice);
                 $active_invoice = $this->db->update('tb_invoice',$data);
             }
+            return true;
         }
-        return true;
+        return false;
     }
     function invoice_admin($active){
         $this->db->where('active',$active);
@@ -96,6 +97,34 @@ class Invoice_models extends CI_Model{
             return $query->result();
         }else return false;
     }
+
+    function invoice_detail_admin($active){
+        $this->db->where('active',$active);
+        $query = $this->db->get('tb_invoice_detail');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else return false;
+    }
+
+    function ban_invoice($id_detail,$data){
+        $this->db->where('id_detail',$id_detail);
+        $query = $this->db->update('tb_invoice_detail',$data);
+        if($query){
+            $this->db->where('id_invoice', $data['id_invoice']);
+            $hd = $this->db->get('tb_invoice_detail');
+            $num_hd = $hd->num_rows();
+            $this->db->where('id_invoice',$data['id_invoice']);
+            $this->db->where('active',$data['active']);
+            $cthd = $this->db->get('tb_invoice_detail');
+            $num_cthd = $cthd->num_rows();
+            if($num_hd == $num_cthd){
+                $this->db->where('id_invoice',$data['id_invoice']);
+                $active_invoice = $this->db->update('tb_invoice',$data);
+            }
+            return true;
+        }else return true;
+    }
+
     function get_money($id_user){
         $this->db->where('id_user',$id_user);
         $this->db->where('active',3);

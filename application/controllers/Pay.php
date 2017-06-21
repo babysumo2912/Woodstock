@@ -423,7 +423,7 @@ class pay extends CI_Controller{
                                     'price' => $price,
                                     'subtotal' => $subtotal,
                                     'active' => '0',
-                                    'time' => time();
+                                    'time' => time(),
                                 );
                                 $this->User_models->add_invoice_detail($data_invoice_detail);
                                 $id_product = $cart['id'];

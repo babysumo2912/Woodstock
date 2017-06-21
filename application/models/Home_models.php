@@ -21,6 +21,10 @@ class Home_models extends CI_Model{
             return $getinfo->result();
         }else return false;
     }
+    function add_notification($data){
+        $this->db->insert('tb_notification',$data);
+        return true;
+    }
 }
 
 ?>
