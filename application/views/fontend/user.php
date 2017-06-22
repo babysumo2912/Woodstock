@@ -8,24 +8,26 @@ if(isset($account)){
 <section class="ccc">
     <div class="max row">
         <div class="col-md-3">
-            <div>
-                <div style = "height: 300px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>') center; background-size: cover"></div>
-            </div>
-            <div class="account">
-                <ul>
-                    <li>
-                        <a href="<?php echo base_url() ?>infomation/buyer"><?php echo $acc->name ?></a>
-                    </li>
-                    <li>
-                        <a href="">Thông báo <sup class="badge">0</sup></a>
-                    </li>
-                    <li>
-                        <a href="">Tin nhắn <sup class="badge">0</sup></a>
-                    </li>
-                    <li>
-                        <a href="">Cài đặt <sup>0</sup></a>
-                    </li>
-                </ul>
+            <div class="content_pay">
+                <div>
+                    <div style = "height: 300px;background:url('<?php echo base_url()?>public/img/user/avatar/<?php echo $acc->img?>') center; background-size: cover"></div>
+                </div>
+                <div class="account">
+                    <ul>
+                        <li>
+                            <a href="<?php echo base_url() ?>infomation/buyer"><?php echo $acc->name ?></a>
+                        </li>
+                        <li>
+                            <a href="">Thông báo <sup class="badge">0</sup></a>
+                        </li>
+                        <li>
+                            <a href="">Tin nhắn <sup class="badge">0</sup></a>
+                        </li>
+                        <li>
+                            <a href="">Cài đặt</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-md-9 content_pay">
@@ -77,6 +79,16 @@ if(isset($account)){
                     }else $title = "Đơn hàng chờ xác nhận";
                 ?>
                 <h3 class="text-center"><?php echo $title;?></h3>
+                <?php 
+                if(isset($err)){
+                ?>
+                <div class="alert alert-danger">
+                    <p><i class="fa fa-warning"></i> <?php echo $err; ?></p>
+                </div>
+                <?php
+                }
+
+                 ?>
                 <?php
                 foreach($invoice as $hd){
                 ?>
@@ -105,7 +117,16 @@ if(isset($account)){
                             $money = 0;
                             foreach($invoice_detail as $hd_ct){
                     ?>
-                        <tr>
+                        <tr 
+                        <?php 
+                        if($hd_ct->active == '4'){
+                        ?>
+                        style="background: #ccc"
+                        <?php
+                        }
+
+                         ?>
+                        >
                             <td><?php echo $i;?></td>
                             <td>
                                 <div class="row" style="padding: 5px">
@@ -181,7 +202,9 @@ if(isset($account)){
                         </tr>
                     <?php
                                 $i++;
-                                $money+=$hd_ct->subtotal;
+                                if($hd_ct->active != 4){
+                                    $money+=$hd_ct->subtotal;
+                                }
                             }
                         }
                     ?>

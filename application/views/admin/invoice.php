@@ -33,7 +33,7 @@ if(!isset($invoice)){
 					echo "Đơn hàng bị hủy";
 					break;
 				default:
-					echo "Đơn hàng chờ xác nhận";
+					echo "Đơn hàng hoàn về";
 					break;
 			}
 		}
@@ -56,7 +56,8 @@ if(!isset($invoice)){
 	</div>
 	<?php 
 	if(isset($invoice)){
-		foreach($invoice as $hd){
+		foreach($invoice as $hd)
+		{
 	?>
 	<div style="margin: 20px 0; border: 1px #ccc solid; box-shadow: 2px 2px 4px #ccc; padding: 20px">
 		<p><i class="fa fa-calendar"></i>&nbsp;<?php echo substr($hd->date,0,10) ?></p>
@@ -95,6 +96,7 @@ if(!isset($invoice)){
 				$i = 0;
 				foreach ($invoice_detail as $cthd) {
 					$i++;
+					$infomation_shop = $this->User_models->getinfo($cthd->id_user);
 					$account = $this->User_models->get_address_default($cthd->id_user);
 					if($account){
 						foreach ($account as $add) {};
@@ -108,7 +110,16 @@ if(!isset($invoice)){
 						}
 					}
 		?>
-		<tr>	
+		<tr
+		<?php 
+		if($cthd->active == '4'){
+		?>
+		style="background: #ccc"
+		<?php
+		}
+
+		 ?>
+		>	
 			<td><?php echo $i ?></td>
 			<td>
 				<div class="avatar1" style="background:url('<?php echo base_url() ?>/public/img/product/<?php echo $cthd->img ?>') center; background-size: cover;margin:0; padding: 0"></div>
@@ -131,7 +142,13 @@ if(!isset($invoice)){
 					echo $add->phone.'<br>';
 				 ?>
 					<?php echo $add->address?> - <?php echo $dtr->district ?> - <?php echo $tp->city ?>
-				<?php }else echo ""; ?>
+				<?php }else 
+				if($infomation_shop){
+					foreach ($infomation_shop as $ifmt) {};
+					echo $ifmt->phone;
+				}
+
+				 ?>
 			</td>
 			<td>
 				<?php 
@@ -187,17 +204,23 @@ if(!isset($invoice)){
 						break;
 					case '1':
 					?>
-					<a href="" class="btn btn-primary"><i class="fa fa-truck"></i> Lấy hàng</a>
+					<a href="<?php echo base_url() ?>admin/invoice/click_active/<?php echo $hd->id_invoice ?>/2" class="btn btn-primary"><i class="fa fa-truck"></i> Lấy hàng</a>
 					<?php
 						break;
 					case '2':
-						echo "Hoàn thành";
+					?>
+					<a href="<?php echo base_url() ?>admin/invoice/click_active/<?php echo $hd->id_invoice ?>/3" class="btn btn-primary"><i class="fa fa-check"></i> Hoàn thành</a>
+					<a href="<?php echo base_url() ?>admin/invoice/click_active/<?php echo $hd->id_invoice ?>/5" class="btn btn-success"><i class="fa fa-undo"></i> Hoàn về</a>
+					<?php
 						break;
 					case '3':
-						echo "Thanh toán";
+						echo "Đơn hàng đã hoàn thành";
+						break;
+					case '4':
+						echo "Đơn hàng đã bị hủy";
 						break;
 					default:
-						echo "Đơn đã bị hủy";
+						echo "Đơn đã hoàn về";
 				}
 			}
 

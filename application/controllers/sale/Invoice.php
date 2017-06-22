@@ -142,5 +142,22 @@ class invoice extends CI_Controller{
         }
 
     }
+    public function view($shipping_code){
+        $data = array();
+        $login_user = $this->session->userdata('session_user');
+        $user = $this->User_models->getinfo($login_user);
+        if($user){
+            foreach($user as $row){
+                $data['user'] = $row->name;
+                $data['avatar'] = $row->img;
+            }
+        }
+        $invoice = $this->Home_models->getinfo('tb_invoice','shipping_code',$shipping_code);
+        if($invoice){
+            $data['invoice'] = $invoice;
+        }
+        $this->load->view('fontend_bh/view_invoice_info',$data);
+            
+    }
 }
 ?>

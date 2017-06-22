@@ -6,7 +6,7 @@
         'class' => 'form-group'
     )
     ?>
-    <?php echo form_open('home/register', $style)?>
+    
         <fieldset>
             <legend>ĐĂNG KÍ</legend>
             <?php
@@ -29,6 +29,23 @@
                 <?php
             }
             ?>
+            <?php 
+            echo form_open('home/verty');
+
+             ?>
+             <div class="input-group">
+                <input name="phone" type="tel" pattern="([0]{1})([0-9]{9,})" placeholder="Điền số điện thoại..." required class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Gửi mã kích hoạt</button>
+                </span>
+            </div>
+            <?php echo form_close(); ?>
+            <br>
+            <?php echo form_open('home/register', $style)?>
+            <div class = "form-group">
+                <lable>Nhập mã kích hoạt <span>(*)</span></lable>
+                <input type="text" class = "form-control" required name = "verty">
+            </div>
             <div class = "form-group">
                 <lable>Tài khoản <span>(*)</span></lable>
                 <input type="text" class = "form-control" required name = "account">
@@ -51,7 +68,7 @@
             <div class = "form-group text-center">
                 <input type="submit" class = "btn btn-default" value = "Đăng kí">
             </div>
+            <?php echo form_close()?>
         </fieldset>
-    <?php echo form_close()?>
 </div>
 <?php include 'footer.php'?>

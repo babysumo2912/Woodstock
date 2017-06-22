@@ -115,9 +115,42 @@ class home extends CI_Controller{
             $this->load->view('fontend/login',$data);
         }
     }
+    function verty(){
+        $phone = $this->input->post('phone');
+        if(isset($phone)){
+            $verty = rand(100000,999999);
+            $session = array(
+                'verty' => $verty,
+                'phone' => $phone,
+                );
+            $this->session->set_userdata($session);
+            $APIKey="44CB7DA1835ADF3785E3DD69FD1E4B";
+            $SecretKey="6C47C73FE98DCF7A31D2A90B625347";
+            $YourPhone=$phone;
+            $Content='Mã xác nhận tài khoản của bạn là: '.$verty;
+            
+            $SendContent=urlencode($Content);
+            $data="http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?Phone=$YourPhone&ApiKey=$APIKey&SecretKey=$SecretKey&Content=$SendContent&SmsType=4";
+            
+            $curl = curl_init($data); 
+            curl_setopt($curl, CURLOPT_FAILONERROR, true); 
+            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true); 
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
+            $result = curl_exec($curl); 
+                
+            $obj = json_decode($result,true);
+            if($obj['CodeResult']!=100)
+            {
+            
+                print "ErrorMessage:".$obj['ErrorMessage'];
+            }else redirect('home/register');
+        }
+    }
     function register(){
         $login_user = $this->session->userdata('session_user');
         $session_captcha = $this->session->userdata('captcha');
+        $session_verty = $this->session->userdata('verty');
+        $session_phone = $this->session->userdata('phone');
         if(isset($login_user)){
             redirect('home');
             die();
@@ -126,7 +159,12 @@ class home extends CI_Controller{
         $password = $this->input->post('password');
         $re_password = $this->input->post('re_password');
         $captcha = $this->input->post('captcha');
-        if(isset($account) && isset($password) && isset($re_password)&&isset($captcha)){
+        // $verty = $this->input->post('verty');
+        if(isset($account) && isset($password) && isset($re_password)&&isset($captcha) && isset($verty)){
+            if($verty!=$session_verty){
+                $err['err'] = "Mã kích hoạt không chính xác!";
+                $this->load->view('fontend/register',$err);
+            }
             $word = substr(md5(rand(0,99)),15,5);
             $vals = array(
             'word' => $word,
@@ -154,6 +192,7 @@ class home extends CI_Controller{
                         'name' => $account,
                         'password' => md5($password),
                         'img' => 'default.jpg',
+                        'phone' => $session_phone,
                     );
                     $register = $this->User_models->register($data); 
                     if($register == false){

@@ -13,9 +13,12 @@ class product extends CI_Controller{
         if(isset($count)){
             $data['count'] = $count;
         }else $data['count'] = 0;
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
-                $this->session->sess_destroy();
+            if(time() - $time_out >=$set_time_login){
                 redirect('banhang');
             }else{
             $number_bicam = $this->Product_models->get_active($login_user,'2');
@@ -60,8 +63,12 @@ class product extends CI_Controller{
         if(isset($count)){
             $data['count'] = $count;
         }else $data['count'] = 0;
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -107,8 +114,12 @@ class product extends CI_Controller{
         if(isset($count)){
             $data['count'] = $count;
         }else $data['count'] = 0;
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
         if(isset($login_user)){
-            if(time() - $time_out >=30000000000000){
+            if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
                 redirect('banhang');
             }else{
@@ -314,6 +325,7 @@ class product extends CI_Controller{
             );
             $add_comment = $this->Product_models->commnent($data);
             if ($add_comment) {
+                
                 redirect('product/view/'.$id_product);
 //                echo json_encode($data);
             }

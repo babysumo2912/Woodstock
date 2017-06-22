@@ -179,7 +179,7 @@ include'header.php';
                         echo "Đã hủy";
                         break;
                     default:
-                        echo "Chờ xác nhận";
+                        echo "Hoàn hàng";
                 }
                 ?>
             </b>
