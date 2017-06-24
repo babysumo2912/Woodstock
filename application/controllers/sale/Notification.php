@@ -27,8 +27,13 @@ class notification extends CI_Controller
                 }
                 $notification = $this->Home_models->get_noti($login_user,'1');
                 if($notification){
-                	$data['noti'] = $notification;
+                	// $data['noti'] = $notification;
                 	$data['number_noti'] = count($notification);
+                }
+                $data_notification = $this->Home_models->getinfodesc_noti('tb_notification','id_user',$login_user,'id_tb','1');
+                if($data_notification){
+                    $data['noti'] = $data_notification;
+                    // $data['number_noti'] = count($notification);
                 }
                 $this->load->view('fontend_bh/notification',$data);
             }

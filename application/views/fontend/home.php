@@ -19,7 +19,7 @@
                 foreach ($catalog as $key) {
             ?>
                 <li>
-                    <a href="#"><?php echo $key->name?></a>
+                    <a href="<?php echo base_url()?>home/catalog/<?php echo $key->id_catalog?>"><?php echo $key->name?></a>
                 </li>
             <?php
                 }
@@ -58,8 +58,16 @@
 <section class = "max">
     <div class = "center">
         <div class = "title">
-            <p>GỢI Ý HÔM NAY</p>
-            <a href="#">Xem tất cả <i class = "fa fa-angle-double-right"></i></a>
+            <p><?php 
+            if(isset($search)){
+                echo 'Từ khóa: "'.$search.'"';
+            }else{
+                if(isset($catalog_info)){
+                    echo $catalog_info;  
+                }else echo "Gợi ý hôm nay";
+            }
+            ?></p>
+            <a href="<?php echo base_url() ?>">Xem tất cả <i class = "fa fa-angle-double-right"></i></a>
         </div>
         <!--product-->
         <?php if(isset($product)){
@@ -91,6 +99,13 @@
         </div>
         <?php 
             }
+        }else{
+        ?>
+        <div class="text-center" style="margin-top: 70px">
+            <img src="<?php echo base_url() ?>public/img/style/noproduct.png">
+            <p style="font-size: 18px;margin-top:10px">Rất tiếc, chúng tôi không tìm thấy sản phẩm bạn yêu cầu!</p>
+        </div>
+        <?php
         }
         ?>
         <!--end product-->

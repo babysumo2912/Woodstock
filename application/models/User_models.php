@@ -1,12 +1,12 @@
 <?php
 class User_models extends CI_Model{
-    function get($data){
-        $this->db->where('account',$data['account']);
-        $get = $this->db->get('tb_user');
-        if($get->num_rows() > 0){
-            return $get->result();
-        }else return false;
-    }
+    // function get($data){
+    //     $this->db->where('id_user',$data);
+    //     $get = $this->db->get('tb_user');
+    //     if($get->num_rows() > 0){
+    //         return $get->result();
+    //     }else return false;
+    // }
     function getall(){
         $query = $this->db->get('tb_user');
         if($query->num_rows() > 0){
@@ -44,7 +44,7 @@ class User_models extends CI_Model{
                 $this->db->where('password',$data['password']);
                 $login = $this->db->get('tb_user');
                 if($login->num_rows() > 0){
-                    return 0;
+                    return $login->result();
                 }else return 1;
             }else return 3;
         }else return 2;
@@ -123,6 +123,31 @@ class User_models extends CI_Model{
         $this->db->where('id_user',$id_user);
         $query = $this->db->update('tb_user',$data);
         return true;
+    }
+
+    function messenger_idroom($id_user,$oop){
+        $this->db->group_by('id_room');
+        $this->db->where('id_user',$id_user);
+        $this->db->where('oop',$oop);
+        $get = $this->db->get('tb_chat_content');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+
+    }
+    function messenger_iduser($id_room){
+        $this->db->group_by('id_user');
+        $this->db->where('id_room',$id_room);
+        $get = $this->db->get('tb_chat_content');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
+    function add_messenger($data){
+        $add = $this->db->insert('tb_chat_content',$data);
+        if($add){
+            return true;
+        }else return false;
     }
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2017 at 12:08 AM
+-- Generation Time: Jun 24, 2017 at 02:03 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -69,6 +69,72 @@ INSERT INTO `tb_catalog` (`id_catalog`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_chat_content`
+--
+
+CREATE TABLE `tb_chat_content` (
+  `id_content` int(11) NOT NULL,
+  `id_room` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `active` int(11) NOT NULL,
+  `oop` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_chat_content`
+--
+
+INSERT INTO `tb_chat_content` (`id_content`, `id_room`, `id_user`, `content`, `time`, `active`, `oop`) VALUES
+(1, 1, 7, 'abc', '2017-06-23 19:27:11', 0, 1),
+(2, 1, 6, 'abc123', '2017-06-23 19:28:33', 0, 0),
+(3, 1, 7, 'abc12344', '2017-06-23 19:27:11', 0, 1),
+(4, 1, 7, 'abc12344iiiii', '2017-06-23 19:27:11', 0, 1),
+(5, 1, 6, 'sdaqqweasda', '2017-06-23 19:28:33', 0, 0),
+(6, 2, 6, 'hello', '2017-06-23 19:28:33', 0, 0),
+(7, 2, 8, 'hello 1', '2017-06-23 08:51:10', 0, 1),
+(8, 2, 6, 'hello 2', '2017-06-23 19:28:33', 0, 0),
+(9, 3, 10, 'hello 1', '2017-06-23 19:03:25', 0, 1),
+(10, 3, 9, 'hello 1', '2017-06-23 19:05:13', 0, 0),
+(11, 1, 7, 'abc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiii', '2017-06-23 19:27:11', 0, 1),
+(12, 1, 7, 'abc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiii', '2017-06-23 19:27:11', 0, 1),
+(13, 1, 7, 'abc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiii', '2017-06-23 19:27:11', 0, 1),
+(14, 1, 7, 'abc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiiiabc12344iiiii', '2017-06-23 19:27:11', 0, 1),
+(15, 1, 6, 'ad', '2017-06-23 22:45:11', 0, 0),
+(16, 1, 6, 'hello', '2017-06-23 22:45:28', 0, 0),
+(17, 1, 6, 'hello', '2017-06-23 22:45:32', 0, 0),
+(18, 1, 6, 'shop ban hang rat uy tin', '2017-06-23 22:46:05', 0, 0),
+(19, 2, 6, 'sao ban khong chao lai minh', '2017-06-23 22:46:41', 0, 0),
+(20, 2, 6, 'a', '2017-06-23 23:52:35', 0, 0),
+(21, 2, 6, 'alo', '2017-06-23 23:52:42', 0, 0),
+(22, 2, 6, 'Lan Anh oi', '2017-06-23 23:52:53', 0, 0),
+(23, 2, 6, 'Yeu em', '2017-06-23 23:52:59', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_chat_room`
+--
+
+CREATE TABLE `tb_chat_room` (
+  `id_room` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_chat_room`
+--
+
+INSERT INTO `tb_chat_room` (`id_room`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_city`
 --
 
@@ -99,6 +165,14 @@ CREATE TABLE `tb_comment` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `like` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_comment`
+--
+
+INSERT INTO `tb_comment` (`id_comment`, `id_product`, `id_user`, `content`, `date`, `like`) VALUES
+(1, 25, 6, '', '2017-06-23 22:30:52', 0),
+(2, 25, 6, '&lt;h1&gt;Test doan html &lt;/h1&gt;', '2017-06-23 22:32:08', 0);
 
 -- --------------------------------------------------------
 
@@ -178,8 +252,7 @@ CREATE TABLE `tb_invoice` (
 --
 
 INSERT INTO `tb_invoice` (`id_invoice`, `id_user`, `name`, `phone`, `address`, `district`, `city`, `note`, `date`, `money`, `tranformer`, `shipping_code`, `active`) VALUES
-(1, 7, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38, ngõ 487 Cổ Nhuế', 'Huyen Tu Liem', 'Hà Nội', NULL, '2017-06-21 21:16:27', 9000000, '', 'c4ca4238a0', 4),
-(2, 9, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38C, ngõ 487, Cổ Nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-22 22:07:54', 11800000, '', 'c81e728d9d', 3);
+(1, 9, 'Trần Ngọc Đức', '01654565270', 'Số nhà 38C, ngõ 487, Cổ Nhuế', 'Huyện Từ Liêm', 'Hà Nội', NULL, '2017-06-23 23:20:39', 990000, '', 'c4ca4238a0', 4);
 
 -- --------------------------------------------------------
 
@@ -206,9 +279,7 @@ CREATE TABLE `tb_invoice_detail` (
 --
 
 INSERT INTO `tb_invoice_detail` (`id_detail`, `id_invoice`, `id_product`, `id_user`, `name`, `img`, `price`, `qty`, `subtotal`, `active`, `time`) VALUES
-(1, 1, 25, 6, 'Iphone 6', 'Iphone6.jpg', 9000000, 1, 9000000, 4, 0),
-(2, 2, 29, 8, 'BlueAnt Wireless Waterproof Headphones', 'Tai_nghe11.jpg', 2800000, 1, 2800000, 4, 1498045839),
-(3, 2, 25, 6, 'Iphone 6', 'Iphone6.jpg', 9000000, 1, 9000000, 3, 1498045839);
+(1, 1, 27, 6, 'Beats Snarkitecture Headphones', 'Tai_nghe1.jpg', 990000, 1, 990000, 4, 1498259972);
 
 -- --------------------------------------------------------
 
@@ -224,25 +295,6 @@ CREATE TABLE `tb_notification` (
   `active` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_notification`
---
-
-INSERT INTO `tb_notification` (`id_tb`, `id_user`, `oop`, `content`, `active`, `time`) VALUES
-(31, 6, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 0, '2017-06-22 21:02:01'),
-(32, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(33, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(34, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(35, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(36, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(37, 6, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoảnbabysumo_no2</a>', 0, '2017-06-22 21:07:14'),
-(38, 6, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoản babysumo_no2</a>', 0, '2017-06-22 21:11:01'),
-(39, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoản babysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(40, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoản babysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(41, 8, 1, '<a href=\"http://localhost/shopee//sale/invoice/view/c81e728d9d\">Đơn hàng <b>c81e728d9d</b> đã bị  hủy bởi tài khoản babysumo_no2</a>', 1, '2017-06-22 21:59:23'),
-(42, 8, 1, 'Đơn hàng <b>c81e728d9d</b> đã bị  hủy do quá thời gian xác nhận', 1, '2017-06-22 21:59:23'),
-(43, 8, 1, 'Đơn hàng <b>c81e728d9d</b> đã bị  hủy do quá thời gian xác nhận', 1, '2017-06-22 21:59:23');
 
 -- --------------------------------------------------------
 
@@ -270,7 +322,7 @@ CREATE TABLE `tb_product` (
 
 INSERT INTO `tb_product` (`id_product`, `id_user`, `name`, `img`, `discribe`, `id_catalog`, `price`, `number`, `id_status`, `like`, `active`) VALUES
 (25, 6, 'Iphone 6', 'Iphone6.jpg', '', 11, 9000000, 8, 1, 0, 1),
-(27, 6, 'Beats Snarkitecture Headphones', 'Tai_nghe1.jpg', 'Được thiết kế lại hoàn toàn, tai nghe đeo tai của Beats Studio thậm chí còn sáng hơn, mạnh hơn và thoải mái hơn, và chính xác hơn thiết kế nổi tiếng thế giới.<br />\r\nHọ cung cấp mạnh mẽ, tái thiết kế âm thanh một mình với Adaptive Noise Cancelling, một pin sạc được 20 giờ, và điều khiển Remote Talk.', 5, 990000, 30, 1, 0, 1),
+(27, 6, 'Beats Snarkitecture Headphones', 'Tai_nghe1.jpg', 'Được thiết kế lại hoàn toàn, tai nghe đeo tai của Beats Studio thậm chí còn sáng hơn, mạnh hơn và thoải mái hơn, và chính xác hơn thiết kế nổi tiếng thế giới.<br />\r\nHọ cung cấp mạnh mẽ, tái thiết kế âm thanh một mình với Adaptive Noise Cancelling, một pin sạc được 20 giờ, và điều khiển Remote Talk.', 5, 990000, 29, 1, 1, 1),
 (28, 6, 'Motorola Moto 360', '360moto.jpg', 'Moto 360 mới kết hợp kính tiên tiến với vỏ ngoài mỏng, đánh bóng, tạo cho bạn khu vực xem lớn nhất.<br />\r\nCho dù bạn chọn hồng vàng, đen hoặc bạc, trường hợp được tạo ra từ thép không gỉ bằng máy bay.', 4, 6000000, 20, 1, 0, 2),
 (29, 8, 'BlueAnt Wireless Waterproof Headphones', 'Tai_nghe11.jpg', 'BlueAnt Pump HD tai nghe không dây đa chức năng cung cấp âm thanh tuyệt vời khi bạn nghe iPhone hoặc iPod trong những hoạt động mạnh mẽ và trong điều kiện khắc nghiệt. Cung cấp phạm vi không dây tuyệt vời, PUMP cung cấp âm thanh trong trẻi và mang theo đánh giá IP67 (chỉ ra mức độ chống bụi và nước cao).', 5, 2800000, 28, 1, 1, 1),
 (30, 8, 'Tai nghe Bluetooth Plantronics A170 Marque', 'platronics-01-570x619.jpg', 'Hai micro làm việc cùng nhau để bắt giọng nói của bạn và hạn chế tiếng ồn nền cho chất lượng âm thanh tuyệt vời, cho dù bạn đang gọi điện hay nghe nhạc.', 5, 1200000, 30, 1, 0, 1),
@@ -362,6 +414,18 @@ ALTER TABLE `tb_catalog`
   ADD PRIMARY KEY (`id_catalog`);
 
 --
+-- Indexes for table `tb_chat_content`
+--
+ALTER TABLE `tb_chat_content`
+  ADD PRIMARY KEY (`id_content`);
+
+--
+-- Indexes for table `tb_chat_room`
+--
+ALTER TABLE `tb_chat_room`
+  ADD PRIMARY KEY (`id_room`);
+
+--
 -- Indexes for table `tb_city`
 --
 ALTER TABLE `tb_city`
@@ -442,6 +506,16 @@ ALTER TABLE `tb_admin`
 ALTER TABLE `tb_catalog`
   MODIFY `id_catalog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
+-- AUTO_INCREMENT for table `tb_chat_content`
+--
+ALTER TABLE `tb_chat_content`
+  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `tb_chat_room`
+--
+ALTER TABLE `tb_chat_room`
+  MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `tb_city`
 --
 ALTER TABLE `tb_city`
@@ -450,7 +524,7 @@ ALTER TABLE `tb_city`
 -- AUTO_INCREMENT for table `tb_comment`
 --
 ALTER TABLE `tb_comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_district`
 --
@@ -465,17 +539,17 @@ ALTER TABLE `tb_infomation_user`
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_invoice_detail`
 --
 ALTER TABLE `tb_invoice_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_notification`
 --
 ALTER TABLE `tb_notification`
-  MODIFY `id_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_tb` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_product`
 --

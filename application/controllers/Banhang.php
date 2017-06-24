@@ -61,26 +61,26 @@ class Banhang extends CI_Controller{
                 $data['account'] = $account;
                 $data['err'] = "Mật khẩu không chính xác";
                 $this->load->view('fontend_bh/login',$data);
-            }
-            if($login == 2){
+            }else{
+                if($login == 2){
                 $err['err'] = "Tài khoản chưa được đăng kí";
                 $this->load->view('fontend_bh/login',$err);
-            }
-             if($login == 0){
-                $check = array(
-                    'account' => $account,
-                );
-                $get = $this->User_models->get($check);
-                if($get!=false){
-                    foreach ($get as $row){
-                        $account = $row->id_user;
-                        $session_data = array(
-                            'session_user' => $account,
-                            'time_out_login' => time(),
-                        );
-                        $this->session->set_userdata($session_data);
-                    redirect('banhang');
-                    }
+                }else{
+                    // $check = array(
+                    //     'account' => $account,
+                    // );
+                    // $get = $this->User_models->get($check);
+                    // if($get!=false){
+                        foreach ($login as $row){
+                            $account = $row->id_user;
+                            $session_data = array(
+                                'session_user' => $account,
+                                'time_out_login' => time(),
+                            );
+                            $this->session->set_userdata($session_data);
+                        redirect('banhang');
+                        }
+                    // }
                 }
             }
         }else{

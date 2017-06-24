@@ -86,27 +86,27 @@ class home extends CI_Controller{
                         $err['err'] = "Tài khoản đã bị cấm bởi những hành vi không đúng với điều lệ sử dụng hệ thống";
                         $this->load->view('fontend/login',$err);
                     }else{
-                        if($login == 0){
-                            $check = array(
-                                'account' => $account,
-                            );
-                            $get = $this->User_models->get($check);
-                            if($get!=false){
-                                foreach ($get as $row){
-                                    $account = $row->id_user;
-                                    $session_data = array(
-                                        'session_user' => $account,
-                                        'time_out_login' => time(),
-                                    );
-                                    $this->session->set_userdata($session_data);
-                                    if($id_product == 0){
-                                        redirect('home');
-                                    }else{
-                                        redirect('product/view/'.$id_product);
-                                    }
-                                }
-                            }
+                        // if($login == 0){
+                            // $check = array(
+                            //     'account' => $account,
+                            // );
+                            // $get = $this->User_models->get($check);
+                            // if($get!=false){
+                    foreach ($login as $row){
+                        $account = $row->id_user;
+                        $session_data = array(
+                            'session_user' => $account,
+                            'time_out_login' => time(),
+                        );
+                        $this->session->set_userdata($session_data);
+                        if($id_product == 0){
+                            redirect('home');
+                        }else{
+                            redirect('product/view/'.$id_product);
                         }
+                    }
+                            // }
+                        // }
                     }
                 }
             }
@@ -285,6 +285,113 @@ class home extends CI_Controller{
     function logout(){
         $this->session->sess_destroy();
         redirect('home');
+    }
+    function catalog($id_catalog){
+        $data = array();
+        $login_user = $this->session->userdata('session_user');
+        $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
+        $product = $this->Home_models->getinfo('tb_product','id_catalog',$id_catalog);
+        $err = $this->session->flashdata('err');
+        if(isset($err)){
+            $data['err'] = $err;
+        }
+        $catalog = $this->Home_models->get('tb_catalog');
+        if($product){
+            $data['product'] = $product;
+            // $this->load->view('fontend/home',$data);
+        }
+        if($catalog){
+            $data['catalog'] = $catalog;
+            // $this->load->view('fontend/home',$data);
+        }
+        $catalog_info = $this->Home_models->getinfo('tb_catalog','id_catalog',$id_catalog);
+        if($catalog_info){
+            foreach ($catalog_info as $ctin) {
+                $data['catalog_info'] = $ctin->name;
+            }
+        }
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
+                $this->session->sess_destroy();
+                redirect('home');
+            }else{
+                $user = $this->User_models->getinfo($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
+                    }
+                }
+                $number_noti = $this->Home_models->get_noti($login_user,'2');
+                if($number_noti){
+                    $data['number_noti'] = count($number_noti);
+                }else $data['number_noti'] = 0;
+                $this->load->view('fontend/home',$data);
+            }
+        }else{
+        $this->load->view('fontend/home',$data);
+        }
+    }
+    function search(){
+        $data = array();
+        $login_user = $this->session->userdata('session_user');
+        $time_out = $this->session->userdata('time_out_login');
+        $count = $this->session->userdata('count');
+        if(isset($count)){
+            $data['count'] = $count;
+        }else $data['count'] = 0;
+        $search = $this->input->post('search');
+        $search = htmlentities($search);
+        $product = $this->Home_models->search('tb_product','name',$search);
+        $err = $this->session->flashdata('err');
+        if(isset($err)){
+            $data['err'] = $err;
+        }
+        $data['search'] = $search;
+        $catalog = $this->Home_models->get('tb_catalog');
+        if($product){
+            $data['product'] = $product;
+            // $this->load->view('fontend/home',$data);
+        }
+        if($catalog){
+            $data['catalog'] = $catalog;
+            // $this->load->view('fontend/home',$data);
+        }
+        $set_time = $this->Home_models->get('tb_set_timeout');
+        foreach($set_time as $st){};
+        $set_time_buy = $st->time_buy;
+        $set_time_login = $st->time_login;
+        if(isset($login_user)){
+            if(time() - $time_out >=$set_time_login){
+                $this->session->sess_destroy();
+                redirect('home');
+            }else{
+                $user = $this->User_models->getinfo($login_user);
+                if($user){
+                    foreach($user as $row){
+                        $data['id_user'] = $row->id_user;
+                        $data['user'] = $row->name;
+                        $data['avatar'] = $row->img;
+                    }
+                }
+                $number_noti = $this->Home_models->get_noti($login_user,'2');
+                if($number_noti){
+                    $data['number_noti'] = count($number_noti);
+                }else $data['number_noti'] = 0;
+                $this->load->view('fontend/home',$data);
+            }
+        }else{
+        $this->load->view('fontend/home',$data);
+        }
     }
 }
 ?>

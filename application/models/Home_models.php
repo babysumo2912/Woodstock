@@ -8,7 +8,14 @@ class Home_models extends CI_Model{
     }
     function getinfo($table,$key,$id){
         $this->db->where($key,$id);
-        $getinfo = $this->db->get($table);
+        $getinfo = $this->db->get($table); 
+        if($getinfo->num_rows() > 0){
+            return $getinfo->result();
+        }else return false;
+    }
+    function search($table,$key,$id){
+        $this->db->like($key,$id);
+        $getinfo = $this->db->get($table); 
         if($getinfo->num_rows() > 0){
             return $getinfo->result();
         }else return false;
@@ -21,8 +28,9 @@ class Home_models extends CI_Model{
             return $getinfo->result();
         }else return false;
     }
-    function getinfodesc_noti($table,$key,$id,$desc){
+    function getinfodesc_noti($table,$key,$id,$desc,$oop){
         $this->db->where($key,$id);
+        $this->db->where('oop',$oop);
         $this->db->order_by($desc,'DESC');
         $getinfo = $this->db->get($table);
         if($getinfo->num_rows() > 0){

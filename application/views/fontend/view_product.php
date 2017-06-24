@@ -17,7 +17,7 @@ if(isset($product)){
 <ul>
     <li><a href="<?php echo base_url()?>">Trang Chủ</a></li>
     <li><i class = "fa fa-angle-double-right"></i></li>
-    <li><a href=""><?php if(isset($catalog)){echo $catalog;} ?></a></li>
+    <li><a href="<?php echo base_url() ?>home/catalog/<?php echo $id_catalog ?>"><?php if(isset($catalog)){echo $catalog;} ?></a></li>
     <li><i class = "fa fa-angle-double-right"></i></li>
     <li><a href="<?php echo base_url()?>product/view/<?php echo $row->id_product?>"><?php echo $row->name?></a></li>
 </ul>
@@ -104,6 +104,7 @@ if(isset($product)){
                             &nbsp; Thêm vào giỏ hàng
                         </button>
                         <?php } ?>
+                        <?php echo form_close(); ?>
                     </li>
                     <li>
 <!--                        <a href="--><?php //echo base_url()?><!--product/buy/--><?php //echo $row->id_product?><!--/0" class = "btn btn-danger"><i class = "fa fa-hand-o-right"></i>&nbsp;Mua ngay</a>-->

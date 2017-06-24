@@ -295,6 +295,7 @@ class product extends CI_Controller{
             if($catalog){
                 foreach($catalog as $key){
                     $data['catalog'] = $key->name;
+                    $data['id_catalog'] = $key->id_catalog;
                 }
             }
             if($seller){
@@ -317,7 +318,8 @@ class product extends CI_Controller{
     {
         $id_user = $this->session->userdata('session_user');
         $content = $this->input->post('comment');
-        if (isset($id_user) && isset($content)) {
+        if (isset($id_user) && $content!='') {
+            $content = htmlentities($content);
             $data = array(
                 'id_product' => $id_product,
                 'id_user' => $id_user,
@@ -329,7 +331,7 @@ class product extends CI_Controller{
                 redirect('product/view/'.$id_product);
 //                echo json_encode($data);
             }
-        } else redirect('home');
+        } else redirect('product/view/'.$id_product);
     }
     public function update_number($id_product){
         $session_login = $this->session->userdata('session_user');

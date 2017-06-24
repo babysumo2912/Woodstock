@@ -28,7 +28,7 @@ include'header.php';
                     <tr>
                         <td>Tỉnh / Thành Phố</td>
                         <td>
-                            <select name="city" id="" class="form-control" required>
+                            <select name="city" id="city" class="form-control" required>
                                 <option value="0">Chọn Tỉnh / Thành Phố</option>
                                 <?php
                                 if(isset($city)){
@@ -45,7 +45,7 @@ include'header.php';
                     <tr>
                         <td>Quận / Huyện</td>
                         <td>
-                            <select name="district" id="" class="form-control" required>
+                            <select name="district" id="district" class="form-control" required>
                                 <option value="0">Chọn Quận / Huyện</option>
                                 <?php
                                 if(isset($district)){
@@ -82,3 +82,30 @@ include'header.php';
 <?php
 include 'footer.php';
 ?>
+<script type="text/javascript">
+        $(document).ready(function(){
+           $('#city').on('change', function(){
+                var id_city = $(this).val();
+                if(id_city == 0)
+                {
+                    $('#district').prop('disabled', true);
+                }
+                else
+                {
+                    $('#district').prop('disabled', false);
+                    $.ajax({
+                        url:"<?php echo base_url() ?>pay/city",
+                        type: "POST",
+                        data: {'id_city' : id_city},
+                        dataType: 'json',
+                        success: function(data){
+                           $('#district').html(data);
+                        },
+                        error: function(){
+                            $('#district').prop('disabled', true);           
+                        }
+                    });
+                }
+           }); 
+        });
+    </script>

@@ -248,7 +248,7 @@ include'header.php';
             ?>
             <div class="text-center">
                 <a href="<?php echo base_url()?>sale/invoice/click_active/<?php echo $cthd->id_invoice ?>/1" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Xác nhận</a>
-                <a href="" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Hủy đơn hàng</a>
+                <a href="<?php echo base_url()?>sale/invoice/click_active/<?php echo $cthd->id_invoice ?>/4" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Hủy đơn hàng</a>
 
             </div>
     <?php

@@ -66,14 +66,24 @@
                 </a>
             </div>
             <div class = "col-md-6 col-sm-4 col-xs-12">
-                <form action="" class = "form-group" style="margin-top:30px">
+                <?php 
+                $style = array(
+                    'class'=>'form-group',
+                    'style' => 'margin-top: 30px',
+
+                    );
+                echo form_open('home/search',$style)
+
+                 ?>
+                <!-- <form action="" class = "form-group" style="margin-top:30px"> -->
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm, thương hiệu và tên shop" required>
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm ..." required name="search">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">Tìm kiếm</button>
                         </span>
                     </div>
-                </form>
+                <!-- </form> -->
+                <?php echo form_close(); ?>
             </div>
             <div class = "col-md-3 col-sm-4 col-xs-12">
                 <div class = "hd-right">

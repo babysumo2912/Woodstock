@@ -21,7 +21,7 @@ if(isset($account)){
                             <a href="">Thông báo <sup class="badge">0</sup></a>
                         </li>
                         <li>
-                            <a href="">Tin nhắn <sup class="badge">0</sup></a>
+                            <a href="<?php echo base_url() ?>infomation/messenger">Tin nhắn <sup class="badge">0</sup></a>
                         </li>
                         <li>
                             <a href="">Cài đặt</a>
