@@ -57,29 +57,29 @@ if(isset($err)){
 		<div class = "qc2" style="border-bottom: 1px solid #ccc">
 	        <ul>
 	            <li style="padding:0 90px">
-	                <a href="<?php echo base_url()?>infomation/buyer/active/0">
+	                <a href="<?php echo base_url()?>shop/order_by/number/desc/<?php echo $id_user ?>">
 	                    
 	                    Phổ biến
 	                </a>
 	            </li>
 	            <li style="padding:0 90px">
-	                <a href="<?php echo base_url()?>infomation/buyer/active/1">
+	                <a href="<?php echo base_url()?>shop/order_by/id_product/desc/<?php echo $id_user ?>">
 	                Mới nhất
 	                </a>
 	            </li>
 	            <li style="padding:0 90px">
-	                <a href="<?php echo base_url()?>infomation/buyer/active/2">
+	                <a href="<?php echo base_url()?>shop/order_by/like/desc/<?php echo $id_user ?>">
 	                Bán chạy
 	                </a>
 	            </li>
 	            <li style="padding:0 90px">
-	                <a href="<?php echo base_url()?>infomation/buyer/active/3">
+	                <a href="<?php echo base_url()?>shop/order_by/price/desc/<?php echo $id_user ?>">
 	                Giá&nbsp;&nbsp;
 	                <i class="fa fa-angle-double-down"></i>
 	                </a>
 	            </li>
 	            <li style="padding:0 90px">
-	                <a href="<?php echo base_url()?>infomation/buyer/active/4">
+	                <a href="<?php echo base_url()?>shop/order_by/price/asc/<?php echo $id_user ?>">
 	                Giá&nbsp;&nbsp;
 	                <i class="fa fa-angle-double-up"></i>
 	                </a>

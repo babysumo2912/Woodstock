@@ -34,7 +34,7 @@ class Shop extends CI_Controller
         if(isset($login_user)){
             if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
-                redirect('banhang');
+                redirect('home');
             }else{
                 $number_noti = $this->Home_models->get_noti($login_user,'2');
                 if($number_noti){
@@ -65,7 +65,7 @@ class Shop extends CI_Controller
         }else{
         $data['err']="Không tìm thấy dữ liệu";
             }
-        $product = $this->Product_models->get_home($id_user);
+        $product = $this->Product_models->get_shop_pro($id_user,$order_by,$desc);
         if($product != false){
             $number_product = 0;
             $number_product = count($product);
@@ -81,7 +81,7 @@ class Shop extends CI_Controller
         if(isset($login_user)){
             if(time() - $time_out >=$set_time_login){
                 $this->session->sess_destroy();
-                redirect('banhang');
+                redirect('home');
             }else{
                 $number_noti = $this->Home_models->get_noti($login_user,'2');
                 if($number_noti){

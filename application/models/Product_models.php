@@ -30,6 +30,16 @@ class Product_models extends CI_Model{
             return $get->result();
         }else return false;
     }
+    function get_shop_pro($id_user,$order_by,$desc){
+        $this->db->where('active', 1);
+        $this->db->where('number>',0);
+        $this->db->where('id_user',$id_user);
+        $this->db->Order_by($order_by,$desc);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
     function get($login_user){
         $this->db->where('id_user',$login_user);
         $get = $this->db->get('tb_product');
