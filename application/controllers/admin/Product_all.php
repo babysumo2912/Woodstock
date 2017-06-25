@@ -2,7 +2,7 @@
 /**
 * 
 */
-class Product extends CI_Controller
+class Product_all extends CI_Controller
 {
 	
 	function index(){
@@ -21,26 +21,23 @@ class Product extends CI_Controller
 		if($product){
 			$data['product_all'] = $product;
 		}
-		$query = $this->Product_models->getall_active();
-		if($query){
-			$data['product'] = $query;
-		}
-		$this->load->view('admin/product',$data);
+		
+		$this->load->view('admin/product_all',$data);
 	}
-	function check(){
+	function ban(){
 		$data = $this->input->post('sanpham');
 		if(isset($data)){
 			// var_dump($data);die();
 			foreach($data as $row => $item){
 			// echo $item['id_product'];
 			$update = array(
-				'active' => '1',
+				'active' => '2',
 				);
 			$this->Admin_models->check_product($item['id_product'],$update);
 			}
-			$succ = "Sản phẩm đã được đẩy lên hệ thống thành công!";
+			$succ = "Sản phẩm đã được ẩn khỏi hệ thống thành công!";
 			$this->session->set_flashdata('succ',$succ);
-			redirect('admin/product');
+			redirect('admin/product_all');
 		}
 	}
 }

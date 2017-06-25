@@ -45,16 +45,16 @@ include'header.php';
 			<td style="width:5%">
 				<input type="checkbox" class="check" id="checkAll">
 			</td>
-			<td>
+			<td style="width:40%">
 				Sản phẩm
 			</td>
-			<td>
+			<td style="width:20%">
 				Danh mục
 			</td>
-			<td>
+			<td style="width:40%">
 				Mô tả
 			</td>
-			<td></td>
+			<td style="width:5%"></td>
 		</tr>
 		<?php 
 		if(isset($product)):

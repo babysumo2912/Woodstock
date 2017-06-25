@@ -2,7 +2,7 @@
 /**
 * 
 */
-class Product extends CI_Controller
+class Product_ban extends CI_Controller
 {
 	
 	function index(){
@@ -17,17 +17,14 @@ class Product extends CI_Controller
 		if(isset($succ)){
 			$data['succ'] = $succ;
 		}
-		$product = $this->Product_models->getall();
+		$product = $this->Product_models->get_ban();
 		if($product){
 			$data['product_all'] = $product;
 		}
-		$query = $this->Product_models->getall_active();
-		if($query){
-			$data['product'] = $query;
-		}
-		$this->load->view('admin/product',$data);
+		
+		$this->load->view('admin/product_ban',$data);
 	}
-	function check(){
+	function replay(){
 		$data = $this->input->post('sanpham');
 		if(isset($data)){
 			// var_dump($data);die();
@@ -38,9 +35,9 @@ class Product extends CI_Controller
 				);
 			$this->Admin_models->check_product($item['id_product'],$update);
 			}
-			$succ = "Sản phẩm đã được đẩy lên hệ thống thành công!";
+			$succ = "Sản phẩm đã được khôi phục lên hệ thống thành công!";
 			$this->session->set_flashdata('succ',$succ);
-			redirect('admin/product');
+			redirect('admin/product_ban');
 		}
 	}
 }

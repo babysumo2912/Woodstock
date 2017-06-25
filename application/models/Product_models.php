@@ -8,6 +8,14 @@ class Product_models extends CI_Model{
             return $get->result();
         }else return false;
     }
+    function get_ban(){
+        $this->db->where('active', 2);
+        $this->db->where('number>',0);
+        $get = $this->db->get('tb_product');
+        if($get->num_rows() > 0){
+            return $get->result();
+        }else return false;
+    }
     function getall_active(){
         $this->db->where('active', 0);
         $this->db->where('number>',0);

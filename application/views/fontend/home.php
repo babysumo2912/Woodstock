@@ -1,3 +1,6 @@
+<?php 
+$admin = $this->session->userdata('admin');
+?>
 <?php include "header.php" ?>
 <?php if(isset($err)){?>
 <section class="max-row">
@@ -76,7 +79,8 @@
         <div class = "col-md-2 col-sm-3 col-xs-6">
             <div class = " product">
                 <a href="<?php echo base_url()?>product/view/<?php echo $row->id_product?>" title = "<?php echo $row->name?>">
-                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img ?>') center; background-size: cover"></div>
+                    <div class = "img-product" style = "background:url('<?php echo base_url()?>public/img/product/<?php echo $row->img ?>') center; background-size: cover">
+                    </div>
                     <div class = "content-product">
                         <div class = "name-product">
 

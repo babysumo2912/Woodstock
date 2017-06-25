@@ -40,9 +40,11 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-cubes"></i>&nbsp;Quản lí sản phẩm<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Danh mục sản phẩm</a></li>
+            <li><a href="<?php echo base_url() ?>admin/product_all">Danh sách sản phẩm</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="<?php echo base_url() ?>admin/product">Danh sách Sản phẩm</a></li>
+            <li><a href="<?php echo base_url() ?>admin/product">Sản phẩm mới</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="<?php echo base_url() ?>admin/product_ban">Sản phẩm cấm</a></li>
           </ul>
         </li>
         <li><a href="<?php echo base_url() ?>admin/user"><i class="fa fa-users"></i> Quản lí người dùng</a></li>
