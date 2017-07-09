@@ -118,6 +118,13 @@ class home extends CI_Controller{
     function verty(){
         $phone = $this->input->post('phone');
         if(isset($phone)){
+            $check = $this->Home_models->getinfo('tb_user','phone',$phone);
+            if($check){
+                $err = "Số điện thoại đã được đăng kí! Vui lòng nhập số điện thoại khác!";
+                $this->session->set_flashdata('err',$err);
+                redirect('home/register');
+                die();
+            }
             $verty = rand(100000,999999);
             $session = array(
                 'verty' => $verty,
@@ -128,7 +135,6 @@ class home extends CI_Controller{
             $SecretKey="6C47C73FE98DCF7A31D2A90B625347";
             $YourPhone=$phone;
             $Content='Mã xác nhận tài khoản của bạn là: '.$verty;
-            
             $SendContent=urlencode($Content);
             $data="http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?Phone=$YourPhone&ApiKey=$APIKey&SecretKey=$SecretKey&Content=$SendContent&SmsType=4";
             
@@ -151,6 +157,9 @@ class home extends CI_Controller{
         $session_captcha = $this->session->userdata('captcha');
         $session_verty = $this->session->userdata('verty');
         $session_phone = $this->session->userdata('phone');
+        // if(isset($err)){
+        //     die();
+        // }
         if(isset($login_user)){
             redirect('home');
             die();
@@ -159,11 +168,32 @@ class home extends CI_Controller{
         $password = $this->input->post('password');
         $re_password = $this->input->post('re_password');
         $captcha = $this->input->post('captcha');
-        // $verty = $this->input->post('verty');
-        if(isset($account) && isset($password) && isset($re_password)&&isset($captcha) && isset($verty)){
-            if($verty!=$session_verty){
-                $err['err'] = "Mã kích hoạt không chính xác!";
-                $this->load->view('fontend/register',$err);
+        $verty = $this->input->post('verty');
+        if(isset($account) && isset($password) && isset($re_password)&&isset($captcha)&&isset($verty)){
+            if($verty != $session_verty){
+                $word = substr(md5(rand(0,99)),15,5);
+                $vals = array(
+                'word' => $word,
+                'img_path' => './public/captcha/',
+                'img_url' => base_url('public/captcha/'),
+                'font_path' => '../../public/style/fonts/fontawesome-webfont.ttf/',
+                'img_width' => '100',
+                'img_height' => '30',
+                'expiration' => '60',
+                'colors' => array(
+                    'background' => array(119, 119, 119),
+                    'border' => array(110, 110, 110),
+                    'text' => array(0, 0, 0),
+                    'grid' => array(77, 77, 77))
+                );
+                $data = create_captcha($vals);
+                $session_data = array(
+                    'captcha' => $data['word'],
+                );
+                $this->session->set_userdata($session_data);
+                $data['err'] = "Mã kích hoạt bị sai! Vui lòng kiểm tra lại.";
+                $this->load->view('fontend/register', $data);
+             
             }
             $word = substr(md5(rand(0,99)),15,5);
             $vals = array(
@@ -279,6 +309,10 @@ class home extends CI_Controller{
             'captcha' => $cap['word'],
         );
         $this->session->set_userdata($session_data);
+        $err = $this->session->flashdata('err');
+        if(isset($err)){
+            $cap['err'] = $err;
+        }
         $this->load->view('fontend/register',$cap);
         }
     }

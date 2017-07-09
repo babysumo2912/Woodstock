@@ -36,7 +36,7 @@
              <div class="input-group">
                 <input name="phone" type="tel" pattern="([0]{1})([0-9]{9,})" placeholder="Điền số điện thoại..." required class="form-control">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Gửi mã kích hoạt</button>
+                    <button class="btn btn-default" type="submit">Gửi mã kích hoạt</button>
                 </span>
             </div>
             <?php echo form_close(); ?>
